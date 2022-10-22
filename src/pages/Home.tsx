@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import Carrousel from "../components/Carrousel";
 import Carrousel2 from "../components/Carrousel2";
 import Carrousel3 from "../components/Carrousel3";
+import { Example } from "../components/CarrouselTest";
 
 export default () => {
   return (
@@ -16,6 +17,7 @@ export default () => {
       <Carrousel3 />
       <Carrousel />
       <Carrousel2 />
+      {/* <Example/> */}
       <Footer />
     </>
   );
