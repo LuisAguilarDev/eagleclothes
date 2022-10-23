@@ -5,7 +5,8 @@ import Footer from "../components/Footer";
 import Carrousel from "../components/Carrousel";
 import Carrousel2 from "../components/Carrousel2";
 import Carrousel3 from "../components/Carrousel3";
-import { Example } from "../components/CarrouselTest";
+import { Carousel1 } from "../components/Carrousel1";
+import { Text1 } from "../components/text1";
 
 export default () => {
   return (
@@ -14,10 +15,10 @@ export default () => {
       <div>
         <img className="Navigation_bg" src={Bg} alt="Not Found" />
       </div>
-      <Carrousel3 />
+      <Text1 />
+      <Carousel1 />
       <Carrousel />
       <Carrousel2 />
-      {/* <Example/> */}
       <Footer />
     </>
   );

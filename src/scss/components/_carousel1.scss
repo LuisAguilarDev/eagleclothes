@@ -1,0 +1,49 @@
+.Carousel1_maincontainer {
+  margin-top: 0;
+  padding-bottom: 100px;
+  height: 800px;
+}
+
+.Carousel1_text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 36px;
+}
+.Card1_textcontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Card1_container {
+  height: 600px;
+}
+.Card1_imgcontainer {
+  background-color: #f3f3f3;
+  height: 538px;
+  width: 30vw;
+  display: flex;
+  justify-content: center;
+}
+
+.Card1_imgs {
+  display: block;
+  margin: auto;
+  width: 320px;
+  height: 320px;
+}
+
+.Card1_cardscontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 17px;
+  margin-left: 81px;
+  margin-right: 81px;
+}
+button {
+  svg {
+    width: 80px;
+  }
+}

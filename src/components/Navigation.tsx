@@ -4,7 +4,6 @@ import Lupa from "../assets/lupa.svg";
 import User from "../assets/user.svg";
 import Bell from "../assets/bell.svg";
 import Bag from "../assets/bag.svg";
-import Bg from "../assets/bg.png";
 
 export default () => {
   return (
