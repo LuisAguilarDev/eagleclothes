@@ -1,47 +1,17 @@
 import React, { useState } from "react";
 import { data } from "../data/data";
-import women from "../assets/women.png";
-import Card from "./Card";
-import left from "../assets/left.svg";
-import useRecursiveTimeout from "../hooks/useRecursiveTimeout";
+import men from "../assets/men.png";
+import { useWindowSize } from "../hooks/useWindowSize";
+import Carousel from "react-material-ui-carousel";
 
-export default () => {
-  const [index, setIndex] = useState(0);
-  const [indexN, setIndexN] = useState(1);
-
-  useRecursiveTimeout(next, 4000);
-
-  function previous() {
-    if (index === 0) {
-      setIndex(data.results.length - 1);
-      setIndexN(0);
-      return;
-    }
-    if (index === data.results.length - 1) {
-      setIndex(data.results.length - 2);
-      setIndexN(data.results.length - 1);
-      return;
-    }
-    setIndex(index - 1);
-    setIndexN(indexN - 1);
-  }
-  function next() {
-    if (index === data.results.length - 2) {
-      setIndex(data.results.length - 1);
-      setIndexN(0);
-      return;
-    }
-    if (index === data.results.length - 1) {
-      setIndex(0);
-      setIndexN(1);
-      return;
-    }
-    setIndex(index + 1);
-    setIndexN(indexN + 1);
-  }
+function Carousel2(props: any) {
+  const size = useWindowSize();
   return (
-    <div className="Carrousel_maincontainer">
-      <div className="Carrousel_container">
+    <div className="Carousel2_container">
+      <div className="Carousel2_img_container">
+        <img className="Carousel2_img_men" src={men} />
+      </div>
+      <div className="Carousel2_container2">
         <div className="Carrousel_letters">
           <div>
             <span className="yellow">EAGLE</span>
@@ -49,17 +19,63 @@ export default () => {
           </div>
           <button className="button_View">VIEW ALL</button>
         </div>
-        <div className="Carrousel_imgsContainer">
-          <div className="Carrousel_ButtonL">
-            <img onClick={previous} src={left} />
-          </div>
-          <Card props={data.results[index]} />
-          <Card props={data.results[indexN]} />
-        </div>
-      </div>
-      <div className="Carrousel_imgcontainer">
-        <img src={women} />
+        <Carousel
+          sx={{
+            height: 600,
+            width: "100%",
+          }}
+          navButtonsProps={{
+            style: {
+              background: "white",
+              color: "black",
+              width: "64px",
+              height: "64px",
+              fontSize: "21px !important",
+            },
+            className: "buttonsvg",
+          }}
+          interval={4000}
+          swipe={true}
+          navButtonsAlwaysVisible={true}
+          indicators={false}
+          animation="fade"
+        >
+          {data?.results
+            ?.map((item, i, array) => {
+              if (array[i + 1]) {
+                return (
+                  <div className="Card2_cardscontainer">
+                    <Item key={i} item={array[i]} />
+                    <Item key={i + 1} item={array[i + 1]} />
+                  </div>
+                );
+              }
+            })
+            .splice(0, data?.results.length - 3)}
+        </Carousel>
       </div>
     </div>
   );
-};
+}
+
+function Item(props: any) {
+  return (
+    <div className="Card2_container">
+      <div className="Card2_imgcontainer">
+        <img className="Card2_imgs" alt="45" src={props.item.images[0].url} />
+      </div>
+      <div className="Card2_textcontainer">
+        <h2 className="Card2_text">{props.item.name}</h2>
+      </div>
+      <div className="Card2_discount">
+        <span className="Card2_textd">{`$ ${
+          Math.round(props.item.price.value * 1.2 * 100) / 100
+        }`}</span>
+        <span className="Card2_textn">{`$ ${
+          Math.round(props.item.price.value * 100) / 100
+        }`}</span>
+      </div>
+    </div>
+  );
+}
+export { Carousel2, Item };

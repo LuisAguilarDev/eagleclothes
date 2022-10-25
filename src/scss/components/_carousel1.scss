@@ -42,8 +42,10 @@
   margin-left: 81px;
   margin-right: 81px;
 }
+
 button {
-  svg {
-    width: 80px;
+  .buttonsvg:hover {
+    opacity: 1 !important;
+    // background-color: red !important;
   }
 }

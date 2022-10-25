@@ -3,7 +3,7 @@
   margin-top: 100px;
 }
 
-.Carrousel_imgcontainer {
+.Carousel1_img_container {
   display: flex;
   max-width: 570px;
 }
@@ -70,43 +70,4 @@
   width: 124px;
   height: 40px;
   margin: 10.65px;
-}
-
-.Carrousel_ButtonL {
-  left: 77px;
-  margin-top: 200px;
-  border-radius: 50%;
-  display: flex;
-  position: absolute;
-  background-color: #ffffff;
-  width: 64px;
-  height: 64px;
-  align-items: center;
-  justify-content: center;
-  img {
-    align-items: center;
-    justify-content: center;
-  }
-}
-.Carrousel_ButtonR {
-  right: 77px;
-  margin-top: 200px;
-  border-radius: 50%;
-  display: flex;
-  position: absolute;
-  background-color: #ffffff;
-  width: 64px;
-  height: 64px;
-  align-items: center;
-  justify-content: center;
-  img {
-    align-items: center;
-    justify-content: center;
-  }
-}
-.Carrousel_ButtonL:hover {
-  background-color: #d2d2d2;
-}
-.Carrousel_ButtonR:hover {
-  background-color: #d2d2d2;
 }

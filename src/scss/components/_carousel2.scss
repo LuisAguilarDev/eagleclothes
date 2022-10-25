@@ -1,0 +1,74 @@
+.Carousel2_container {
+  width: 100vw;
+  display: flex;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.Carousel2_img_container {
+  display: flex;
+  max-width: 570px;
+}
+
+.Card2_imgs {
+  width: 280px;
+  height: 280px;
+}
+.Carousel2_img_men {
+  height: 100%;
+}
+
+.Card2_cardscontainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 60vw;
+  width: 100%;
+  margin-top: 49px;
+  margin-left: 48px;
+  gap: 29px;
+}
+
+.Carousel2_container2 {
+  width: 100vw;
+  margin-left: 48.35px;
+  margin-right: 77px;
+}
+
+.Card2_imgcontainer {
+  height: 440px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f3f3;
+}
+
+.Card2_textcontainer {
+  height: 36px;
+  display: flex;
+}
+
+.Card2_text {
+  display: flex;
+}
+
+.Card2_discount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  .Card2_textd {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: line-through;
+  }
+  .Card2_textn {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

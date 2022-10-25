@@ -4,6 +4,7 @@ import Linkedin from "../assets/linkedin.svg";
 import Twitter from "../assets/twitter.svg";
 import facebook from "../assets/facebook.svg";
 import Instagram from "../assets/instagram.svg";
+import { MdOutlineMail } from "react-icons/md";
 
 export default () => {
   return (
@@ -25,7 +26,13 @@ export default () => {
             Be the first to know about our biggest and best sales. We'll never
             send more than one email a month.
           </div>
-          <input />
+          <form className="footer_form">
+            <input
+              className="footer_NewsLetter_input"
+              placeholder="ENTER YOUR EMAIL"
+            />
+            <MdOutlineMail className="footer_mailicon" />
+          </form>
           <div className="footer_social">
             <div className="footer_twitter">
               <img src={Twitter} alt="Not Found" />

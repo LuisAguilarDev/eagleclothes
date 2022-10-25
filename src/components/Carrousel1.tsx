@@ -3,22 +3,6 @@ import Carousel from "react-material-ui-carousel";
 import { Paper } from "@mui/material";
 import { data } from "../data/data";
 import { useWindowSize } from "../hooks/useWindowSize";
-// const Carrousel_ButtonL = {
-//   left: 77px,
-//   margin-top: 200px,
-//   border-radius: 50%;
-//   display: flex;
-//   position: absolute;
-//   background-color: background-color: #ffffff;;
-//   width: 64px;
-//   height: 64px;
-//   align-items: center;
-//   justify-content: center;
-//   img {
-//     align-items: center;
-//     justify-content: center;
-//   }
-// }
 
 function Carousel1(props: any) {
   const size = useWindowSize();
@@ -34,9 +18,10 @@ function Carousel1(props: any) {
           color: "black",
           width: "64px",
           height: "64px",
+          fontSize: "21px !important",
           ["svg" as any]: {
-            heigth: "2em",
-            opacity: "none",
+            height: "2em !important",
+            width: "2em !important",
           },
           ["&:hover" as any]: {
             background: "red",
@@ -51,38 +36,22 @@ function Carousel1(props: any) {
       indicators={false}
       animation="fade"
     >
-      {size.width > 1366
-        ? data?.results
-            ?.map((item, i, array) => {
-              if (array[i + 3]) {
-                return (
-                  <div className="Card1_cardscontainer">
-                    <Item key={i} item={item} />
-                    <Item key={i + 1} item={array[i + 1]} />
-                    <Item key={i + 2} item={array[i + 2]} />
-                    <Item key={i + 2} item={array[i + 3]} />
-                  </div>
-                );
-              }
-              {
-              }
-            })
-            .splice(0, data?.results.length - 3)
-        : data?.results
-            ?.map((item, i, array) => {
-              if (array[i + 2]) {
-                return (
-                  <div className="Card1_cardscontainer">
-                    <Item key={i} item={item} />
-                    <Item key={i + 1} item={array[i + 1]} />
-                    <Item key={i + 2} item={array[i + 2]} />
-                  </div>
-                );
-              }
-              {
-              }
-            })
-            .splice(0, data?.results.length - 3)}
+      {/* {size.width > 1366?  */}
+      {data?.results
+        ?.map((item, i, array) => {
+          if (array[i + 2]) {
+            return (
+              <div className="Card1_cardscontainer">
+                <Item key={i} item={item} />
+                <Item key={i + 1} item={array[i + 1]} />
+                <Item key={i + 2} item={array[i + 2]} />
+              </div>
+            );
+          }
+          {
+          }
+        })
+        .splice(0, data?.results.length - 3)}
     </Carousel>
   );
 }
