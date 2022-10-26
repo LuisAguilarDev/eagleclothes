@@ -7,6 +7,7 @@ import { Carousel2 } from "../components/Carrousel2";
 import { Carousel3 } from "../components/Carrousel3";
 import { Carousel1 } from "../components/Carrousel1";
 import { Text1 } from "../components/text1";
+import { Link } from "react-router-dom";
 
 export default () => {
   return (

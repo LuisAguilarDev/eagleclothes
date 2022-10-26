@@ -14,12 +14,24 @@ export default () => {
           <img className="Footer_Logo" src={Logo} alt="Not Found" />
         </div>
         <div className="Footer_itemList">
-          <div>Home</div>
-          <div>About</div>
-          <div>New Collection</div>
-          <div>Contact</div>
-          <div>Catalog</div>
-          <div>FAQ</div>
+          <div>
+            <span>Home</span>
+          </div>
+          <div>
+            <span>About</span>
+          </div>
+          <div>
+            <span>New Collection</span>
+          </div>
+          <div>
+            <span>Contact</span>
+          </div>
+          <div>
+            <span>Catalog</span>
+          </div>
+          <div>
+            <span>FAQ</span>
+          </div>
         </div>
         <div>
           <div className="footer_NewsLetter">

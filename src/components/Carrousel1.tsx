@@ -1,15 +1,33 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { Paper } from "@mui/material";
-import { data } from "../data/data";
 import { useWindowSize } from "../hooks/useWindowSize";
+import { useReducer } from "react";
+import { INITIAL_STATE, postReducer } from "../reducer/reducerConfig";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 function Carousel1(props: any) {
   const size = useWindowSize();
+  const [state, dispatch] = useReducer(postReducer, INITIAL_STATE);
+  const [data, setData] = useState<any[]>([]);
+  // dispatch({ type: "INITIAL_FETCH" });
+
+  async function getManProducts(page: number) {
+    const answer: any = await axios.get(
+      `http://localhost:5000/api/users/product/${page}`
+    );
+    console.log(answer.data, "answer");
+    setData(answer.data);
+  }
+
+  useEffect(() => {
+    getManProducts(1);
+  }, []);
+
   return (
     <Carousel
       sx={{
-        // mt: "0",
         height: 600,
       }}
       navButtonsProps={{
@@ -37,7 +55,7 @@ function Carousel1(props: any) {
       animation="fade"
     >
       {/* {size.width > 1366?  */}
-      {data?.results
+      {data
         ?.map((item, i, array) => {
           if (array[i + 2]) {
             return (
@@ -51,17 +69,18 @@ function Carousel1(props: any) {
           {
           }
         })
-        .splice(0, data?.results.length - 3)}
+        .splice(0, data?.length - 3)}
     </Carousel>
   );
 }
 
 function Item(props: any) {
+  console.log(props);
   return props.item?.images && props?.item ? (
     <>
       <div className="Card1_container">
         <div className="Card1_imgcontainer">
-          <img className="Card1_imgs" alt="45" src={props.item.images[0].url} />
+          <img className="Card1_imgs" alt="Not Found" src={props.item.images} />
         </div>
         <div className="Card1_textcontainer">
           <h2 className="Card1_text">{props.item.name}</h2>
