@@ -6,6 +6,7 @@ import { useReducer } from "react";
 import { useState, useEffect } from "react";
 import { INITIAL_STATE, postReducer } from "../reducer/reducerConfig";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export interface product {
   category: String;
@@ -92,11 +93,18 @@ const Carousel1 = ({ props }: IMyProps) => {
 };
 
 function Item(props: any) {
+  const navigate = useNavigate();
+  function onClick(evt: Event, item: any) {
+    console.log("entre", evt);
+    console.log("producto=?", item);
+    navigate(`/detail/${item[0].code}`, { state: item[0] });
+  }
   return props.item?.images && props?.item ? (
     <div key={props.item.code}>
       <div className="Card1_container">
         <div className="Card1_imgcontainer">
           <img
+            onClick={(evt: any) => onClick(evt, [props.item])}
             className="Card1_imgs"
             alt="Not Found"
             src={props.item.galleryImages[0].url}

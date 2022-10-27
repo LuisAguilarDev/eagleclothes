@@ -3,6 +3,7 @@ import { data } from "../data/data";
 import men from "../assets/men.png";
 import { useWindowSize } from "../hooks/useWindowSize";
 import Carousel from "react-material-ui-carousel";
+import { useNavigate } from "react-router-dom";
 
 export interface product {
   category: String;
@@ -85,6 +86,13 @@ function Carousel2({ props }: IMyProps) {
 }
 
 function Item(props: any) {
+  const navigate = useNavigate();
+  function onClick(evt: Event, item: any) {
+    console.log("entre", evt);
+    console.log("producto=?", item);
+    navigate(`/detail/${item[0].code}`, { state: item[0] });
+  }
+
   return (
     <div className="Card2_container">
       <div className="Card2_imgcontainer">
@@ -92,6 +100,7 @@ function Item(props: any) {
           className="Card2_imgs"
           alt="45"
           src={props.item.galleryImages[0].url}
+          onClick={(evt: any) => onClick(evt, [props.item])}
         />
       </div>
       <div className="Card2_textcontainer">

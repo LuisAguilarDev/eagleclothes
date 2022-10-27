@@ -1,0 +1,21 @@
+.Detail_Container {
+  display: flex;
+}
+
+.Detail_img {
+  height: 80px;
+  object-fit: contain;
+}
+
+.Detail_imgContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 15vw;
+}
+
+.Detail_imgContainerBig {
+  display: flex;
+  height: 700px;
+  object-fit: contain;
+}

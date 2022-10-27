@@ -5,6 +5,8 @@ import { Route, Routes } from "react-router-dom";
 import Userpanel from "./pages/Userpanel";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Detail from "./pages/Detail";
 
 export interface product {
   category: String;
@@ -26,7 +28,7 @@ function App() {
   const [datam, setDatam] = useState<product[]>([]);
   const [datam2, setDatam2] = useState<product[]>([]);
   const [dataw, setDataw] = useState<product[]>([]);
-
+  const navigate = useNavigate();
   async function getProducts() {
     const answer: any = await axios.get(
       `http://localhost:5000/api/users/product/`
@@ -39,6 +41,7 @@ function App() {
   useEffect(() => {
     getProducts();
   }, []);
+
   return (
     <Routes>
       <Route
@@ -47,6 +50,7 @@ function App() {
       />
       <Route path="/login" element={<Login />} />
       <Route path="/user/:name" element={<Userpanel />} />
+      <Route path="/detail/:itemCode" element={<Detail />} />
     </Routes>
   );
 }
