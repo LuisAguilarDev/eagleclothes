@@ -44,7 +44,7 @@ function Carousel3(props: any) {
             ?.map((item, i, array) => {
               if (array[i + 1]) {
                 return (
-                  <div className="Card2_cardscontainer">
+                  <div key={i} className="Card2_cardscontainer">
                     <Item key={i} item={array[i]} />
                     <Item key={i + 1} item={array[i + 1]} />
                   </div>

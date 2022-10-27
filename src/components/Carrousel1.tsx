@@ -3,27 +3,38 @@ import Carousel from "react-material-ui-carousel";
 import { Paper } from "@mui/material";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { useReducer } from "react";
+import { useState, useEffect } from "react";
 import { INITIAL_STATE, postReducer } from "../reducer/reducerConfig";
 import axios from "axios";
-import { useState, useEffect } from "react";
 
-function Carousel1(props: any) {
+export interface product {
+  category: String;
+  code: String;
+  name: String;
+  pk: Number;
+  price: {
+    value: Number;
+    formattedValue: String;
+  };
+  variantSizes: [{ filtercode: String }];
+  color: [String];
+  colorName: [String];
+  galleryImages: [{ url: String }];
+  images: String;
+}
+
+interface IMyProps {
+  props: product[];
+}
+
+// type Props = {
+//   product: product[];
+//   children: React.ReactNode;
+// };
+
+const Carousel1 = ({ props }: IMyProps) => {
   const size = useWindowSize();
   const [state, dispatch] = useReducer(postReducer, INITIAL_STATE);
-  const [data, setData] = useState<any[]>([]);
-  // dispatch({ type: "INITIAL_FETCH" });
-
-  async function getManProducts(page: number) {
-    const answer: any = await axios.get(
-      `http://localhost:5000/api/users/product/${page}`
-    );
-    console.log(answer.data, "answer");
-    setData(answer.data);
-  }
-
-  useEffect(() => {
-    getManProducts(1);
-  }, []);
 
   return (
     <Carousel
@@ -37,14 +48,6 @@ function Carousel1(props: any) {
           width: "64px",
           height: "64px",
           fontSize: "21px !important",
-          ["svg" as any]: {
-            height: "2em !important",
-            width: "2em !important",
-          },
-          ["&:hover" as any]: {
-            background: "red",
-            opacity: "none",
-          },
         },
         className: "buttonsvg",
       }}
@@ -55,12 +58,12 @@ function Carousel1(props: any) {
       animation="fade"
     >
       {/* {size.width > 1366?  */}
-      {data
-        ?.map((item, i, array) => {
+      {props
+        ?.map((item: product, i: number, array: product[]) => {
           if (array[i + 2]) {
             return (
-              <div className="Card1_cardscontainer">
-                <Item key={i} item={item} />
+              <div key={i} className="Card1_cardscontainer">
+                <Item key={i} item={array[i]} />
                 <Item key={i + 1} item={array[i + 1]} />
                 <Item key={i + 2} item={array[i + 2]} />
               </div>
@@ -69,24 +72,27 @@ function Carousel1(props: any) {
           {
           }
         })
-        .splice(0, data?.length - 3)}
+        .splice(0, props?.length - 3)}
     </Carousel>
   );
-}
+};
 
 function Item(props: any) {
-  console.log(props);
   return props.item?.images && props?.item ? (
-    <>
+    <div key={props.item.code}>
       <div className="Card1_container">
         <div className="Card1_imgcontainer">
-          <img className="Card1_imgs" alt="Not Found" src={props.item.images} />
+          <img
+            className="Card1_imgs"
+            alt="Not Found"
+            src={props.item.galleryImages[0].url}
+          />
         </div>
         <div className="Card1_textcontainer">
           <h2 className="Card1_text">{props.item.name}</h2>
         </div>
       </div>
-    </>
+    </div>
   ) : (
     <div></div>
   );
