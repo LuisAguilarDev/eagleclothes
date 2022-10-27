@@ -58,21 +58,35 @@ const Carousel1 = ({ props }: IMyProps) => {
       animation="fade"
     >
       {/* {size.width > 1366?  */}
-      {props
-        ?.map((item: product, i: number, array: product[]) => {
-          if (array[i + 2]) {
-            return (
-              <div key={i} className="Card1_cardscontainer">
-                <Item key={i} item={array[i]} />
-                <Item key={i + 1} item={array[i + 1]} />
-                <Item key={i + 2} item={array[i + 2]} />
-              </div>
-            );
-          }
-          {
-          }
-        })
-        .splice(0, props?.length - 3)}
+      {props?.map((item: product, i: number, array: product[]) => {
+        if (array[i + 2]) {
+          return (
+            <div key={i} className="Card1_cardscontainer">
+              <Item key={i} item={array[i]} />
+              <Item key={i + 1} item={array[i + 1]} />
+              <Item key={i + 2} item={array[i + 2]} />
+            </div>
+          );
+        }
+        if (i === props.length - 2) {
+          return (
+            <div key={i} className="Card1_cardscontainer">
+              <Item key={i} item={array[i]} />
+              <Item key={i + 1} item={array[7]} />
+              <Item key={i + 2} item={array[0]} />
+            </div>
+          );
+        }
+        if (i === props.length - 1) {
+          return (
+            <div key={i} className="Card1_cardscontainer">
+              <Item key={i} item={array[7]} />
+              <Item key={i + 1} item={array[0]} />
+              <Item key={i + 2} item={array[1]} />
+            </div>
+          );
+        }
+      })}
     </Carousel>
   );
 };

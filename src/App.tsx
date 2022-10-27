@@ -23,21 +23,28 @@ export interface product {
 }
 
 function App() {
-  const [data, setData] = useState<product[]>([]);
+  const [datam, setDatam] = useState<product[]>([]);
+  const [datam2, setDatam2] = useState<product[]>([]);
+  const [dataw, setDataw] = useState<product[]>([]);
 
-  async function getManProducts(page: number) {
+  async function getProducts() {
     const answer: any = await axios.get(
-      `http://localhost:5000/api/users/product/${page}`
+      `http://localhost:5000/api/users/product/`
     );
-    setData(answer.data);
+    setDatam(answer.data.man);
+    setDatam2(answer.data.man2);
+    setDataw(answer.data.woman);
   }
 
   useEffect(() => {
-    getManProducts(1);
+    getProducts();
   }, []);
   return (
     <Routes>
-      <Route path="/" element={<Home props1={data} />} />
+      <Route
+        path="/"
+        element={<Home props1={datam} props2={datam2} props3={dataw} />}
+      />
       <Route path="/login" element={<Login />} />
       <Route path="/user/:name" element={<Userpanel />} />
     </Routes>

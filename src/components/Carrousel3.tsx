@@ -4,7 +4,27 @@ import women from "../assets/women.png";
 import { useWindowSize } from "../hooks/useWindowSize";
 import Carousel from "react-material-ui-carousel";
 
-function Carousel3(props: any) {
+export interface product {
+  category: String;
+  code: String;
+  name: String;
+  pk: Number;
+  price: {
+    value: Number;
+    formattedValue: String;
+  };
+  variantSizes: [{ filtercode: String }];
+  color: [String];
+  colorName: [String];
+  galleryImages: [{ url: String }];
+  images: String;
+}
+
+interface IMyProps {
+  props: product[];
+}
+
+function Carousel3({ props }: IMyProps) {
   const size = useWindowSize();
   return (
     <div className="Carousel3_container">
@@ -40,18 +60,24 @@ function Carousel3(props: any) {
           indicators={false}
           animation="fade"
         >
-          {data?.results
-            ?.map((item, i, array) => {
-              if (array[i + 1]) {
-                return (
-                  <div key={i} className="Card2_cardscontainer">
-                    <Item key={i} item={array[i]} />
-                    <Item key={i + 1} item={array[i + 1]} />
-                  </div>
-                );
-              }
-            })
-            .splice(0, data?.results.length - 3)}
+          {props?.map((item, i, array) => {
+            if (array[i + 1]) {
+              return (
+                <div key={i} className="Card2_cardscontainer">
+                  <Item key={i} item={array[i]} />
+                  <Item key={i + 1} item={array[i + 1]} />
+                </div>
+              );
+            }
+            if (i === props.length - 1) {
+              return (
+                <div key={i} className="Card2_cardscontainer">
+                  <Item key={i} item={array[7]} />
+                  <Item key={i + 1} item={array[0]} />
+                </div>
+              );
+            }
+          })}
         </Carousel>
       </div>
     </div>
@@ -59,10 +85,15 @@ function Carousel3(props: any) {
 }
 
 function Item(props: any) {
+  console.log(props);
   return (
     <div className="Card2_container">
       <div className="Card2_imgcontainer">
-        <img className="Card2_imgs" alt="45" src={props.item.images[0].url} />
+        <img
+          className="Card2_imgs"
+          alt="Not Found"
+          src={props.item.galleryImages[0].url}
+        />
       </div>
       <div className="Card2_textcontainer">
         <h2 className="Card2_text">{props.item.name}</h2>
