@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import { Route, Routes } from "react-router-dom";
 import Userpanel from "./pages/Userpanel";
+import UserpanelF from "./pages/Userpanel_Favorites";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -50,6 +51,7 @@ function App() {
       />
       <Route path="/login" element={<Login />} />
       <Route path="/user/:name" element={<Userpanel />} />
+      <Route path="/user/:name/favorites" element={<UserpanelF />} />
       <Route path="/detail/:itemCode" element={<Detail />} />
     </Routes>
   );

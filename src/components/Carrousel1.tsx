@@ -7,6 +7,9 @@ import { useState, useEffect } from "react";
 import { INITIAL_STATE, postReducer } from "../reducer/reducerConfig";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineHeart } from "react-icons/ai";
+
+import * as services from "../services/functions";
 
 export interface product {
   category: String;
@@ -94,17 +97,19 @@ const Carousel1 = ({ props }: IMyProps) => {
 
 function Item(props: any) {
   const navigate = useNavigate();
-  function onClick(evt: Event, item: any) {
-    console.log("entre", evt);
-    console.log("producto=?", item);
+  function getDetail(evt: Event, item: any) {
     navigate(`/detail/${item[0].code}`, { state: item[0] });
   }
   return props.item?.images && props?.item ? (
     <div key={props.item.code}>
       <div className="Card1_container">
         <div className="Card1_imgcontainer">
+          <AiOutlineHeart
+            onClick={(evt: any) => services.addFav(evt, [props.item])}
+            className="ITEM_heart"
+          />
           <img
-            onClick={(evt: any) => onClick(evt, [props.item])}
+            onClick={(evt: any) => getDetail(evt, [props.item])}
             className="Card1_imgs"
             alt="Not Found"
             src={props.item.galleryImages[0].url}

@@ -24,3 +24,32 @@ h2 {
 .Texto_Transparente {
   color: transparent;
 }
+
+.ITEM_heart {
+  position: absolute;
+  margin-top: 81px;
+  margin-left: 20%;
+  padding: 5px;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+
+.ITEM_heart:hover {
+  background-color: rgb(252, 158, 202);
+  color: rgb(249, 24, 128);
+}
+.ITEM_heart2 {
+  display: flex;
+  position: absolute;
+  padding: 5px;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  margin-top: -250px;
+  margin-left: 250px;
+}
+.ITEM_heart2:hover {
+  background-color: rgb(252, 158, 202);
+  color: rgb(249, 24, 128);
+}

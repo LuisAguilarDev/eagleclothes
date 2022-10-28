@@ -4,6 +4,8 @@ import men from "../assets/men.png";
 import { useWindowSize } from "../hooks/useWindowSize";
 import Carousel from "react-material-ui-carousel";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineHeart } from "react-icons/ai";
+import * as services from "../services/functions";
 
 export interface product {
   category: String;
@@ -96,6 +98,10 @@ function Item(props: any) {
   return (
     <div className="Card2_container">
       <div className="Card2_imgcontainer">
+        <AiOutlineHeart
+          onClick={(evt: any) => services.addFav(evt, [props.item])}
+          className="ITEM_heart2"
+        />
         <img
           className="Card2_imgs"
           alt="45"

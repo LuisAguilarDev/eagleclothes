@@ -40,6 +40,7 @@ export default () => {
           <div>ABOUT US</div>
         </div>
         <div className="Navigation_icons">
+          <input className="Navigation_lupa_input"></input>
           <div>
             <img className="Navigation_lupa" src={Lupa} alt="Not Found" />
           </div>

@@ -4,6 +4,7 @@ export const INITIAL_STATE = {
   search: [],
   pagination: [],
   salesWomen: [],
+  favorites: [],
 };
 
 export const postReducer = (state: any, action: any) => {
@@ -11,6 +12,12 @@ export const postReducer = (state: any, action: any) => {
     return {
       ...state,
       loading: true,
+    };
+  }
+  if (action.type === "FAVORITES_FETCH") {
+    return {
+      ...state,
+      favorites: action.payload,
     };
   }
   if (action.type === "FETCH_SUCCESS") {
