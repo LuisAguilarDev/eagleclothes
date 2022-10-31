@@ -1,25 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../reducer/context";
 import { useLocation } from "react-router-dom";
-import { product } from "../App";
+import { productType } from "../reducer/Types";
 import Navigation from "../components/Navigation";
+import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
+import { Button } from "@mui/material";
+import { Types } from "../reducer/Types";
 
 const Detail = () => {
   const location = useLocation();
-  const product: product = location.state;
+  const { state, dispatch } = useContext(AppContext);
+  const product: productType = location.state;
   const [index, setIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   function onClick(index: number) {
     setIndex(index);
   }
-  console.log(product);
   return (
     <>
       <Navigation />
       <div>{product.name}</div>
       <div className="Detail_Container">
         <div className="Detail_imgContainer">
-          {product.galleryImages.map((img, i) => {
+          {product.galleryImages.map((img: any, i: number) => {
             return (
               <img
+                key={i}
                 onClick={(e) => onClick(i)}
                 className="Detail_img"
                 src={img.url as string}
@@ -55,6 +61,63 @@ const Detail = () => {
         </div>
         <>
           <div>Price: {product.price.formattedValue}</div>
+        </>
+        <>
+          <AiFillMinusCircle
+            onClick={() => {
+              if (quantity === 1) return;
+              setQuantity(quantity - 1);
+            }}
+          />
+          <div>Quantity: {quantity}</div>
+          <AiFillPlusCircle
+            onClick={() => {
+              setQuantity(quantity + 1);
+            }}
+          />
+        </>
+        <>
+          <Button
+            key={1}
+            sx={{
+              color: "black",
+              bgcolor: "yellow",
+              ":hover": {
+                bgcolor: "green",
+              },
+            }}
+            variant="outlined"
+          >
+            BUY NOW{" "}
+          </Button>
+          <Button
+            key={2}
+            sx={{
+              color: "black",
+              bgcolor: "yellow",
+              ":hover": {
+                bgcolor: "green",
+              },
+            }}
+            variant="contained"
+            onClick={() => {
+              let temp = state.shoppingCart.filter((p) => {
+                return p.code === product.code;
+              });
+              console.log(temp);
+              if (temp.length > 0) {
+                return temp[0].quantity
+                  ? (temp[0].quantity = temp[0].quantity + quantity)
+                  : 0;
+              }
+              return dispatch({
+                type: Types.Add,
+                payload: { ...product, quantity: quantity },
+              });
+            }}
+          >
+            ADD TO CART{" "}
+          </Button>
         </>
       </div>
     </>

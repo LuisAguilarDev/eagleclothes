@@ -8,27 +8,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Detail from "./pages/Detail";
-
-export interface product {
-  category: String;
-  code: String;
-  name: String;
-  pk: Number;
-  price: {
-    value: Number;
-    formattedValue: String;
-  };
-  variantSizes: [{ filtercode: String }];
-  color: [String];
-  colorName: [String];
-  galleryImages: [{ url: String }];
-  images: String;
-}
+import { useReducer } from "react";
+import ShoppingCart from "./pages/ShoppingCart";
+import { productType } from "./reducer/Types";
 
 function App() {
-  const [datam, setDatam] = useState<product[]>([]);
-  const [datam2, setDatam2] = useState<product[]>([]);
-  const [dataw, setDataw] = useState<product[]>([]);
+  const [datam, setDatam] = useState<productType[]>([]);
+  const [datam2, setDatam2] = useState<productType[]>([]);
+  const [dataw, setDataw] = useState<productType[]>([]);
   const navigate = useNavigate();
   async function getProducts() {
     const answer: any = await axios.get(
@@ -52,6 +39,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/user/:name" element={<Userpanel />} />
       <Route path="/user/:name/favorites" element={<UserpanelF />} />
+      <Route path="/user/:name/shopping_cart" element={<ShoppingCart />} />
       <Route path="/detail/:itemCode" element={<Detail />} />
     </Routes>
   );

@@ -1,38 +1,45 @@
+import {
+  productType,
+  InitialStateType,
+  ShoppingCartActions,
+  Types,
+} from "./Types";
+
 export const INITIAL_STATE = {
-  loading: false,
-  salesMen: [],
   search: [],
-  pagination: [],
-  salesWomen: [],
+  shoppingCart: [],
   favorites: [],
+  pagination: { currentPage: 1, lastPage: 1 },
 };
 
-export const postReducer = (state: any, action: any) => {
-  if (action.type === "INITIAL_FETCH") {
-    return {
-      ...state,
-      loading: true,
-    };
+export const shoppingCartReducer = (
+  state: InitialStateType,
+  action: ShoppingCartActions
+) => {
+  switch (action.type) {
+    case Types.Add:
+      console.log(action);
+      return {
+        ...state,
+        shoppingCart: [...state.shoppingCart, action.payload],
+      };
+    case Types.Delete:
+      console.log(action);
+      return {
+        ...state,
+        shoppingCart: state.shoppingCart.filter(
+          (product: productType) => product.code !== action.payload.code
+        ),
+      };
+    default:
+      console.log(action);
+      return state;
   }
-  if (action.type === "FAVORITES_FETCH") {
-    return {
-      ...state,
-      favorites: action.payload,
-    };
-  }
-  if (action.type === "FETCH_SUCCESS") {
-    return {
-      ...state,
-      salesMen: [action.payload],
-      loading: true,
-    };
-  }
-  if (action.type === "FETCH_ERROR") {
-    return {
-      ...state,
-      error: action.payload,
-      loading: true,
-    };
-  }
-  return state;
 };
+
+export const mainReducer = (
+  shoppingCart: InitialStateType,
+  action: ShoppingCartActions
+) => ({
+  shoppingCart: shoppingCartReducer(shoppingCart, action),
+});

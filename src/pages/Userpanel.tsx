@@ -26,7 +26,9 @@ export default () => {
         <Link to={`/user/${username}/favorites`}>
           <div>Favorites</div>
         </Link>
-        <div>Shopping Cart</div>
+        <Link to={`/user/${username}/shopping_cart`}>
+          <div>Shopping Cart</div>
+        </Link>
         <div>Address</div>
       </div>
     </>

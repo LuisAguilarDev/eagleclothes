@@ -5,6 +5,9 @@ import { ResponseType } from "axios";
 export async function addFav(evt: Event, item: any) {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
+  if (Authorization === "") {
+    return "";
+  }
   const answer: any = await axios
     .post(`http://localhost:5000/api/users/favs`, item[0], {
       headers: { Authorization },
