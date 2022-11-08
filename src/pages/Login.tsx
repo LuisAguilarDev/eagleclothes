@@ -6,6 +6,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Alert, Snackbar, SnackbarOrigin } from "@mui/material";
 import { SlideProps } from "@mui/material/Slide";
+import Swal from "sweetalert2";
 
 export interface State extends SnackbarOrigin {
   open: boolean;
@@ -23,20 +24,23 @@ export default () => {
     vertical: "top",
     horizontal: "center",
   });
+
   const { vertical, horizontal, open } = state;
 
   const handleClose = () => {
     setState({ ...state, open: false });
   };
+
   const handleClick = () => {
     setState({ open: true, vertical: "top", horizontal: "center" });
   };
+
   function handleChange(evt: any) {
     setData({ ...data, [evt.target.name]: evt.target.value });
   }
+
   function handleLogin(evt: any) {
     evt.preventDefault();
-    console.log(data);
     axios
       .post("http://localhost:5000/api/users/singIn", data)
       .then((res) => {
@@ -49,22 +53,25 @@ export default () => {
         console.log(err);
       });
   }
+
+  function handleAlert() {
+    if (location.state?.message) {
+      Swal.fire({
+        title: location.state?.message,
+        icon: "success",
+        confirmButtonColor: "#9ea03b",
+      });
+    }
+    return;
+  }
+
   useEffect(() => {
+    handleAlert();
     handleClick();
   }, []);
+
   return (
     <>
-      <Navigation />
-      <Snackbar
-        open={open}
-        onClose={handleClose}
-        autoHideDuration={6000}
-        key={vertical + horizontal}
-        anchorOrigin={{ vertical, horizontal }}
-      >
-        <Alert severity="info">{location.state?.message}!</Alert>
-      </Snackbar>
-
       <form className="login_form" onSubmit={handleLogin}>
         <label>Username:</label>
         <input

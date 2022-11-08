@@ -16,7 +16,6 @@ export default () => {
   }
   return (
     <>
-      <Navigation />
       <div className="Userpanel_container">
         <div>
           <div>{username}</div>

@@ -11,10 +11,14 @@ type ActionMap<M extends { [index: string]: any }> = {
 export enum Types {
   Delete = "DELETE_PRODUCT",
   Add = "ADD_TO_CART",
+  Update = "UPDATE_STATE",
+  ClearChart = "CLEAR_CHART",
 }
 export type ProductPayload = {
   [Types.Add]: productType;
   [Types.Delete]: productType;
+  [Types.Update]: boolean;
+  [Types.ClearChart]: [];
 };
 export type ProductActions =
   ActionMap<ProductPayload>[keyof ActionMap<ProductPayload>];
@@ -43,6 +47,7 @@ export type paginationType = {
   lastPage: number;
 };
 export type InitialStateType = {
+  loading: boolean;
   shoppingCart: productType[];
   search?: productType[];
   pagination?: paginationType;

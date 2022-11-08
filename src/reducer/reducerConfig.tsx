@@ -6,9 +6,11 @@ import {
 } from "./Types";
 
 export const INITIAL_STATE = {
+  loading: false,
   search: [],
   shoppingCart: [],
   favorites: [],
+  quantity: 0,
   pagination: { currentPage: 1, lastPage: 1 },
 };
 
@@ -17,8 +19,12 @@ export const shoppingCartReducer = (
   action: ShoppingCartActions
 ) => {
   switch (action.type) {
+    case Types.Update:
+      return {
+        ...state,
+        loading: !state.loading,
+      };
     case Types.Add:
-      console.log(action);
       return {
         ...state,
         shoppingCart: [...state.shoppingCart, action.payload],
@@ -31,8 +37,12 @@ export const shoppingCartReducer = (
           (product: productType) => product.code !== action.payload.code
         ),
       };
+    case Types.ClearChart:
+      return {
+        ...state,
+        shoppingCart: [],
+      };
     default:
-      console.log(action);
       return state;
   }
 };

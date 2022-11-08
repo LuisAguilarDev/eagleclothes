@@ -15,20 +15,17 @@ export default () => {
   const { state, dispatch } = useContext(AppContext);
   const [quantity, setQuantity] = useState(0);
   function getquantity() {
-    console.log(quantity);
-    state.shoppingCart.forEach((item) => {
-      if (!item.quantity) {
-        return;
-      }
-      console.log(quantity);
-      setQuantity(quantity + item.quantity);
+    const answer = state.shoppingCart.map((item, i) => {
+      if (!item.quantity) return 0;
+      return item.quantity;
     });
+    let total = answer.reduce((a, b) => a + b, 0);
+    total = total ? total : 0;
+    setQuantity(total);
   }
-
   useEffect(() => {
-    setQuantity(0);
     getquantity();
-  }, [state.shoppingCart]);
+  }, [state.loading]);
   return (
     <>
       <div className="Navigation_firstLine">
@@ -72,14 +69,20 @@ export default () => {
           </div>
           <div className="Navigation_Separator">
             <Badge badgeContent={quantity} color="primary">
-              <Link
-                to={`/user/${username!.substring(
-                  1,
-                  username!.length - 1
-                )}/shopping_cart`}
-              >
-                <LocalMallOutlinedIcon className="Navigation_bag" />
-              </Link>
+              {username ? (
+                <Link
+                  to={`/user/${username!.substring(
+                    1,
+                    username!.length - 1
+                  )}/shopping_cart`}
+                >
+                  <LocalMallOutlinedIcon className="Navigation_bag" />
+                </Link>
+              ) : (
+                <Link to={`/user/none/shopping_cart`}>
+                  <LocalMallOutlinedIcon className="Navigation_bag" />
+                </Link>
+              )}
             </Badge>
           </div>
         </div>

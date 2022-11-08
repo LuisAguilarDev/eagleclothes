@@ -18,7 +18,6 @@ const Detail = () => {
   }
   return (
     <>
-      <Navigation />
       <div>{product.name}</div>
       <div className="Detail_Container">
         <div className="Detail_imgContainer">
@@ -67,12 +66,20 @@ const Detail = () => {
             onClick={() => {
               if (quantity === 1) return;
               setQuantity(quantity - 1);
+              dispatch({
+                type: Types.Update,
+                payload: false,
+              });
             }}
           />
           <div>Quantity: {quantity}</div>
           <AiFillPlusCircle
             onClick={() => {
               setQuantity(quantity + 1);
+              dispatch({
+                type: Types.Update,
+                payload: false,
+              });
             }}
           />
         </>
@@ -104,15 +111,23 @@ const Detail = () => {
               let temp = state.shoppingCart.filter((p) => {
                 return p.code === product.code;
               });
-              console.log(temp);
               if (temp.length > 0) {
-                return temp[0].quantity
+                temp[0].quantity
                   ? (temp[0].quantity = temp[0].quantity + quantity)
                   : 0;
+                dispatch({
+                  type: Types.Update,
+                  payload: false,
+                });
+                return;
               }
-              return dispatch({
+              dispatch({
                 type: Types.Add,
                 payload: { ...product, quantity: quantity },
+              });
+              dispatch({
+                type: Types.Update,
+                payload: false,
               });
             }}
           >
@@ -123,13 +138,5 @@ const Detail = () => {
     </>
   );
 };
-
-{
-  /* <div
-  class="large"
-  id="img_large"
-  style='display: none; left: -622.25px; top: -910.5px; background-position: -460px 347px; background-image: url("https://patprimo.vteximg.com.br/arquivos/ids/1084150-1500-1800/sacos-para-mujer-30060059-40123_3.jpg?v=637777863230270000");'
-></div>; */
-}
 
 export default Detail;

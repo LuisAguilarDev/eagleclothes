@@ -14,14 +14,13 @@ export default () => {
   const navigate = useNavigate();
   function handleLogout() {
     window.localStorage.clear();
+    dispatch({
+      type: Types.ClearChart,
+      payload: [],
+    });
     navigate("/");
   }
-  function handleDeletion(product: productType) {
-    return dispatch({
-      type: Types.Add,
-      payload: product,
-    });
-  }
+  function handleDeletion(product: productType) {}
 
   const nf = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -30,24 +29,29 @@ export default () => {
   });
 
   function shoppingCartTotal() {
-    if (state.shoppingCart.length === 0) return;
+    if (state.shoppingCart.length === 0) {
+      setCartValue(0);
+      console.log(cartValue);
+      return;
+    }
     setCartValue(0);
-    state.shoppingCart.forEach((p) => {
+    let answer = state.shoppingCart.map((p) => {
       let quantity: number = p.quantity ? p.quantity : 0;
       let price: number = p.price.value ? p.price.value : 0;
       let total = quantity * price;
-      setCartValue((prev) => {
-        return Math.round((prev + total) * 100) / 100;
-      });
+      return total;
     });
+    let total = answer.reduce((a, b) => a + b, 0);
+    total = total ? total : 0;
+    let data = Math.round(total * 100) / 100;
+    setCartValue(data);
   }
   useEffect(() => {
-    return shoppingCartTotal();
-  }, [quantities]);
+    shoppingCartTotal();
+  }, [state.loading]);
 
   return (
     <>
-      <Navigation />
       <div>
         <div>{username}</div>
         <button onClick={handleLogout}>LOGOUT</button>
@@ -57,7 +61,7 @@ export default () => {
       <div>Address</div>
       {state.shoppingCart.length === 0
         ? null
-        : state.shoppingCart?.map((p) => {
+        : state.shoppingCart?.map((p, i) => {
             return (
               <div className="ShopingCart_Container">
                 <img src={p.images}></img>
@@ -69,22 +73,43 @@ export default () => {
                     let quantity: number = p.quantity ? p.quantity : 0;
                     p.quantity = quantity - 1;
                     setQuantities(quantities + 1);
+                    dispatch({
+                      type: Types.Update,
+                      payload: false,
+                    });
+                    shoppingCartTotal();
                   }}
                 />
                 <div>{`${p.quantity}`}</div>
                 <AiFillPlusCircle
                   onClick={() => {
-                    console.log("click");
                     let quantity: number = p.quantity ? p.quantity : 0;
                     p.quantity = quantity + 1;
                     setQuantities(quantities + 1);
+                    dispatch({
+                      type: Types.Update,
+                      payload: false,
+                    });
+                    shoppingCartTotal();
                   }}
                 />
-
+                <Button
+                  onClick={() => {
+                    dispatch({
+                      type: Types.Delete,
+                      payload: p,
+                    });
+                    dispatch({
+                      type: Types.Update,
+                      payload: false,
+                    });
+                  }}
+                >
+                  X
+                </Button>
                 <div>{`${nf.format(
                   p.price.value * (p.quantity ? p.quantity : 0)
                 )}`}</div>
-                <Button onClick={handleDeletion}>X</Button>
               </div>
             );
           })}
