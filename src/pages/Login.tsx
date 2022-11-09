@@ -1,18 +1,20 @@
-import React from "react";
-import Navigation from "./../components/Navigation";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Alert, Snackbar, SnackbarOrigin } from "@mui/material";
-import { SlideProps } from "@mui/material/Slide";
+import { SnackbarOrigin } from "@mui/material";
 import Swal from "sweetalert2";
+import { getCart } from "../services/functions";
+import { AppContext } from "../reducer/context";
+import { productType, Types } from "../reducer/Types";
 
 export interface State extends SnackbarOrigin {
   open: boolean;
 }
 
 export default () => {
+  const { state, dispatch } = useContext(AppContext);
   const [create, setCreate] = useState<boolean>(true);
   const [data, setData] = useState({ email: "", password: "" });
   const [token, setToken] = useLocalStorage("token", "");
@@ -20,20 +22,20 @@ export default () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [state, setState] = React.useState<State>({
+  const [states, setStates] = React.useState<State>({
     open: false,
     vertical: "top",
     horizontal: "center",
   });
 
-  const { vertical, horizontal, open } = state;
+  const { vertical, horizontal, open } = states;
 
   const handleClose = () => {
-    setState({ ...state, open: false });
+    setStates({ ...states, open: false });
   };
 
   const handleClick = () => {
-    setState({ open: true, vertical: "top", horizontal: "center" });
+    setStates({ open: true, vertical: "top", horizontal: "center" });
   };
 
   function handleChange(evt: any) {
@@ -44,9 +46,17 @@ export default () => {
     evt.preventDefault();
     axios
       .post("http://localhost:5000/api/users/singIn", data)
-      .then((res) => {
+      .then(async (res) => {
         setToken(res.data.token);
         setName(res.data.user.name);
+        let cart = await getCart();
+        console.log(cart);
+        if (cart) {
+          dispatch({
+            type: Types.GetCart,
+            payload: res.data.cart,
+          });
+        }
         navigate("/");
       })
       .catch((err) => {

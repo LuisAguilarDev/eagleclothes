@@ -12,14 +12,16 @@ export enum Types {
   Delete = "DELETE_PRODUCT",
   Add = "ADD_TO_CART",
   Update = "UPDATE_STATE",
-  ClearChart = "CLEAR_CHART",
+  ClearCart = "CLEAR_CART",
   SetQuantity = "SET_QUANTITY",
+  GetCart = "GET_CART",
 }
 export type ProductPayload = {
   [Types.Add]: productType;
   [Types.Delete]: productType;
-  [Types.ClearChart]: [];
+  [Types.ClearCart]: [];
   [Types.SetQuantity]: number;
+  [Types.GetCart]: productType[];
 };
 export type ProductActions =
   ActionMap<ProductPayload>[keyof ActionMap<ProductPayload>];

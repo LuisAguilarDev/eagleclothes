@@ -34,11 +34,16 @@ export const shoppingCartReducer = (
           (product: productType) => product.code !== action.payload.code
         ),
       };
-    case Types.ClearChart:
+    case Types.ClearCart:
       return {
         ...state,
         shoppingCart: [],
         quantity: 0,
+      };
+    case Types.GetCart:
+      return {
+        ...state,
+        shoppingCart: [...state.shoppingCart, ...action.payload],
       };
     case Types.SetQuantity:
       return {

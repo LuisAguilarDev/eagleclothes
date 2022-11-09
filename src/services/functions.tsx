@@ -43,6 +43,22 @@ export async function getFav<T>(): Promise<any> {
   return await answer.data;
 }
 
+export async function getCart<T>(): Promise<any> {
+  const token = window.localStorage.getItem("token");
+  const Authorization = token ? "Bearer " + JSON.parse(token) : "";
+  const answer: any = await axios
+    .get(`http://localhost:5000/api/users/cart`, {
+      headers: { Authorization },
+    })
+    .then((res) => {
+      return res.data.cart;
+    })
+    .catch((err) => {
+      return err;
+    });
+  return await answer.data;
+}
+
 export async function addToCart(evt: Event, item: any) {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
