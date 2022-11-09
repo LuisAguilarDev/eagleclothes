@@ -2,10 +2,10 @@ import React, { useState, useContext } from "react";
 import { AppContext } from "../reducer/context";
 import { useLocation } from "react-router-dom";
 import { productType } from "../reducer/Types";
-import Navigation from "../components/Navigation";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { Button } from "@mui/material";
 import { Types } from "../reducer/Types";
+import { addToCart } from "../services/functions";
 
 const Detail = () => {
   const location = useLocation();
@@ -99,7 +99,8 @@ const Detail = () => {
               },
             }}
             variant="contained"
-            onClick={() => {
+            onClick={(e: any) => {
+              addToCart(e, [{ ...product, quantity: quantity }]);
               let temp = state.shoppingCart.filter((p) => {
                 return p.code === product.code;
               });

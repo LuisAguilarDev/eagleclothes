@@ -62,9 +62,6 @@ export default () => {
             <img className="Navigation_lupa" src={Lupa} alt="Not Found" />
           </div>
           <div className="Navigation_Separator">
-            <img className="Navigation_user" src={User} alt="Not Found" />
-          </div>
-          <div className="Navigation_Separator">
             <AiOutlineHeart className="Navigation_heart" />
           </div>
           <div className="Navigation_Separator">

@@ -13,6 +13,7 @@ export interface State extends SnackbarOrigin {
 }
 
 export default () => {
+  const [create, setCreate] = useState<boolean>(true);
   const [data, setData] = useState({ email: "", password: "" });
   const [token, setToken] = useLocalStorage("token", "");
   const [name, setName] = useLocalStorage("name", "");
@@ -44,6 +45,20 @@ export default () => {
     axios
       .post("http://localhost:5000/api/users/singIn", data)
       .then((res) => {
+        console.log(res);
+        setToken(res.data.token);
+        setName(res.data.user.name);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  function handleCreation(evt: any) {
+    evt.preventDefault();
+    axios
+      .post("http://localhost:5000/api/users/signUp", data)
+      .then((res) => {
         console.log(res.data);
         setToken(res.data.token);
         setName(res.data.user.name);
@@ -72,24 +87,55 @@ export default () => {
 
   return (
     <>
-      <form className="login_form" onSubmit={handleLogin}>
-        <label>Username:</label>
-        <input
-          name="email"
-          onChange={handleChange}
-          type="text"
-          autoComplete="on"
-        />
-        <br></br>
-        <label>Password:</label>
-        <input
-          name="password"
-          onChange={handleChange}
-          type="password"
-          autoComplete="on"
-        />
-        <button>Login</button>
-      </form>
+      {create ? (
+        <>
+          <form className="login_form" onSubmit={handleLogin}>
+            <label>Username:</label>
+            <input
+              name="email"
+              onChange={handleChange}
+              type="text"
+              autoComplete="on"
+            />
+            <br></br>
+            <label>Password:</label>
+            <input
+              name="password"
+              onChange={handleChange}
+              type="password"
+              autoComplete="on"
+            />
+            <button>Login</button>
+          </form>
+          <button
+            onClick={() => {
+              setCreate(!create);
+            }}
+          >
+            Create your account
+          </button>
+        </>
+      ) : (
+        <>
+          <form className="login_form" onSubmit={handleCreation}>
+            <label>Username:</label>
+            <input name="email" onChange={handleChange} type="text" />
+            <label>Name:</label>
+            <input name="name" onChange={handleChange} type="text" />
+            <label>Password:</label>
+            <input name="password" onChange={handleChange} type="password" />
+
+            <button>Create your account</button>
+          </form>
+          <button
+            onClick={() => {
+              setCreate(!create);
+            }}
+          >
+            I have already an account
+          </button>
+        </>
+      )}
     </>
   );
 };

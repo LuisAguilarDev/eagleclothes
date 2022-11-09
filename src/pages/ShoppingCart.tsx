@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../reducer/context";
-import Navigation from "./../components/Navigation";
 import { useNavigate } from "react-router-dom";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { Button } from "@mui/material";
 import { productType, Types } from "../reducer/Types";
+import { deleteFromCart } from "../services/functions";
 
 export default () => {
   const [cartValue, setCartValue] = useState(0);
@@ -95,6 +95,7 @@ export default () => {
                 />
                 <Button
                   onClick={() => {
+                    deleteFromCart(p);
                     dispatch({
                       type: Types.Delete,
                       payload: p,
