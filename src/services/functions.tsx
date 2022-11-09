@@ -44,7 +44,6 @@ export async function getFav<T>(): Promise<any> {
 }
 
 export async function addToCart(evt: Event, item: any) {
-  console.log(item);
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   if (Authorization === "") {
@@ -69,7 +68,6 @@ export async function addToCart(evt: Event, item: any) {
 }
 
 export async function deleteFromCart(item: any) {
-  console.log(item);
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   if (Authorization === "") {
@@ -80,7 +78,6 @@ export async function deleteFromCart(item: any) {
       headers: { Authorization },
     })
     .then((res) => {
-      console.log(res);
       return res;
     })
     .catch((err) => {

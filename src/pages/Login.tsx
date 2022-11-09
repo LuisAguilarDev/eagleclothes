@@ -45,7 +45,6 @@ export default () => {
     axios
       .post("http://localhost:5000/api/users/singIn", data)
       .then((res) => {
-        console.log(res);
         setToken(res.data.token);
         setName(res.data.user.name);
         navigate("/");
@@ -59,7 +58,6 @@ export default () => {
     axios
       .post("http://localhost:5000/api/users/signUp", data)
       .then((res) => {
-        console.log(res.data);
         setToken(res.data.token);
         setName(res.data.user.name);
         navigate("/");

@@ -12,7 +12,6 @@ export const Favorites = () => {
     const answer = await services.getFav();
     setEstado({ ...answer });
   });
-  console.log(estado);
   return (
     <>
       {estado.answer.map((item, i) => {

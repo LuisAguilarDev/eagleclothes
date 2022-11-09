@@ -31,7 +31,6 @@ export default () => {
   function shoppingCartTotal() {
     if (state.shoppingCart.length === 0) {
       setCartValue(0);
-      console.log(cartValue);
       return;
     }
     setCartValue(0);
