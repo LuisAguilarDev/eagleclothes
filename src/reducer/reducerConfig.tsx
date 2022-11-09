@@ -39,6 +39,7 @@ export const shoppingCartReducer = (
       return {
         ...state,
         shoppingCart: [],
+        quantity: 0,
       };
     case Types.SetQuantity:
       return {
