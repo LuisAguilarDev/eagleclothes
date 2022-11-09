@@ -18,19 +18,17 @@ export const shoppingCartReducer = (
   state: InitialStateType,
   action: ShoppingCartActions
 ) => {
+  console.log(action, "ACTION");
   switch (action.type) {
-    case Types.Update:
-      return {
-        ...state,
-        loading: !state.loading,
-      };
     case Types.Add:
       return {
         ...state,
         shoppingCart: [...state.shoppingCart, action.payload],
+        quantity: action.payload.quantity
+          ? action.payload.quantity + state.quantity
+          : state.quantity,
       };
     case Types.Delete:
-      console.log(action);
       return {
         ...state,
         shoppingCart: state.shoppingCart.filter(
@@ -41,6 +39,11 @@ export const shoppingCartReducer = (
       return {
         ...state,
         shoppingCart: [],
+      };
+    case Types.SetQuantity:
+      return {
+        ...state,
+        quantity: state.quantity + action.payload,
       };
     default:
       return state;

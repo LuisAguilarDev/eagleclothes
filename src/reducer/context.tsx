@@ -1,15 +1,6 @@
 import React, { createContext, useReducer, Dispatch } from "react";
-import {
-  mainReducer,
-  INITIAL_STATE,
-  shoppingCartReducer,
-} from "./reducerConfig";
-import {
-  InitialStateType,
-  ProductPayload,
-  productType,
-  ShoppingCartActions,
-} from "./Types";
+import { INITIAL_STATE, shoppingCartReducer } from "./reducerConfig";
+import { InitialStateType, ShoppingCartActions } from "./Types";
 
 const AppContext = createContext<{
   state: InitialStateType;

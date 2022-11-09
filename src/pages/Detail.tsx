@@ -44,7 +44,7 @@ const Detail = () => {
           <div>Avaliable Colors</div>
           {product.color.map((color, i) => {
             return (
-              <>
+              <div key={i}>
                 <div className={`ColorSwap${i}`}>
                   <style>{`.ColorSwap${i}{background-color:#${color}}`}</style>
                   <div className="Texto_Transparente">
@@ -54,7 +54,7 @@ const Detail = () => {
                 <div>
                   <div>{product.colorName[0]}</div>
                 </div>
-              </>
+              </div>
             );
           })}
         </div>
@@ -66,20 +66,12 @@ const Detail = () => {
             onClick={() => {
               if (quantity === 1) return;
               setQuantity(quantity - 1);
-              dispatch({
-                type: Types.Update,
-                payload: false,
-              });
             }}
           />
           <div>Quantity: {quantity}</div>
           <AiFillPlusCircle
             onClick={() => {
               setQuantity(quantity + 1);
-              dispatch({
-                type: Types.Update,
-                payload: false,
-              });
             }}
           />
         </>
@@ -116,18 +108,14 @@ const Detail = () => {
                   ? (temp[0].quantity = temp[0].quantity + quantity)
                   : 0;
                 dispatch({
-                  type: Types.Update,
-                  payload: false,
+                  type: Types.SetQuantity,
+                  payload: quantity,
                 });
                 return;
               }
               dispatch({
                 type: Types.Add,
                 payload: { ...product, quantity: quantity },
-              });
-              dispatch({
-                type: Types.Update,
-                payload: false,
               });
             }}
           >

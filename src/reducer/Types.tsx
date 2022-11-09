@@ -13,12 +13,13 @@ export enum Types {
   Add = "ADD_TO_CART",
   Update = "UPDATE_STATE",
   ClearChart = "CLEAR_CHART",
+  SetQuantity = "SET_QUANTITY",
 }
 export type ProductPayload = {
   [Types.Add]: productType;
   [Types.Delete]: productType;
-  [Types.Update]: boolean;
   [Types.ClearChart]: [];
+  [Types.SetQuantity]: number;
 };
 export type ProductActions =
   ActionMap<ProductPayload>[keyof ActionMap<ProductPayload>];
@@ -52,4 +53,5 @@ export type InitialStateType = {
   search?: productType[];
   pagination?: paginationType;
   favorites?: productType[];
+  quantity: number;
 };

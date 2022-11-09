@@ -48,7 +48,7 @@ export default () => {
   }
   useEffect(() => {
     shoppingCartTotal();
-  }, [state.loading]);
+  }, [state.quantity]);
 
   return (
     <>
@@ -63,7 +63,7 @@ export default () => {
         ? null
         : state.shoppingCart?.map((p, i) => {
             return (
-              <div className="ShopingCart_Container">
+              <div key={i} className="ShopingCart_Container">
                 <img src={p.images}></img>
                 <div>{p.name}</div>
                 <div>{`${nf.format(p.price.value)}`}</div>
@@ -74,8 +74,8 @@ export default () => {
                     p.quantity = quantity - 1;
                     setQuantities(quantities + 1);
                     dispatch({
-                      type: Types.Update,
-                      payload: false,
+                      type: Types.SetQuantity,
+                      payload: -1,
                     });
                     shoppingCartTotal();
                   }}
@@ -87,8 +87,8 @@ export default () => {
                     p.quantity = quantity + 1;
                     setQuantities(quantities + 1);
                     dispatch({
-                      type: Types.Update,
-                      payload: false,
+                      type: Types.SetQuantity,
+                      payload: 1,
                     });
                     shoppingCartTotal();
                   }}
@@ -100,8 +100,8 @@ export default () => {
                       payload: p,
                     });
                     dispatch({
-                      type: Types.Update,
-                      payload: false,
+                      type: Types.SetQuantity,
+                      payload: p.quantity ? -p.quantity : 0,
                     });
                   }}
                 >

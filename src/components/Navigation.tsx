@@ -25,7 +25,7 @@ export default () => {
   }
   useEffect(() => {
     getquantity();
-  }, [state.loading]);
+  }, [state.quantity]);
   return (
     <>
       <div className="Navigation_firstLine">
