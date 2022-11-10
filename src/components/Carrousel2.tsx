@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { data } from "../data/data";
 import men from "../assets/men.png";
 import { useWindowSize } from "../hooks/useWindowSize";
 import Carousel from "react-material-ui-carousel";
