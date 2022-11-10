@@ -18,6 +18,7 @@ export const shoppingCartReducer = (
   state: InitialStateType,
   action: ShoppingCartActions
 ) => {
+  console.log(action);
   switch (action.type) {
     case Types.Add:
       return {
@@ -49,6 +50,11 @@ export const shoppingCartReducer = (
       return {
         ...state,
         quantity: state.quantity + action.payload,
+      };
+    case Types.Search:
+      return {
+        ...state,
+        search: [...action.payload],
       };
     default:
       return state;

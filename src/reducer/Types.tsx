@@ -15,6 +15,7 @@ export enum Types {
   ClearCart = "CLEAR_CART",
   SetQuantity = "SET_QUANTITY",
   GetCart = "GET_CART",
+  Search = "SEARCH_PRPDUCTS",
 }
 export type ProductPayload = {
   [Types.Add]: productType;
@@ -22,6 +23,7 @@ export type ProductPayload = {
   [Types.ClearCart]: [];
   [Types.SetQuantity]: number;
   [Types.GetCart]: productType[];
+  [Types.Search]: productType[];
 };
 export type ProductActions =
   ActionMap<ProductPayload>[keyof ActionMap<ProductPayload>];

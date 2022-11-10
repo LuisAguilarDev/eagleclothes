@@ -17,7 +17,7 @@ export default () => {
   function handleLogout() {
     window.localStorage.clear();
     dispatch({
-      type: Types.ClearChart,
+      type: Types.ClearCart,
       payload: [],
     });
     navigate("/");

@@ -12,6 +12,7 @@ import { useReducer } from "react";
 import ShoppingCart from "./pages/ShoppingCart";
 import { productType } from "./reducer/Types";
 import Navigation from "./components/Navigation";
+import Search from "./pages/search";
 
 function App() {
   const [datam, setDatam] = useState<productType[]>([]);
@@ -44,6 +45,7 @@ function App() {
         <Route path="/user/:name/favorites" element={<UserpanelF />} />
         <Route path="/user/:name/shopping_cart" element={<ShoppingCart />} />
         <Route path="/detail/:itemCode" element={<Detail />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </>
   );
