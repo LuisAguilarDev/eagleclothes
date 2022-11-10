@@ -90,8 +90,6 @@ function Carousel2({ props }: IMyProps) {
 function Item(props: any) {
   const navigate = useNavigate();
   function onClick(evt: Event, item: any) {
-    console.log("entre", evt);
-    console.log("producto=?", item);
     navigate(`/detail/${item[0].code}`, { state: item[0] });
   }
 
