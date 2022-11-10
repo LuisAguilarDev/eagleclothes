@@ -1,6 +1,5 @@
-import reactLogo from "./assets/react.svg";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
+import { Login } from "./pages/Login";
 import { Route, Routes } from "react-router-dom";
 import Userpanel from "./pages/Userpanel";
 import UserpanelF from "./pages/Userpanel_Favorites";
@@ -40,7 +39,16 @@ function App() {
           path="/"
           element={<Home props1={datam} props2={datam2} props3={dataw} />}
         />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <Login
+              close={() => {
+                console.log("Hello World");
+              }}
+            />
+          }
+        />
         <Route path="/user/:name" element={<Userpanel />} />
         <Route path="/user/:name/favorites" element={<UserpanelF />} />
         <Route path="/user/:name/shopping_cart" element={<ShoppingCart />} />

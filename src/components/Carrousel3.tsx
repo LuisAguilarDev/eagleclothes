@@ -1,12 +1,24 @@
 import React, { useState } from "react";
-import { data } from "../data/data";
 import women from "../assets/women.png";
 import { useWindowSize } from "../hooks/useWindowSize";
 import Carousel from "react-material-ui-carousel";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 import * as services from "../services/functions";
-
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import { Login } from "../pages/Login";
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 export interface product {
   category: String;
   code: String;
@@ -88,16 +100,29 @@ function Carousel3({ props }: IMyProps) {
 }
 
 function Item(props: any) {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const navigate = useNavigate();
   function onClick(evt: Event, item: any) {
     navigate(`/detail/${item[0].code}`, { state: item[0] });
   }
-
+  async function handleClick(evt: any, item: any) {
+    let answer = await services.addFav(evt, item);
+    if (answer === "") {
+      handleOpen();
+    }
+  }
   return (
     <div className="Card2_container">
       <div className="Card2_imgcontainer">
+        <Modal open={open} onClose={handleClose}>
+          <Box sx={style}>
+            <Login close={handleClose} />
+          </Box>
+        </Modal>
         <AiOutlineHeart
-          onClick={(evt: any) => services.addFav(evt, [props.item])}
+          onClick={(evt: any) => handleClick(evt, [props.item])}
           className="ITEM_heart2"
         />
         <img

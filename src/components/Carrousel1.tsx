@@ -6,11 +6,23 @@ import { productType } from "../reducer/Types";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 import * as services from "../services/functions";
+import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import Login from "../pages/Login";
+import { Login } from "../pages/Login";
 interface IMyProps {
   props: productType[];
 }
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const Carousel1 = ({ props }: IMyProps) => {
   const size = useWindowSize();
@@ -81,15 +93,15 @@ const Item = (props: any) => {
   async function handleClick(evt: any, item: any) {
     let answer = await services.addFav(evt, item);
     if (answer === "") {
-      navigate("/login", {
-        state: { message: "You must loging first to use all page features" },
-      });
+      handleOpen();
     }
   }
   return props.item?.images && props?.item ? (
     <div key={props.item.code}>
       <Modal open={open} onClose={handleClose}>
-        <Login />
+        <Box sx={style}>
+          <Login close={handleClose} />
+        </Box>
       </Modal>
       ;
       <div className="Card1_container">

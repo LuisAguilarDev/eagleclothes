@@ -13,7 +13,10 @@ export interface State extends SnackbarOrigin {
   open: boolean;
 }
 
-export default () => {
+interface Props {
+  close: Function;
+}
+export const Login = ({ close }: Props) => {
   const { state, dispatch } = useContext(AppContext);
   const [create, setCreate] = useState<boolean>(true);
   const [data, setData] = useState({ email: "", password: "" });
@@ -57,6 +60,7 @@ export default () => {
             payload: res.data.cart,
           });
         }
+        close();
         navigate("/");
       })
       .catch((err) => {
