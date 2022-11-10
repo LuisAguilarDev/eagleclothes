@@ -115,4 +115,4 @@ const Item = (props: any) => {
   );
 };
 
-export { Carousel1 };
+export { Carousel1, Item };

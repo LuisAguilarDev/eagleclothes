@@ -8,7 +8,7 @@ import { Favorites } from "./Favs";
 import { Link } from "react-router-dom";
 import { Types } from "../reducer/Types";
 import { AppContext } from "../reducer/context";
-import { Item } from "../components/Item1";
+import { Item } from "../components/Carrousel1";
 import Sidebar from "../components/Sidebar";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
