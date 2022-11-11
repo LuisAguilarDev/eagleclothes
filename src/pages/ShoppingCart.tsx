@@ -18,6 +18,10 @@ export default () => {
       type: Types.ClearCart,
       payload: [],
     });
+    dispatch({
+      type: Types.SetQuantity,
+      payload: 0,
+    });
     navigate("/");
   }
   function handleDeletion(product: productType) {}

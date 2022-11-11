@@ -14,7 +14,7 @@ export interface State extends SnackbarOrigin {
 }
 
 interface Props {
-  close: Function;
+  close?: Function;
 }
 export const Login = ({ close }: Props) => {
   const { state, dispatch } = useContext(AppContext);
@@ -52,20 +52,32 @@ export const Login = ({ close }: Props) => {
       .then(async (res) => {
         setToken(res.data.token);
         setName(res.data.user.name);
-        let cart = await getCart();
-        console.log(cart);
-        if (cart) {
+        let answer = await getCart();
+        dispatch({
+          type: Types.GetCart,
+          payload: answer[0],
+        });
+        getQuantity(answer[0]);
+        if (close) {
+          close();
+        }
+        function getQuantity(data: productType[]) {
+          const answer = data.map((item, i) => {
+            if (!item.quantity) return 0;
+            return item.quantity;
+          });
+          let total = answer.reduce((a, b) => a + b, 0);
+          total = total ? total : 0;
           dispatch({
-            type: Types.GetCart,
-            payload: res.data.cart,
+            type: Types.SetQuantity,
+            payload: total,
           });
         }
-        close();
-        navigate("/");
       })
       .catch((err) => {
         console.log(err);
       });
+    navigate("/");
   }
   function handleCreation(evt: any) {
     evt.preventDefault();

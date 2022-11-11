@@ -39,16 +39,7 @@ function App() {
           path="/"
           element={<Home props1={datam} props2={datam2} props3={dataw} />}
         />
-        <Route
-          path="/login"
-          element={
-            <Login
-              close={() => {
-                console.log("Hello World");
-              }}
-            />
-          }
-        />
+        <Route path="/login" element={<Login />} />
         <Route path="/user/:name" element={<Userpanel />} />
         <Route path="/user/:name/favorites" element={<UserpanelF />} />
         <Route path="/user/:name/shopping_cart" element={<ShoppingCart />} />

@@ -56,7 +56,7 @@ export async function getCart<T>(): Promise<any> {
     .catch((err) => {
       return err;
     });
-  return await answer.data;
+  return answer;
 }
 
 export async function addToCart(evt: Event, item: any) {
