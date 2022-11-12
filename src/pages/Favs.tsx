@@ -17,18 +17,22 @@ export const Favorites = () => {
     setPage(value);
     setIndex([(value - 1) * 6, value * 6]);
   };
-
   useState(async () => {
     const answer = await services.getFav();
     console.log(answer.answer);
+    if (!answer.answer) {
+      return dispatch({ type: Types.GetFavs, payload: [] });
+    }
     dispatch({ type: Types.GetFavs, payload: answer.answer });
   });
   return (
     <>
       <div className="Favs_mainContainer">
-        {state.favorites
-          ? state.favorites.slice(index[0], index[1]).map((item, i) => {
-              return <Card key={i} item={item} showFav={false} />;
+        {state.favorites!.length > 0
+          ? state.favorites!.slice(index[0], index[1]).map((item, i) => {
+              return (
+                <Card key={i} item={item} showFav={false} showDel={true} />
+              );
             })
           : null}
       </div>

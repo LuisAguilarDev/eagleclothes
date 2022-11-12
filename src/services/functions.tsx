@@ -40,7 +40,7 @@ export async function getFav<T>(): Promise<any> {
     .catch((err) => {
       return err;
     });
-  return await answer.data;
+  return answer.data === undefined ? [] : answer.data;
 }
 
 export async function getCart<T>(): Promise<any> {
@@ -94,6 +94,32 @@ export async function deleteFromCart(item: any) {
       headers: { Authorization },
     })
     .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  Swal.fire({
+    title: answer.data.message,
+    icon: "success",
+    timer: 1000,
+    showConfirmButton: false,
+  });
+}
+
+export async function deleteFromFav(item: any) {
+  const token = window.localStorage.getItem("token");
+  const Authorization = token ? "Bearer " + JSON.parse(token) : "";
+  console.log(item[0].code);
+  if (Authorization === "") {
+    return "";
+  }
+  const answer: any = await axios
+    .delete(`http://localhost:5000/api/users/favs/${item[0].code}`, {
+      headers: { Authorization },
+    })
+    .then((res) => {
+      console.log(res);
       return res;
     })
     .catch((err) => {

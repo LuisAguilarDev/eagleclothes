@@ -49,21 +49,23 @@
   color: rgb(249, 24, 128);
   cursor: pointer;
 }
-.Card1_heart2 {
-  display: flex;
+
+.Card1_delete {
   position: absolute;
-  padding: 5px;
   height: 25px;
   width: 25px;
+  margin-right: 7%;
+  margin-top: 20px;
   border-radius: 50%;
-  margin-top: -250px;
-  margin-left: 250px;
-}
-.Card1_heart2:hover {
-  background-color: rgb(252, 158, 202);
-  color: rgb(249, 24, 128);
+  padding: 4px;
 }
 
-// .Item1_imgs {
-//   position: relative;
-// }
+.Card1_delete:hover {
+  background-color: rgb(156, 153, 154);
+  color: white;
+  cursor: pointer;
+}
+.Card1_deleteContainer {
+  display: flex;
+  flex-direction: row-reverse;
+}

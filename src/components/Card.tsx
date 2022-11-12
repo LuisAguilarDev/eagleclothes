@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Carousel from "react-material-ui-carousel";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { useState } from "react";
@@ -9,6 +9,9 @@ import * as services from "../services/functions";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { Login } from "../pages/Login";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { AppContext } from "../reducer/context";
+import { Types } from "../reducer/Types";
 
 const style = {
   position: "absolute" as "absolute",
@@ -23,6 +26,7 @@ const style = {
 };
 
 const Card = (props: any) => {
+  const { state, dispatch } = useContext(AppContext);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -36,6 +40,13 @@ const Card = (props: any) => {
     if (answer === "") {
       handleOpen();
     }
+  }
+  async function handleDelete(evt: any, item: any) {
+    let answer = await services.deleteFromFav(item);
+    dispatch({
+      type: Types.DeleteFav,
+      payload: item[0],
+    });
   }
   return (
     <div key={props.item.code}>
@@ -53,6 +64,15 @@ const Card = (props: any) => {
             <AiOutlineHeart
               onClick={(evt: any) => handleClick(evt, [props.item])}
               className="Card1_heart"
+            />
+          </div>
+          <div
+            className="Card1_deleteContainer"
+            style={{ display: props.showDel ? "flex" : "none" }}
+          >
+            <DeleteOutlineIcon
+              onClick={(evt: any) => handleDelete(evt, [props.item])}
+              className="Card1_delete"
             />
           </div>
           <img

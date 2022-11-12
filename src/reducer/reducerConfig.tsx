@@ -40,6 +40,15 @@ export const shoppingCartReducer = (
           (product: productType) => product.code !== action.payload.code
         ),
       };
+    case Types.DeleteFav:
+      return {
+        ...state,
+        favorites: state.favorites
+          ? state.favorites.filter(
+              (product: productType) => product.code !== action.payload.code
+            )
+          : [],
+      };
     case Types.ClearCart:
       return {
         ...state,

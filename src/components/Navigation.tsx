@@ -77,6 +77,7 @@ export default () => {
             onChange={(e) => handleChange(e)}
             onKeyDown={(e) => handleSearch(e)}
             className="Navigation_lupa_input"
+            placeholder="Search products and more..."
           ></input>
           <div className="Navigation_Separator">
             <img

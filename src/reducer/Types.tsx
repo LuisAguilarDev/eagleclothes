@@ -17,6 +17,7 @@ export enum Types {
   GetCart = "GET_CART",
   Search = "SEARCH_PRPDUCTS",
   GetFavs = "GET_FAVS",
+  DeleteFav = "DELETE_FAV",
 }
 export type ProductPayload = {
   [Types.Add]: productType;
@@ -26,6 +27,7 @@ export type ProductPayload = {
   [Types.GetCart]: productType[];
   [Types.Search]: productType[];
   [Types.GetFavs]: productType[];
+  [Types.DeleteFav]: productType;
 };
 export type ProductActions =
   ActionMap<ProductPayload>[keyof ActionMap<ProductPayload>];
