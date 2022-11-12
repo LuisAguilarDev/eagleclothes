@@ -6,3 +6,10 @@
   grid-template-rows: repeat(2, 1fr);
   gap: 10px;
 }
+
+.Empty_Message {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  margin: 20%;
+}

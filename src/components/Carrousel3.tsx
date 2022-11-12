@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import women from "../assets/women.png";
 import { useWindowSize } from "../hooks/useWindowSize";
 import Carousel from "react-material-ui-carousel";
@@ -8,6 +8,9 @@ import * as services from "../services/functions";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { Login } from "../pages/Login";
+import { Types } from "../reducer/Types";
+import { AppContext } from "../reducer/context";
+
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -40,7 +43,14 @@ interface IMyProps {
 }
 
 function Carousel3({ props }: IMyProps) {
+  const navigate = useNavigate();
+  const { state, dispatch } = useContext(AppContext);
   const size = useWindowSize();
+  async function handleWoman() {
+    const answer: any = await services.getWomanClothes();
+    dispatch({ type: Types.Search, payload: answer.search });
+    navigate("/search");
+  }
   return (
     <div className="Carousel3_container">
       <div className="Carousel2_img_container">
@@ -52,7 +62,9 @@ function Carousel3({ props }: IMyProps) {
             <span className="yellow">EAGLE</span>
             <span className="black">TOP SELLINGS FOR HER</span>
           </div>
-          <button className="button_View">VIEW ALL</button>
+          <button onClick={handleWoman} className="button_View">
+            VIEW ALL
+          </button>
         </div>
         <Carousel
           sx={{

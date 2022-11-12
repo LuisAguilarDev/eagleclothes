@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import men from "../assets/men.png";
 import { useWindowSize } from "../hooks/useWindowSize";
 import Carousel from "react-material-ui-carousel";
@@ -8,6 +8,8 @@ import * as services from "../services/functions";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { Login } from "../pages/Login";
+import { Types } from "../reducer/Types";
+import { AppContext } from "../reducer/context";
 
 export interface product {
   category: String;
@@ -41,7 +43,14 @@ const style = {
   p: 4,
 };
 function Carousel2({ props }: IMyProps) {
+  const { state, dispatch } = useContext(AppContext);
   const size = useWindowSize();
+  const navigate = useNavigate();
+  async function handleMan() {
+    const answer: any = await services.getManClothes();
+    dispatch({ type: Types.Search, payload: answer.search });
+    navigate("/search");
+  }
   return (
     <div className="Carousel2_container">
       <div className="Carousel2_img_container">
@@ -53,7 +62,9 @@ function Carousel2({ props }: IMyProps) {
             <span className="yellow">EAGLE</span>
             <span className="black">PROMOTIONS FOR MEN</span>
           </div>
-          <button className="button_View">VIEW ALL</button>
+          <button onClick={handleMan} className="button_View">
+            VIEW ALL
+          </button>
         </div>
         <Carousel
           sx={{

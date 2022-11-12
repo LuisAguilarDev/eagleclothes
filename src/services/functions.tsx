@@ -132,3 +132,27 @@ export async function deleteFromFav(item: any) {
     showConfirmButton: false,
   });
 }
+
+export async function getWomanClothes() {
+  const answer: any = await axios
+    .get(`http://localhost:5000/api/search/a?category=H%26M WOMAN`)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return answer.data;
+}
+
+export async function getManClothes() {
+  const answer: any = await axios
+    .get(`http://localhost:5000/api/search/a?category=H%26M MAN`)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return answer.data;
+}

@@ -57,62 +57,69 @@ export default () => {
   return (
     <div className="Shoping_CartMainContainer">
       <Menu />
-      {state.shoppingCart.length === 0
-        ? null
-        : state.shoppingCart?.map((p, i) => {
-            return (
-              <div key={i} className="ShopingCart_Container">
-                <img src={p.images}></img>
-                <div>{p.name}</div>
-                <div>{`${nf.format(p.price.value)}`}</div>
-                <AiFillMinusCircle
-                  onClick={() => {
-                    if (p.quantity === 1) return;
-                    let quantity: number = p.quantity ? p.quantity : 0;
-                    p.quantity = quantity - 1;
-                    setQuantities(quantities + 1);
-                    dispatch({
-                      type: Types.SetQuantity,
-                      payload: -1,
-                    });
-                    shoppingCartTotal();
-                  }}
-                />
-                <div>{`${p.quantity}`}</div>
-                <AiFillPlusCircle
-                  onClick={() => {
-                    let quantity: number = p.quantity ? p.quantity : 0;
-                    p.quantity = quantity + 1;
-                    setQuantities(quantities + 1);
-                    dispatch({
-                      type: Types.SetQuantity,
-                      payload: 1,
-                    });
-                    shoppingCartTotal();
-                  }}
-                />
-                <Button
-                  onClick={() => {
-                    deleteFromCart(p);
-                    dispatch({
-                      type: Types.Delete,
-                      payload: p,
-                    });
-                    dispatch({
-                      type: Types.SetQuantity,
-                      payload: p.quantity ? -p.quantity : 0,
-                    });
-                  }}
-                >
-                  X
-                </Button>
-                <div>{`${nf.format(
-                  p.price.value * (p.quantity ? p.quantity : 0)
-                )}`}</div>
-              </div>
-            );
-          })}
-      <div>Total: {nf.format(cartValue)}</div>
+      {state.shoppingCart.length === 0 ? (
+        <h1 className="Empty_Message">
+          You don't have products in your cart yet, go and find something you
+          love.
+        </h1>
+      ) : (
+        state.shoppingCart?.map((p, i) => {
+          return (
+            <div key={i} className="ShopingCart_Container">
+              <img src={p.images}></img>
+              <div>{p.name}</div>
+              <div>{`${nf.format(p.price.value)}`}</div>
+              <AiFillMinusCircle
+                onClick={() => {
+                  if (p.quantity === 1) return;
+                  let quantity: number = p.quantity ? p.quantity : 0;
+                  p.quantity = quantity - 1;
+                  setQuantities(quantities + 1);
+                  dispatch({
+                    type: Types.SetQuantity,
+                    payload: -1,
+                  });
+                  shoppingCartTotal();
+                }}
+              />
+              <div>{`${p.quantity}`}</div>
+              <AiFillPlusCircle
+                onClick={() => {
+                  let quantity: number = p.quantity ? p.quantity : 0;
+                  p.quantity = quantity + 1;
+                  setQuantities(quantities + 1);
+                  dispatch({
+                    type: Types.SetQuantity,
+                    payload: 1,
+                  });
+                  shoppingCartTotal();
+                }}
+              />
+              <Button
+                onClick={() => {
+                  deleteFromCart(p);
+                  dispatch({
+                    type: Types.Delete,
+                    payload: p,
+                  });
+                  dispatch({
+                    type: Types.SetQuantity,
+                    payload: p.quantity ? -p.quantity : 0,
+                  });
+                }}
+              >
+                X
+              </Button>
+              <div>{`${nf.format(
+                p.price.value * (p.quantity ? p.quantity : 0)
+              )}`}</div>
+            </div>
+          );
+        })
+      )}
+      {state.shoppingCart.length === 0 ? null : (
+        <div>Total: {nf.format(cartValue)}</div>
+      )}
     </div>
   );
 };

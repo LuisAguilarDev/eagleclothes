@@ -28,13 +28,15 @@ export const Favorites = () => {
   return (
     <>
       <div className="Favs_mainContainer">
-        {state.favorites!.length > 0
-          ? state.favorites!.slice(index[0], index[1]).map((item, i) => {
-              return (
-                <Card key={i} item={item} showFav={false} showDel={true} />
-              );
-            })
-          : null}
+        {state.favorites!.length > 0 ? (
+          state.favorites!.slice(index[0], index[1]).map((item, i) => {
+            return <Card key={i} item={item} showFav={false} showDel={true} />;
+          })
+        ) : (
+          <h1 className="Empty_Message">
+            You don't have favorites yet, go and find something you love.
+          </h1>
+        )}
       </div>
       <br></br>
       <div className="PaginationF">
