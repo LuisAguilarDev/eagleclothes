@@ -5,8 +5,8 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import Badge from "@mui/material/Badge";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import { AppContext } from "../reducer/context";
 import axios from "axios";
+import { AppContext } from "../reducer/context";
 import { Types } from "../reducer/Types";
 
 export default () => {
@@ -87,7 +87,20 @@ export default () => {
             />
           </div>
           <div className="Navigation_Separator">
-            <AiOutlineHeart className="Navigation_heart" />
+            {username ? (
+              <Link
+                to={`/user/${username!.substring(
+                  1,
+                  username!.length - 1
+                )}/favorites`}
+              >
+                <AiOutlineHeart className="Navigation_heart" />
+              </Link>
+            ) : (
+              <Link to="/login">
+                <AiOutlineHeart className="Navigation_heart" />
+              </Link>
+            )}
           </div>
           <div className="Navigation_Separator">
             <Badge badgeContent={quantity} color="primary">
