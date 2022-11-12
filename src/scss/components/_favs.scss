@@ -1,12 +1,8 @@
-.search_maincontainer {
-  display: flex;
-}
-.search_griddisplay {
+.Favs_mainContainer {
+  width: 80vw;
   display: grid;
-  width: 100%;
   position: relative;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
 }

@@ -5,29 +5,15 @@ import axios from "axios";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useNavigate } from "react-router-dom";
 import { Favorites } from "./Favs";
+import { Menu } from "../components/Menu";
 
 export default () => {
   let username = window.localStorage.getItem("name");
   if (username) username = JSON.parse(username);
-  const navigate = useNavigate();
-  function handleLogout() {
-    window.localStorage.clear();
-    navigate("/");
-  }
   return (
-    <>
-      <div className="Userpanel_container">
-        <div>
-          <div>{username}</div>
-          <button onClick={handleLogout}>LOGOUT</button>
-        </div>
-        <div>Favorites</div>
-        <div>Shopping Cart</div>
-        <div>Address</div>
-      </div>
-      <div>
-        <Favorites />
-      </div>
-    </>
+    <div className="UserPanelF_MainContainer">
+      <Menu />
+      <Favorites />
+    </div>
   );
 };

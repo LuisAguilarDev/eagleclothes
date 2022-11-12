@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { AppContext } from "../reducer/context";
-import { Item } from "../components/Carrousel1";
+import { Card } from "../components/Card";
 import Sidebar from "../components/Sidebar";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
@@ -24,13 +24,13 @@ export default () => {
         <Sidebar />
         <div className="search_griddisplay">
           {state.search?.slice(index[0], index[1]).map((p, i) => {
-            return <Item key={i} item={p}></Item>;
+            return <Card key={i} item={p} showFav={true}></Card>;
           })}
         </div>
       </div>
       <Stack spacing={2}>
         <Pagination
-          className="Pagination"
+          className="PaginationS"
           count={lastPage}
           defaultPage={page}
           showFirstButton

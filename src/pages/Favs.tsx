@@ -1,22 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import * as services from "../services/functions";
-import { Item } from "../components/Carrousel2";
+import { Card } from "../components/Card";
+import { AppContext } from "../reducer/context";
+import { productType, Types } from "../reducer/Types";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 export const Favorites = () => {
-  const [estado, setEstado] = useState<{ answer: any[]; message: string }>({
-    answer: [],
-    message: "",
-  });
+  const { state, dispatch } = useContext(AppContext);
+  const [page, setPage] = useState(1);
+  const [index, setIndex] = useState([0, 6]);
+  const lastPage = Math.round(
+    (state.favorites?.length ? state.favorites?.length : 1) / 6
+  );
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+    setIndex([(value - 1) * 6, value * 6]);
+  };
 
   useState(async () => {
     const answer = await services.getFav();
-    setEstado({ ...answer });
+    console.log(answer.answer);
+    dispatch({ type: Types.GetFavs, payload: answer.answer });
   });
   return (
     <>
-      {estado.answer.map((item, i) => {
-        return <Item key={i} item={item} />;
-      })}
+      <div className="Favs_mainContainer">
+        {state.favorites
+          ? state.favorites.slice(index[0], index[1]).map((item, i) => {
+              return <Card key={i} item={item} showFav={false} />;
+            })
+          : null}
+      </div>
+      <br></br>
+      <div className="PaginationF">
+        <Stack spacing={2}>
+          <Pagination
+            count={lastPage}
+            defaultPage={page}
+            showFirstButton
+            showLastButton
+            onChange={handleChange}
+            boundaryCount={1}
+            siblingCount={1}
+            color="primary"
+          />
+        </Stack>
+      </div>
     </>
   );
 };

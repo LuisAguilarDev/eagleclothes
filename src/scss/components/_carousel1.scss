@@ -10,16 +10,16 @@
   align-items: center;
   margin-bottom: 36px;
 }
-.Card1_textcontainer {
+.Card_textcontainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.Card1_container {
+.Card_container {
   height: 600px;
 }
-.Card1_imgcontainer {
+.Card_imgcontainer {
   background-color: #f3f3f3;
   height: 538px;
   width: 30vw;
@@ -27,14 +27,14 @@
   justify-content: center;
 }
 
-.Card1_imgs {
+.Card_imgs {
   display: block;
   margin: auto;
   width: 320px;
   height: 320px;
 }
 
-.Card1_cardscontainer {
+.Card_cardscontainer {
   display: flex;
   justify-content: center;
   align-items: center;

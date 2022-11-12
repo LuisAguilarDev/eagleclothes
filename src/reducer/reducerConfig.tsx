@@ -28,6 +28,11 @@ export const shoppingCartReducer = (
           ? action.payload.quantity + state.quantity
           : state.quantity,
       };
+    case Types.GetFavs:
+      return {
+        ...state,
+        favorites: [...action.payload],
+      };
     case Types.Delete:
       return {
         ...state,

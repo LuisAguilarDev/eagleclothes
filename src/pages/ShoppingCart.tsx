@@ -5,6 +5,7 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { Button } from "@mui/material";
 import { productType, Types } from "../reducer/Types";
 import { deleteFromCart } from "../services/functions";
+import { Menu } from "../components/Menu";
 
 export default () => {
   const [cartValue, setCartValue] = useState(0);
@@ -54,14 +55,8 @@ export default () => {
   }, [state.quantity]);
 
   return (
-    <>
-      <div>
-        <div>{username}</div>
-        <button onClick={handleLogout}>LOGOUT</button>
-      </div>
-      <div>Favorites</div>
-      <div>Shopping Cart</div>
-      <div>Address</div>
+    <div className="Shoping_CartMainContainer">
+      <Menu />
       {state.shoppingCart.length === 0
         ? null
         : state.shoppingCart?.map((p, i) => {
@@ -118,6 +113,6 @@ export default () => {
             );
           })}
       <div>Total: {nf.format(cartValue)}</div>
-    </>
+    </div>
   );
 };

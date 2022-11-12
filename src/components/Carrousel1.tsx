@@ -51,7 +51,7 @@ const Carousel1 = ({ props }: IMyProps) => {
       {props?.map((item: productType, i: number, array: productType[]) => {
         if (array[i + 2]) {
           return (
-            <div key={i} className="Card1_cardscontainer">
+            <div key={i} className="Card_cardscontainer">
               <Item key={i} item={array[i]} />
               <Item key={i + 1} item={array[i + 1]} />
               <Item key={i + 2} item={array[i + 2]} />
@@ -60,7 +60,7 @@ const Carousel1 = ({ props }: IMyProps) => {
         }
         if (i === props.length - 2) {
           return (
-            <div key={i} className="Card1_cardscontainer">
+            <div key={i} className="Card_cardscontainer">
               <Item key={i} item={array[i]} />
               <Item key={i + 1} item={array[7]} />
               <Item key={i + 2} item={array[0]} />
@@ -69,7 +69,7 @@ const Carousel1 = ({ props }: IMyProps) => {
         }
         if (i === props.length - 1) {
           return (
-            <div key={i} className="Card1_cardscontainer">
+            <div key={i} className="Card_cardscontainer">
               <Item key={i} item={array[7]} />
               <Item key={i + 1} item={array[0]} />
               <Item key={i + 2} item={array[1]} />
@@ -104,21 +104,21 @@ const Item = (props: any) => {
         </Box>
       </Modal>
       ;
-      <div className="Card1_container">
-        <div className="Card1_imgcontainer">
+      <div className="Card_container">
+        <div className="Card_imgcontainer">
           <AiOutlineHeart
             onClick={(evt: any) => handleClick(evt, [props.item])}
             className="ITEM_heart"
           />
           <img
             onClick={(evt: any) => getDetail(evt, [props.item])}
-            className="Card1_imgs"
+            className="Card_imgs"
             alt="Not Found"
             src={props.item.galleryImages[0].url}
           />
         </div>
-        <div className="Card1_textcontainer">
-          <h2 className="Card1_text">{props.item.name}</h2>
+        <div className="Card_textcontainer">
+          <h2 className="Card_text">{props.item.name}</h2>
         </div>
       </div>
     </div>

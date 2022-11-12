@@ -1,5 +1,6 @@
 .Sidebar_Container {
-  background-color: #75c062;
-  width: 15vw;
+  min-width: 18vw;
   min-height: 100vh;
+  border-right: solid 1px #d2d2d2;
+  border-top: solid 1px #d2d2d2;
 }

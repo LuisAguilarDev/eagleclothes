@@ -43,6 +43,7 @@ function App() {
         <Route path="/user/:name" element={<Userpanel />} />
         <Route path="/user/:name/favorites" element={<UserpanelF />} />
         <Route path="/user/:name/shopping_cart" element={<ShoppingCart />} />
+        <Route path="/user/:name/address" element={<ShoppingCart />} />
         <Route path="/detail/:itemCode" element={<Detail />} />
         <Route path="/search" element={<Search />} />
       </Routes>
