@@ -16,6 +16,61 @@
 
 .Detail_imgContainerBig {
   display: flex;
-  height: 700px;
-  object-fit: contain;
+  align-items: center;
+  justify-content: center;
+  margin: 50px;
+  padding: 24px;
+  width: 300px;
+  padding-right: 300px;
+}
+.Detail_imgBase {
+  width: 350px;
+}
+.Detail_main:hover {
+  cursor: zoom-in;
+}
+.Detail_ProductName {
+  display: flex;
+  justify-content: center;
+  font-family: montserrat, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 24px;
+  text-decoration: none;
+  color: black;
+}
+
+.Detail_text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  font-family: montserrat, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 24px;
+  text-decoration: none;
+  color: black;
+}
+
+.Detail_IconContainer {
+  max-width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  box-sizing: inherit;
+}
+.ColorSwap {
+  display: flex;
+}
+.Detail_ProductDetail {
+  display: flex;
+}
+.Detail_buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
 }
