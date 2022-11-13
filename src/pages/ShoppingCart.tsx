@@ -148,18 +148,20 @@ export default () => {
       </div>
       {state.shoppingCart.length === 0 ? null : (
         <div className="Cart_totalandPay">
-          <div>Total: {nf.format(cartValue)}</div>
-          <Button
-            sx={{
-              borderColor: "#222222",
-              color: "#222222",
-              height: "40px",
-              ":hover": { color: "blue" },
-            }}
-            variant="outlined"
-          >
-            Pay Now
-          </Button>
+          <div className="Cart_PriceTotal">Total: {nf.format(cartValue)}</div>
+          <div className="Cart_buttonContainer">
+            <Button
+              sx={{
+                borderColor: "#222222",
+                color: "#222222",
+                height: "40px",
+                ":hover": { color: "blue" },
+              }}
+              variant="outlined"
+            >
+              Pay Now
+            </Button>
+          </div>
         </div>
       )}
     </div>

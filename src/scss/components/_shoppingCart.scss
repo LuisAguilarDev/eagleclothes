@@ -67,6 +67,7 @@
 
 .Cart_totalandPay {
   width: 15vw;
+  margin-top: 45px;
 }
 
 .Cart_Product {
@@ -85,11 +86,27 @@
   vertical-align: middle;
   margin: auto;
 }
-
+.Cart_PriceTotal {
+  padding: 24px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 19.5px;
+  font-family: montserrat, sans-serif;
+  color: #222222;
+  vertical-align: center;
+  justify-content: center;
+  text-align: center;
+}
 .Cart_PriceH {
   width: 100px;
   margin-left: 80px;
 }
 .Cart_quantityH {
   margin-left: -80px;
+}
+
+.Cart_buttonContainer {
+  display: flex;
+  vertical-align: center;
+  justify-content: center;
 }

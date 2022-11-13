@@ -5,7 +5,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useNavigate, useLocation } from "react-router-dom";
 import { SnackbarOrigin } from "@mui/material";
 import Swal from "sweetalert2";
-import { getCart } from "../services/functions";
+import { getCart, addToCart } from "../services/functions";
 import { AppContext } from "../reducer/context";
 import { productType, Types } from "../reducer/Types";
 import { Button } from "@mui/material";
@@ -28,22 +28,6 @@ export const Login = ({ close }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [states, setStates] = useState<State>({
-    open: false,
-    vertical: "top",
-    horizontal: "center",
-  });
-
-  const { vertical, horizontal, open } = states;
-
-  const handleClose = () => {
-    setStates({ ...states, open: false });
-  };
-
-  const handleClick = () => {
-    setStates({ open: true, vertical: "top", horizontal: "center" });
-  };
-
   function handleChange(evt: any) {
     setData({ ...data, [evt.target.name]: evt.target.value });
     validateEmail(evt);
@@ -59,31 +43,18 @@ export const Login = ({ close }: Props) => {
       .then(async (res) => {
         setToken(res.data.token);
         setName(res.data.user.name);
-        let answer = await getCart();
-        dispatch({
-          type: Types.GetCart,
-          payload: answer[0] ? answer[0] : [],
+        state.shoppingCart.forEach((item) => {
+          addToCart(evt, [item]);
         });
+
         if (close) {
           close();
         }
-        function getQuantity(data: productType[]) {
-          if (data.length === 0) return;
-          const answer = data.map((item, i) => {
-            if (!item.quantity) return 0;
-            return item.quantity;
-          });
-          let total = answer.reduce((a, b) => a + b, 0);
-          total = total ? total : 0;
-          dispatch({
-            type: Types.SetQuantity,
-            payload: total,
-          });
-        }
-        getQuantity(answer[0] ? answer[0] : []);
+
         return true;
       })
       .catch((err) => {
+        console.log(err, "error?");
         if (err?.response?.status === 403) {
           Swal.fire({
             title: err.response.data.message,
@@ -94,7 +65,29 @@ export const Login = ({ close }: Props) => {
         }
         return false;
       });
-    await answer;
+
+    setTimeout(async function delayed() {
+      let dataCart = await getCart();
+      dispatch({
+        type: Types.GetCart,
+        payload: dataCart[0] ? dataCart[0] : [],
+      });
+      function getQuantity(data: productType[]) {
+        if (data.length === 0) return;
+        const quantityArray = data.map((item, i) => {
+          if (!item.quantity) return 0;
+          return item.quantity;
+        });
+        let total = quantityArray.reduce((a, b) => a + b, 0);
+        total = total ? total : 0;
+        dispatch({
+          type: Types.SetQuantity,
+          payload: total,
+        });
+      }
+      getQuantity(dataCart[0] ? dataCart[0] : []);
+    }, 400);
+
     if (answer === true) {
       navigate("/");
     }
@@ -171,7 +164,6 @@ export const Login = ({ close }: Props) => {
 
   useEffect(() => {
     handleAlert();
-    handleClick();
   }, []);
 
   return (
@@ -312,7 +304,7 @@ export const Login = ({ close }: Props) => {
                 setCreate(!create);
               }}
             >
-              I have already an account
+              I have an account!
             </Button>
           </div>
         </>

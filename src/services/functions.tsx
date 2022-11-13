@@ -59,7 +59,7 @@ export async function getCart<T>(): Promise<any> {
   return answer;
 }
 
-export async function addToCart(evt: Event, item: any) {
+export async function addToCart(evt: Event, item: any[]) {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   if (Authorization === "") {
