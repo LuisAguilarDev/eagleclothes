@@ -1,7 +1,95 @@
 .ShopingCart_Container {
-  display: flex;
+  width: 100%;
 }
 
 .Shoping_CartMainContainer {
   display: flex;
+}
+
+.Cart_Header {
+  display: flex;
+  gap: 24px;
+  justify-content: space-around;
+  padding: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19.5px;
+  font-family: montserrat, sans-serif;
+  color: #222222;
+  margin-right: 40px;
+}
+
+.Cart_ProductInfo {
+  margin: 16px;
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.5px;
+  font-family: montserrat, sans-serif;
+  color: #222222;
+  vertical-align: middle;
+  margin: auto;
+  text-align: center;
+}
+
+.Cart_ProductImg {
+  width: 200px;
+  height: 200px;
+}
+
+.Cart_quantity {
+  display: flex;
+  margin-left: 50px;
+  gap: 8px;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.Cart_imgPlusName {
+  display: flex;
+  gap: 8px;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.Cart_Name {
+  width: 200px;
+  display: flex;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.Cart_ProductInfoContainer {
+  width: 65vw;
+}
+
+.Cart_totalandPay {
+  width: 15vw;
+}
+
+.Cart_Product {
+  width: 300px;
+}
+.Cart_TotalPlusRemove {
+  display: flex;
+  vertical-align: middle;
+  margin: auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.Cart_Price {
+  margin-left: 60px;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.Cart_PriceH {
+  width: 100px;
+  margin-left: 80px;
+}
+.Cart_quantityH {
+  margin-left: -80px;
 }

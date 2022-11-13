@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { Button } from "@mui/material";
 import { productType, Types } from "../reducer/Types";
-import { deleteFromCart } from "../services/functions";
+import { deleteFromCart, updateQuantity } from "../services/functions";
 import { Menu } from "../components/Menu";
 
 export default () => {
@@ -57,68 +57,110 @@ export default () => {
   return (
     <div className="Shoping_CartMainContainer">
       <Menu />
-      {state.shoppingCart.length === 0 ? (
-        <h1 className="Empty_Message">
-          You don't have products in your cart yet, go and find something you
-          love.
-        </h1>
-      ) : (
-        state.shoppingCart?.map((p, i) => {
-          return (
-            <div key={i} className="ShopingCart_Container">
-              <img src={p.images}></img>
-              <div>{p.name}</div>
-              <div>{`${nf.format(p.price.value)}`}</div>
-              <AiFillMinusCircle
-                onClick={() => {
-                  if (p.quantity === 1) return;
-                  let quantity: number = p.quantity ? p.quantity : 0;
-                  p.quantity = quantity - 1;
-                  setQuantities(quantities + 1);
-                  dispatch({
-                    type: Types.SetQuantity,
-                    payload: -1,
-                  });
-                  shoppingCartTotal();
-                }}
-              />
-              <div>{`${p.quantity}`}</div>
-              <AiFillPlusCircle
-                onClick={() => {
-                  let quantity: number = p.quantity ? p.quantity : 0;
-                  p.quantity = quantity + 1;
-                  setQuantities(quantities + 1);
-                  dispatch({
-                    type: Types.SetQuantity,
-                    payload: 1,
-                  });
-                  shoppingCartTotal();
-                }}
-              />
-              <Button
-                onClick={() => {
-                  deleteFromCart(p);
-                  dispatch({
-                    type: Types.Delete,
-                    payload: p,
-                  });
-                  dispatch({
-                    type: Types.SetQuantity,
-                    payload: p.quantity ? -p.quantity : 0,
-                  });
-                }}
-              >
-                X
-              </Button>
-              <div>{`${nf.format(
-                p.price.value * (p.quantity ? p.quantity : 0)
-              )}`}</div>
-            </div>
-          );
-        })
-      )}
+      <div className="Cart_ProductInfoContainer">
+        <div className="Cart_Header">
+          <div className="Cart_Product">Product</div>
+          <div className="Cart_PriceH">Price</div>
+          <div className="Cart_quantityH">Quantity</div>
+          <div>Total</div>
+        </div>
+        <div className="ShopingCart_Container">
+          {state.shoppingCart.length === 0 ? (
+            <h1 className="Empty_Message">
+              You don't have products in your cart yet, go and find something
+              you love.
+            </h1>
+          ) : (
+            state.shoppingCart?.map((p, i) => {
+              return (
+                <div key={i}>
+                  <div className="Cart_ProductInfo">
+                    <div className="Cart_imgPlusName">
+                      <img className="Cart_ProductImg" src={p.images}></img>
+                      <div className="Cart_Name">{p.name}</div>
+                    </div>
+                    <div className="Cart_Price">{`${nf.format(
+                      p.price.value
+                    )}`}</div>
+                    <div className="Cart_quantity">
+                      <AiFillMinusCircle
+                        onClick={() => {
+                          if (p.quantity === 1) return;
+                          let quantity: number = p.quantity ? p.quantity : 0;
+                          p.quantity = quantity - 1;
+                          setQuantities(quantities + 1);
+                          updateQuantity(p.code, -1);
+                          dispatch({
+                            type: Types.SetQuantity,
+                            payload: -1,
+                          });
+                          shoppingCartTotal();
+                        }}
+                      />
+                      <div>{`${p.quantity}`}</div>
+                      <AiFillPlusCircle
+                        onClick={() => {
+                          let quantity: number = p.quantity ? p.quantity : 0;
+                          p.quantity = quantity + 1;
+                          setQuantities(quantities + 1);
+                          updateQuantity(p.code, 1);
+                          dispatch({
+                            type: Types.SetQuantity,
+                            payload: 1,
+                          });
+                          shoppingCartTotal();
+                        }}
+                      />
+                    </div>
+                    <div className="Cart_TotalPlusRemove">
+                      <div>{`${nf.format(
+                        p.price.value * (p.quantity ? p.quantity : 0)
+                      )}`}</div>
+                      <Button
+                        variant="outlined"
+                        sx={{
+                          borderColor: "#222222",
+                          color: "#222222",
+                          height: "40px",
+                          ":hover": { color: "blue" },
+                        }}
+                        onClick={() => {
+                          deleteFromCart(p);
+                          dispatch({
+                            type: Types.Delete,
+                            payload: p,
+                          });
+                          dispatch({
+                            type: Types.SetQuantity,
+                            payload: p.quantity ? -p.quantity : 0,
+                          });
+                        }}
+                      >
+                        X
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+      </div>
       {state.shoppingCart.length === 0 ? null : (
-        <div>Total: {nf.format(cartValue)}</div>
+        <div className="Cart_totalandPay">
+          <div>Total: {nf.format(cartValue)}</div>
+          <Button
+            sx={{
+              borderColor: "#222222",
+              color: "#222222",
+              height: "40px",
+              ":hover": { color: "blue" },
+            }}
+            variant="outlined"
+          >
+            Pay Now
+          </Button>
+        </div>
       )}
     </div>
   );

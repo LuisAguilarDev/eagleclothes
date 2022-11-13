@@ -156,3 +156,21 @@ export async function getManClothes() {
     });
   return answer.data;
 }
+export async function updateQuantity(code: string, quantity: number) {
+  const token = window.localStorage.getItem("token");
+  const Authorization = token ? "Bearer " + JSON.parse(token) : "";
+  const answer: any = await axios
+    .post(
+      `http://localhost:5000/api/users/cart`,
+      { code, quantity },
+      {
+        headers: { Authorization },
+      }
+    )
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

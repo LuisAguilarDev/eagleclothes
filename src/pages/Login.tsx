@@ -25,7 +25,7 @@ export const Login = ({ close }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [states, setStates] = React.useState<State>({
+  const [states, setStates] = useState<State>({
     open: false,
     vertical: "top",
     horizontal: "center",
@@ -45,23 +45,24 @@ export const Login = ({ close }: Props) => {
     setData({ ...data, [evt.target.name]: evt.target.value });
   }
 
-  function handleLogin(evt: any) {
+  async function handleLogin(evt: any) {
     evt.preventDefault();
-    axios
+    const answer = await axios
       .post("http://localhost:5000/api/users/singIn", data)
       .then(async (res) => {
         setToken(res.data.token);
         setName(res.data.user.name);
         let answer = await getCart();
+        console.log(answer);
         dispatch({
           type: Types.GetCart,
-          payload: answer[0],
+          payload: answer,
         });
-        getQuantity(answer[0]);
         if (close) {
           close();
         }
         function getQuantity(data: productType[]) {
+          if (data.length === 0) return;
           const answer = data.map((item, i) => {
             if (!item.quantity) return 0;
             return item.quantity;
@@ -73,12 +74,29 @@ export const Login = ({ close }: Props) => {
             payload: total,
           });
         }
+        getQuantity(answer);
+        return true;
       })
       .catch((err) => {
         console.log(err);
+        if (err?.response?.status === 403) {
+          console.log("entre");
+          Swal.fire({
+            title: err.response.data.message,
+            icon: "error",
+            confirmButtonColor: "#9ea03b",
+          });
+          return err?.response?.status;
+        }
+        return false;
       });
-    navigate("/");
+    await answer;
+    console.log(answer);
+    if (answer === true) {
+      navigate("/");
+    }
   }
+
   function handleCreation(evt: any) {
     evt.preventDefault();
     axios
