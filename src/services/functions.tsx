@@ -110,7 +110,6 @@ export async function deleteFromCart(item: any) {
 export async function deleteFromFav(item: any) {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
-  console.log(item[0].code);
   if (Authorization === "") {
     return "";
   }
@@ -119,7 +118,6 @@ export async function deleteFromFav(item: any) {
       headers: { Authorization },
     })
     .then((res) => {
-      console.log(res);
       return res;
     })
     .catch((err) => {

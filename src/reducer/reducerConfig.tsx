@@ -8,6 +8,7 @@ import {
 export const INITIAL_STATE = {
   loading: false,
   search: [],
+  filter: [],
   shoppingCart: [],
   favorites: [],
   quantity: 0,
@@ -18,7 +19,6 @@ export const shoppingCartReducer = (
   state: InitialStateType,
   action: ShoppingCartActions
 ) => {
-  console.log(action);
   switch (action.type) {
     case Types.Add:
       return {
@@ -69,6 +69,21 @@ export const shoppingCartReducer = (
       return {
         ...state,
         search: [...action.payload],
+        filter: [...action.payload],
+      };
+    case Types.Loading:
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    case Types.FilterPrice:
+      return {
+        ...state,
+        filter: state.search
+          ? state.search.filter(
+              (product: productType) => product.price.value === action.payload
+            )
+          : [],
       };
     default:
       return state;

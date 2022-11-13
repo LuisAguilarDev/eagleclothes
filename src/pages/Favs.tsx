@@ -19,7 +19,6 @@ export const Favorites = () => {
   };
   useState(async () => {
     const answer = await services.getFav();
-    console.log(answer.answer);
     if (!answer.answer) {
       return dispatch({ type: Types.GetFavs, payload: [] });
     }

@@ -6,11 +6,13 @@ import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "./reducer/context";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <AppProvider>
-    <BrowserRouter>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </BrowserRouter>
-  </AppProvider>
+  <React.StrictMode>
+    <AppProvider>
+      <BrowserRouter>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </BrowserRouter>
+    </AppProvider>
+  </React.StrictMode>
 );

@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { getCart } from "../services/functions";
 import { AppContext } from "../reducer/context";
 import { productType, Types } from "../reducer/Types";
+import { Button } from "@mui/material";
 
 export interface State extends SnackbarOrigin {
   open: boolean;
@@ -19,7 +20,9 @@ interface Props {
 export const Login = ({ close }: Props) => {
   const { state, dispatch } = useContext(AppContext);
   const [create, setCreate] = useState<boolean>(true);
-  const [data, setData] = useState({ email: "", password: "" });
+  const [error, setError] = useState<boolean>(false);
+  const [errorP, setErrorP] = useState<boolean>(false);
+  const [data, setData] = useState({ email: "", password: "", name: "" });
   const [token, setToken] = useLocalStorage("token", "");
   const [name, setName] = useLocalStorage("name", "");
   const navigate = useNavigate();
@@ -43,20 +46,23 @@ export const Login = ({ close }: Props) => {
 
   function handleChange(evt: any) {
     setData({ ...data, [evt.target.name]: evt.target.value });
+    validateEmail(evt);
   }
 
   async function handleLogin(evt: any) {
     evt.preventDefault();
+    if (error) {
+      return;
+    }
     const answer = await axios
       .post("http://localhost:5000/api/users/singIn", data)
       .then(async (res) => {
         setToken(res.data.token);
         setName(res.data.user.name);
         let answer = await getCart();
-        console.log(answer);
         dispatch({
           type: Types.GetCart,
-          payload: answer,
+          payload: answer[0] ? answer[0] : [],
         });
         if (close) {
           close();
@@ -74,13 +80,11 @@ export const Login = ({ close }: Props) => {
             payload: total,
           });
         }
-        getQuantity(answer);
+        getQuantity(answer[0] ? answer[0] : []);
         return true;
       })
       .catch((err) => {
-        console.log(err);
         if (err?.response?.status === 403) {
-          console.log("entre");
           Swal.fire({
             title: err.response.data.message,
             icon: "error",
@@ -91,20 +95,63 @@ export const Login = ({ close }: Props) => {
         return false;
       });
     await answer;
-    console.log(answer);
     if (answer === true) {
       navigate("/");
     }
   }
 
+  function validateEmail(evt: any) {
+    if (evt.target.name === "email") {
+      if (
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(evt.target.value)
+      ) {
+        setError(false);
+        return;
+      }
+      setError(true);
+    }
+  }
+
   function handleCreation(evt: any) {
-    evt.preventDefault();
+    if (error) {
+      return;
+    }
+    if (data.name === "") {
+      Swal.fire({
+        title: "Please insert your name",
+        icon: "info",
+        confirmButtonColor: "#9ea03b",
+      });
+      return;
+    }
+    if (data.name.length < 6) {
+      Swal.fire({
+        title: "Your name must have at least 6 characters",
+        icon: "info",
+        confirmButtonColor: "#9ea03b",
+      });
+      return;
+    }
     axios
       .post("http://localhost:5000/api/users/signUp", data)
       .then((res) => {
-        setToken(res.data.token);
-        setName(res.data.user.name);
-        navigate("/");
+        if (
+          res.data.message === "el usuario ya se encuentra creado en el sistema"
+        ) {
+          Swal.fire({
+            title: "User is already registered please login",
+            icon: "info",
+            confirmButtonColor: "#9ea03b",
+          });
+          return;
+        }
+        if (!res.data.user.verified) {
+          Swal.fire({
+            title: res.data.message,
+            icon: "info",
+            confirmButtonColor: "#9ea03b",
+          });
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -131,51 +178,143 @@ export const Login = ({ close }: Props) => {
     <>
       {create ? (
         <>
-          <form className="login_form" onSubmit={handleLogin}>
-            <label>Username:</label>
-            <input
-              name="email"
-              onChange={handleChange}
-              type="text"
-              autoComplete="on"
-            />
-            <br></br>
-            <label>Password:</label>
-            <input
-              name="password"
-              onChange={handleChange}
-              type="password"
-              autoComplete="on"
-            />
-            <button>Login</button>
+          <form onSubmit={handleLogin}>
+            <div className="login_form">
+              <label className="login_label">Username:</label>
+              <input
+                className="login_input"
+                name="email"
+                onChange={handleChange}
+                type="text"
+                autoComplete="on"
+              />
+            </div>
+            {error === true ? (
+              <div className="login_error">User must be anemail</div>
+            ) : null}
+            <div className="login_form">
+              <label className="login_label">Password:</label>
+              <input
+                className="login_input"
+                name="password"
+                onChange={handleChange}
+                type="password"
+                autoComplete="on"
+              />
+            </div>
+            <div className="login_formForgot">
+              <div className="login_forgot">Forgot your password?</div>
+            </div>
+            <div className="login_buttonContainer">
+              <Button
+                sx={{
+                  borderColor: "#222222",
+                  color: "#222222",
+                  height: "40px",
+                  padding: "12px",
+                  margin: "12px",
+                  marginTop: "0px",
+                  width: "210px",
+                  ":hover": { color: "blue" },
+                }}
+                variant="outlined"
+                onClick={(e) => {
+                  handleLogin(e);
+                }}
+              >
+                Login
+              </Button>
+            </div>
+            <div className="login_buttonContainer">
+              <Button
+                sx={{
+                  borderColor: "#222222",
+                  color: "#222222",
+                  height: "40px",
+                  padding: "12px",
+                  margin: "12px",
+                  width: "210px",
+                  ":hover": { color: "blue" },
+                }}
+                variant="outlined"
+                onClick={() => {
+                  setCreate(!create);
+                }}
+              >
+                Create your account
+              </Button>
+            </div>
           </form>
-          <button
-            onClick={() => {
-              setCreate(!create);
-            }}
-          >
-            Create your account
-          </button>
         </>
       ) : (
         <>
-          <form className="login_form" onSubmit={handleCreation}>
-            <label>Username:</label>
-            <input name="email" onChange={handleChange} type="text" />
-            <label>Name:</label>
-            <input name="name" onChange={handleChange} type="text" />
-            <label>Password:</label>
-            <input name="password" onChange={handleChange} type="password" />
-
-            <button>Create your account</button>
+          <form onSubmit={handleCreation}>
+            <div className="login_form">
+              <label className="login_label">Username:</label>
+              <input
+                className="login_input"
+                name="email"
+                onChange={handleChange}
+                type="text"
+              />
+            </div>
+            <div className="login_form">
+              <label className="login_label">Name:</label>
+              <input
+                className="login_input"
+                name="name"
+                onChange={handleChange}
+                type="text"
+              />
+            </div>
+            <div className="login_form">
+              <label className="login_label">Password:</label>
+              <input
+                className="login_input"
+                name="password"
+                onChange={handleChange}
+                type="password"
+              />
+            </div>
+            <div className="login_buttonContainer">
+              <Button
+                sx={{
+                  borderColor: "#222222",
+                  color: "#222222",
+                  height: "40px",
+                  padding: "12px",
+                  margin: "12px",
+                  width: "210px",
+                  ":hover": { color: "blue" },
+                }}
+                variant="outlined"
+                onClick={() => {
+                  handleCreation(data);
+                }}
+              >
+                Create your account
+              </Button>
+            </div>
           </form>
-          <button
-            onClick={() => {
-              setCreate(!create);
-            }}
-          >
-            I have already an account
-          </button>
+          <div className="login_buttonContainer">
+            <Button
+              sx={{
+                borderColor: "#222222",
+                color: "#222222",
+                height: "40px",
+                padding: "12px",
+                margin: "12px",
+                width: "210px",
+                ":hover": { color: "blue" },
+              }}
+              variant="outlined"
+              onClick={() => {
+                setCreate(!create);
+              }}
+            >
+              I have already an account
+            </Button>
+          </div>
         </>
       )}
     </>

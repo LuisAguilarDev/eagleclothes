@@ -30,12 +30,14 @@ export default () => {
 
   function handleSearch(e: any) {
     if (e.key !== "Enter") return;
-    console.log(e.key, search);
     axios.get(`http://localhost:5000/api/search/${search}`).then((res) => {
-      console.log(res);
       dispatch({
         type: Types.Search,
         payload: res.data.search,
+      });
+      dispatch({
+        type: Types.Loading,
+        payload: !state.loading,
       });
       e.target.value = "";
       Navigate("/search");

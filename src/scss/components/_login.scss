@@ -1,4 +1,96 @@
 .login_form {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  margin: 12px;
+  font-family: "Poppins";
+}
+.login_label {
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 36px;
+  width: 100px;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 12px;
+}
+.login_buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login_input {
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 36px;
+  width: 320px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.login_input:placeholder {
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 36px;
+  width: 320px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.login_error {
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.login_forgot {
+  display: flex;
+  justify-content: center;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 36px;
+  width: 320px;
+  color: black;
+  text-decoration: underline;
+  align-self: flex-end;
+  height: 28px;
+}
+
+.login_forgot:hover {
+  cursor: pointer;
+  color: blue;
+}
+
+.login_formForgot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins";
 }

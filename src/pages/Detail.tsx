@@ -71,7 +71,7 @@ const Detail = () => {
                     </div>
                   </div>
                   <div>
-                    <div>{product.colorName[0]}</div>
+                    <div className="Detail_text">{product.colorName[0]}</div>
                   </div>
                 </div>
               );
