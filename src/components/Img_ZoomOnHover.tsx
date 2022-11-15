@@ -11,7 +11,7 @@ export const Zoom = ({ src }: any) => {
   const handleMouseMove = (e: any) => {
     const { left, top, width, height } = e.target.getBoundingClientRect();
     setX(((e.pageX - left) / width) * 100);
-    setY(((e.pageY - top) / height) * 100 - 25);
+    setY(((e.pageY - top - 165) / height) * 100);
     setBackgroundPosition(() => {
       if (x < 0) {
         return `0% ${y}%`;

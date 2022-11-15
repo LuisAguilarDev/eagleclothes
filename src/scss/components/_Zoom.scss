@@ -1,4 +1,5 @@
 .Zoom_Figure {
+  margin: 100px 50px 100px 50px;
   width: 400px;
   background-repeat: no-repeat;
 }
@@ -16,7 +17,8 @@
   }
 }
 .Detail_Zoom {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
 }
