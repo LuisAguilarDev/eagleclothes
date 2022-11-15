@@ -122,6 +122,7 @@ export default () => {
                           borderColor: "#222222",
                           color: "#222222",
                           height: "40px",
+                          minWidth: "40px",
                           ":hover": { color: "blue" },
                         }}
                         onClick={() => {
