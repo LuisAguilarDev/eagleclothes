@@ -3,15 +3,22 @@
 }
 
 .Detail_img {
-  height: 80px;
+  width: 80px;
+  margin: 0 auto;
+  object-fit: contain;
+  margin: 16px;
+}
+.Detail_miniImgContainer {
+  width: 60px;
+  margin: 0 auto;
   object-fit: contain;
 }
-
 .Detail_imgContainer {
   display: flex;
   flex-direction: column;
   gap: 18px;
   width: 15vw;
+  margin-top: 16px;
 }
 
 .Detail_imgContainerBig {
@@ -45,7 +52,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
   font-family: montserrat, sans-serif;
   font-size: 14px;
   line-height: 20px;
@@ -65,9 +71,13 @@
 }
 .ColorSwap {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .Detail_ProductDetail {
   display: flex;
+  justify-content: space-evenly;
+  gap: 12px;
 }
 .Detail_buttonContainer {
   display: flex;
@@ -78,4 +88,11 @@
 .Texto_Transparente {
   padding: 12px;
   margin: 12px;
+}
+.Main3 {
+  width: 100%;
+}
+
+.Detail_IconPlusQuantity {
+  display: flex;
 }

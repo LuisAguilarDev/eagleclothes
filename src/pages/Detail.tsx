@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 import { Types } from "../reducer/Types";
 import { addToCart } from "../services/functions";
 import * as magnifier from "react-image-magnify";
+import { Zoom } from "../components/Img_ZoomOnHover";
 
 const Detail = () => {
   const location = useLocation();
@@ -27,7 +28,7 @@ const Detail = () => {
       <div className="Detail_ProductName">{product.name}</div>
       <div className="Detail_Container">
         <div className="Detail_imgContainer">
-          {product.galleryImages.map((img: any, i: number) => {
+          {product.galleryImages.slice(0, 5).map((img: any, i: number) => {
             return (
               <img
                 onMouseEnter={(e) => onClick(i)}
@@ -40,23 +41,8 @@ const Detail = () => {
             );
           })}
         </div>
-        <div className="Detail_imgContainerBig">
-          <magnifier.default
-            {...{
-              smallImage: {
-                alt: "Not Found",
-                isFluidWidth: true,
-                src: `${product.galleryImages[index].url}`,
-                width: 350,
-                smallImageClassName: "img_small",
-              },
-              largeImage: {
-                src: `${product.galleryImages[index].url}`,
-                width: 1400,
-                height: 1400,
-              },
-            }}
-          />
+        <div className="Detail_Zoom">
+          <Zoom src={product.galleryImages[index].url}></Zoom>
         </div>
         <div className="Main3">
           <div className="ColorSwap">
@@ -81,23 +67,25 @@ const Detail = () => {
             <div className="Detail_text">
               Price: {product.price.formattedValue}
             </div>
-            <div className="Detail_IconContainer">
-              <AiFillMinusCircle
-                size={"30px"}
-                onClick={() => {
-                  if (quantity === 1) return;
-                  setQuantity(quantity - 1);
-                }}
-              />
-            </div>
-            <div className="Detail_text">Quantity: {quantity}</div>
-            <div className="Detail_IconContainer">
-              <AiFillPlusCircle
-                size={"30px"}
-                onClick={() => {
-                  setQuantity(quantity + 1);
-                }}
-              />
+            <div className="Detail_IconPlusQuantity">
+              <div className="Detail_IconContainer">
+                <AiFillMinusCircle
+                  size={"30px"}
+                  onClick={() => {
+                    if (quantity === 1) return;
+                    setQuantity(quantity - 1);
+                  }}
+                />
+              </div>
+              <div className="Detail_text">Quantity: {quantity}</div>
+              <div className="Detail_IconContainer">
+                <AiFillPlusCircle
+                  size={"30px"}
+                  onClick={() => {
+                    setQuantity(quantity + 1);
+                  }}
+                />
+              </div>
             </div>
             <div className="Detail_text">
               Total: {nf.format(product.price.value * quantity)}

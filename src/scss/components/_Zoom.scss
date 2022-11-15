@@ -1,0 +1,22 @@
+.Zoom_Figure {
+  width: 400px;
+  background-repeat: no-repeat;
+}
+.Zoom_Figure:hover {
+  img {
+    opacity: 0;
+    margin: 0px;
+  }
+}
+.Zoom_Figure {
+  img {
+    display: block;
+    width: 100%;
+    pointer-events: none;
+  }
+}
+.Detail_Zoom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
