@@ -182,7 +182,7 @@ export const Login = ({ close }: Props) => {
               />
             </div>
             {error === true ? (
-              <div className="login_error">User must be anemail</div>
+              <div className="login_error">User must be an email</div>
             ) : null}
             <div className="login_form">
               <label className="login_label">Password:</label>
@@ -250,6 +250,9 @@ export const Login = ({ close }: Props) => {
                 type="text"
               />
             </div>
+            {error === true ? (
+              <div className="login_error">User must be an email</div>
+            ) : null}
             <div className="login_form">
               <label className="login_label">Name:</label>
               <input

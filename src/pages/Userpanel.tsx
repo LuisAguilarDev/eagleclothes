@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useNavigate } from "react-router-dom";
-import { Favorites } from "./Favs";
+import { Favorites } from "../components/Favs";
 import { Link } from "react-router-dom";
 import { Types } from "../reducer/Types";
 import { AppContext } from "../reducer/context";

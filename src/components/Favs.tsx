@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import * as services from "../services/functions";
-import { Card } from "../components/Card";
+import { Card } from "./Card";
 import { AppContext } from "../reducer/context";
-import { productType, Types } from "../reducer/Types";
+import { Types } from "../reducer/Types";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 

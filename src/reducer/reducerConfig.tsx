@@ -13,12 +13,14 @@ export const INITIAL_STATE = {
   favorites: [],
   quantity: 0,
   pagination: { currentPage: 1, lastPage: 1 },
+  address: [],
 };
 
 export const shoppingCartReducer = (
   state: InitialStateType,
   action: ShoppingCartActions
 ) => {
+  console.log(action);
   switch (action.type) {
     case Types.Add:
       return {
@@ -75,6 +77,11 @@ export const shoppingCartReducer = (
       return {
         ...state,
         loading: action.payload,
+      };
+    case Types.GetAddress:
+      return {
+        ...state,
+        address: action.payload,
       };
     case Types.FilterPrice:
       return {

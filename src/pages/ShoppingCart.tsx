@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../reducer/context";
 import { useNavigate } from "react-router-dom";
+import * as services from "../services/functions";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { Button } from "@mui/material";
 import { productType, Types } from "../reducer/Types";

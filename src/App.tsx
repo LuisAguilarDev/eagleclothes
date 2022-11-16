@@ -7,12 +7,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Detail from "./pages/Detail";
-import { useReducer } from "react";
 import ShoppingCart from "./pages/ShoppingCart";
 import { productType } from "./reducer/Types";
 import Navigation from "./components/Navigation";
 import Search from "./pages/search";
 import { Validate } from "./pages/Validate";
+import Address from "./pages/Address";
+import AddAddress from "./pages/AddAddress";
 
 function App() {
   const [datam, setDatam] = useState<productType[]>([]);
@@ -44,7 +45,8 @@ function App() {
         <Route path="/user/:name" element={<Userpanel />} />
         <Route path="/user/:name/favorites" element={<UserpanelF />} />
         <Route path="/user/:name/shopping_cart" element={<ShoppingCart />} />
-        <Route path="/user/:name/address" element={<ShoppingCart />} />
+        <Route path="/user/:name/address" element={<Address />} />
+        <Route path="/user/:name/addAddress" element={<AddAddress />} />
         <Route path="/detail/:itemCode" element={<Detail />} />
         <Route path="/search" element={<Search />} />
         <Route path="/validateUser" element={<Validate />} />

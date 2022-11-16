@@ -172,3 +172,36 @@ export async function updateQuantity(code: string, quantity: number) {
       console.log(err);
     });
 }
+
+export async function GetAddress<T>(): Promise<any> {
+  const token = window.localStorage.getItem("token");
+  const Authorization = token ? "Bearer " + JSON.parse(token) : "";
+  const answer: any = await axios
+    .get(`http://localhost:5000/api/users/address`, {
+      headers: { Authorization },
+    })
+    .then((res) => {
+      return res.data.answer;
+    })
+    .catch((err) => {
+      return err;
+    });
+  return answer;
+}
+
+export async function postAddress<T>(newAddress: any): Promise<any> {
+  const token = window.localStorage.getItem("token");
+  const Authorization = token ? "Bearer " + JSON.parse(token) : "";
+  console.log(newAddress);
+  const answer: any = await axios
+    .post(`http://localhost:5000/api/users/address`, newAddress, {
+      headers: { Authorization },
+    })
+    .then((res) => {
+      return res.data.answer;
+    })
+    .catch((err) => {
+      return err;
+    });
+  return answer;
+}

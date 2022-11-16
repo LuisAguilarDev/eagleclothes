@@ -19,6 +19,7 @@ export enum Types {
   GetFavs = "GET_FAVS",
   DeleteFav = "DELETE_FAV",
   FilterPrice = "FILTER_BY_PRICE",
+  GetAddress = "LOADING_ADDRESS",
   Loading = "LOADING_STATE",
 }
 export type ProductPayload = {
@@ -32,6 +33,7 @@ export type ProductPayload = {
   [Types.DeleteFav]: productType;
   [Types.FilterPrice]: number;
   [Types.Loading]: boolean;
+  [Types.GetAddress]: string[];
 };
 export type ProductActions =
   ActionMap<ProductPayload>[keyof ActionMap<ProductPayload>];
@@ -67,4 +69,13 @@ export type InitialStateType = {
   pagination?: paginationType;
   favorites?: productType[];
   quantity: number;
+  address: Address[];
+};
+
+export type Address = {
+  Address: string;
+  City: string;
+  Country: string;
+  Telephone_number: string;
+  ZIP_CODE: string;
 };
