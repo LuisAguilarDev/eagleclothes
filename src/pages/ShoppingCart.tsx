@@ -7,26 +7,33 @@ import { Button } from "@mui/material";
 import { productType, Types } from "../reducer/Types";
 import { deleteFromCart, updateQuantity } from "../services/functions";
 import { Menu } from "../components/Menu";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export default () => {
   const [cartValue, setCartValue] = useState(0);
   const [quantities, setQuantities] = useState(0);
   const username = window.localStorage.getItem("name");
+  const [cart, setCart, getCart] = useLocalStorage("cart", []);
   const { state, dispatch } = useContext(AppContext);
   const navigate = useNavigate();
   function handleLogout() {
     window.localStorage.clear();
-    dispatch({
-      type: Types.ClearCart,
-      payload: [],
-    });
     dispatch({
       type: Types.SetQuantity,
       payload: 0,
     });
     navigate("/");
   }
-  function handleDeletion(product: productType) {}
+  function handleDeletion(product: productType) {
+    const actualCart = getCart("cart");
+    console.log(actualCart);
+    const newCart = actualCart.filter((item: productType) => {
+      console.log(item.code !== product.code);
+      return item.code !== product.code;
+    });
+    console.log(newCart);
+    setCart(newCart);
+  }
 
   const nf = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -35,25 +42,25 @@ export default () => {
   });
 
   function shoppingCartTotal() {
-    if (state.shoppingCart.length === 0) {
+    if (cart.length === 0) {
       setCartValue(0);
       return;
     }
     setCartValue(0);
-    let answer = state.shoppingCart.map((p) => {
+    let answer = cart.map((p: productType) => {
       let quantity: number = p.quantity ? p.quantity : 0;
       let price: number = p.price.value ? p.price.value : 0;
       let total = quantity * price;
       return total;
     });
-    let total = answer.reduce((a, b) => a + b, 0);
+    let total = answer.reduce((a: any, b: any) => a + b, 0);
     total = total ? total : 0;
     let data = Math.round(total * 100) / 100;
     setCartValue(data);
   }
   useEffect(() => {
     shoppingCartTotal();
-  }, [state.quantity]);
+  }, [quantities]);
 
   return (
     <div className="Shoping_CartMainContainer">
@@ -66,13 +73,13 @@ export default () => {
           <div>Total</div>
         </div>
         <div className="ShopingCart_Container">
-          {state.shoppingCart.length === 0 ? (
+          {cart.length === 0 ? (
             <h1 className="Empty_Message">
               You don't have products in your cart yet, go and find something
               you love.
             </h1>
           ) : (
-            state.shoppingCart?.map((p, i) => {
+            cart.map((p: any, i: any) => {
               return (
                 <div key={i}>
                   <div className="Cart_ProductInfo">
@@ -128,10 +135,7 @@ export default () => {
                         }}
                         onClick={() => {
                           deleteFromCart(p);
-                          dispatch({
-                            type: Types.Delete,
-                            payload: p,
-                          });
+                          handleDeletion(p);
                           dispatch({
                             type: Types.SetQuantity,
                             payload: p.quantity ? -p.quantity : 0,
@@ -148,7 +152,7 @@ export default () => {
           )}
         </div>
       </div>
-      {state.shoppingCart.length === 0 ? null : (
+      {cart.length === 0 ? null : (
         <div className="Cart_totalandPay">
           <div className="Cart_PriceTotal">Total: {nf.format(cartValue)}</div>
           <div className="Cart_buttonContainer">

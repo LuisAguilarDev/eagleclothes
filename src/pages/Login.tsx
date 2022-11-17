@@ -19,6 +19,7 @@ interface Props {
 }
 export const Login = ({ close }: Props) => {
   const { state, dispatch } = useContext(AppContext);
+  const [cart, setCart, getCartLocal] = useLocalStorage("cart", []);
   const [create, setCreate] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [errorP, setErrorP] = useState<boolean>(false);
@@ -43,7 +44,7 @@ export const Login = ({ close }: Props) => {
       .then(async (res) => {
         setToken(res.data.token);
         setName(res.data.user.name);
-        state.shoppingCart.forEach((item) => {
+        cart.forEach((item: productType) => {
           addToCart(evt, [item]);
         });
 
@@ -68,10 +69,7 @@ export const Login = ({ close }: Props) => {
 
     setTimeout(async function delayed() {
       let dataCart = await getCart();
-      dispatch({
-        type: Types.GetCart,
-        payload: dataCart[0] ? dataCart[0] : [],
-      });
+      setCart(dataCart[0]);
       function getQuantity(data: productType[]) {
         if (data.length === 0) return;
         const quantityArray = data.map((item, i) => {

@@ -8,9 +8,11 @@ import { Types } from "../reducer/Types";
 import { addToCart } from "../services/functions";
 import * as magnifier from "react-image-magnify";
 import { Zoom } from "../components/Img_ZoomOnHover";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const Detail = () => {
   const location = useLocation();
+  const [cart, setCart] = useLocalStorage("cart", []);
   const { state, dispatch } = useContext(AppContext);
   const product: productType = location.state;
   const [index, setIndex] = useState(0);
@@ -18,6 +20,30 @@ const Detail = () => {
   function onClick(index: number) {
     setIndex(index);
   }
+
+  function addToCartLocal(item: productType) {
+    let index = cart
+      .map((p: productType) => {
+        if (p.code === item.code) {
+          return p.code;
+        }
+      })
+      .indexOf(item.code);
+
+    if (cart.length === 0) {
+      return setCart([item]);
+    }
+
+    if (index === -1) {
+      return setCart([...cart, item]);
+    }
+
+    if (index >= 0) {
+      cart[index].quantity = cart[index].quantity + item.quantity;
+      return setCart([...cart]);
+    }
+  }
+
   const nf = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -114,24 +140,9 @@ const Detail = () => {
               }}
               variant="outlined"
               onClick={(e: any) => {
+                addToCartLocal({ ...product, quantity: quantity });
                 addToCart(e, [{ ...product, quantity: quantity }]);
-                let temp = state.shoppingCart.filter((p) => {
-                  return p.code === product.code;
-                });
-                if (temp.length > 0) {
-                  temp[0].quantity
-                    ? (temp[0].quantity = temp[0].quantity + quantity)
-                    : 0;
-                  dispatch({
-                    type: Types.SetQuantity,
-                    payload: quantity,
-                  });
-                  return;
-                }
-                dispatch({
-                  type: Types.Add,
-                  payload: { ...product, quantity: quantity },
-                });
+                dispatch({ type: Types.SetQuantity, payload: quantity });
               }}
             >
               ADD TO CART{" "}
@@ -143,4 +154,5 @@ const Detail = () => {
   );
 };
 
+export { Detail };
 export default Detail;

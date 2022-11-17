@@ -7,23 +7,31 @@ import Badge from "@mui/material/Badge";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import axios from "axios";
 import { AppContext } from "../reducer/context";
-import { Types } from "../reducer/Types";
+import { productType, Types } from "../reducer/Types";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export default () => {
   const Navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const [cart, setCart, getCart] = useLocalStorage("cart", []);
   const username = window.localStorage.getItem("name");
   const { state, dispatch } = useContext(AppContext);
   const [quantity, setQuantity] = useState(0);
+
   function getquantity() {
-    const answer = state.shoppingCart.map((item, i) => {
-      if (!item.quantity) return 0;
+    const newCart = getCart("cart");
+    setCart(newCart);
+    if (!Array.isArray(newCart)) {
+      setCart([]);
+    }
+    const answer = newCart.map((item: productType, i: any) => {
       return item.quantity;
     });
-    let total = answer.reduce((a, b) => a + b, 0);
+    let total = answer.reduce((a: any, b: any) => a + b, 0);
     total = total ? total : 0;
     setQuantity(total);
   }
+
   function handleChange(e: any) {
     setSearch(e.target.value);
   }
@@ -43,9 +51,11 @@ export default () => {
       Navigate("/search");
     });
   }
+
   useEffect(() => {
     getquantity();
   }, [state.quantity]);
+
   return (
     <>
       <div className="Navigation_firstLine">

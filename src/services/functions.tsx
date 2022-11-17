@@ -1,6 +1,4 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { ResponseType } from "axios";
 import Swal from "sweetalert2";
 
 export async function addFav(evt: Event, item: any) {
