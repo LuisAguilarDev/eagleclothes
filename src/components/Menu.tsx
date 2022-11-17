@@ -9,7 +9,7 @@ const Menu = (props: any) => {
   const username2 = window.localStorage.getItem("name");
   const username = username2
     ? username2.substring(1, username2.length - 1)
-    : "none";
+    : null;
   function handleLogout() {
     window.localStorage.clear();
     window.localStorage.setItem("cart", JSON.stringify([]));
@@ -26,9 +26,9 @@ const Menu = (props: any) => {
   return (
     <div className="Menu_Container">
       <div className="Menu_usernameLogOut">
-        {username === "none" ? (
+        {!username ? (
           <>
-            <div> </div>
+            <div>Welcome, Guest! </div>
             <Link to="/login">
               <button>SIGN IN</button>
             </Link>
@@ -43,7 +43,7 @@ const Menu = (props: any) => {
       <Link to={`/user/${username}/shopping_cart`}>
         <div className="Menu_item">Shopping Cart</div>
       </Link>
-      {username === "none" ? (
+      {!username ? (
         <>
           <Link to={`/login`}>
             <div className="Menu_item">Favorites</div>

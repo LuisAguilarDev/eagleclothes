@@ -24,6 +24,7 @@ export default () => {
     if (!Array.isArray(newCart)) {
       setCart([]);
     }
+
     const answer = newCart.map((item: productType, i: any) => {
       return item.quantity;
     });
