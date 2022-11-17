@@ -9,9 +9,10 @@ const Menu = (props: any) => {
   const username2 = window.localStorage.getItem("name");
   const username = username2
     ? username2.substring(1, username2.length - 1)
-    : "";
+    : "none";
   function handleLogout() {
     window.localStorage.clear();
+    window.localStorage.setItem("cart", JSON.stringify([]));
     dispatch({
       type: Types.ClearCart,
       payload: [],
@@ -25,18 +26,42 @@ const Menu = (props: any) => {
   return (
     <div className="Menu_Container">
       <div className="Menu_usernameLogOut">
-        <div>{username}</div>
-        <button onClick={handleLogout}>LOGOUT</button>
+        {username === "none" ? (
+          <>
+            <div> </div>
+            <Link to="/login">
+              <button>SIGN IN</button>
+            </Link>
+          </>
+        ) : (
+          <>
+            <div>{username}</div>
+            <button onClick={handleLogout}>LOGOUT</button>
+          </>
+        )}
       </div>
       <Link to={`/user/${username}/shopping_cart`}>
         <div className="Menu_item">Shopping Cart</div>
       </Link>
-      <Link to={`/user/${username}/favorites`}>
-        <div className="Menu_item">Favorites</div>
-      </Link>
-      <Link to={`/user/${username}/address`}>
-        <div className="Menu_item">Address</div>
-      </Link>
+      {username === "none" ? (
+        <>
+          <Link to={`/login`}>
+            <div className="Menu_item">Favorites</div>
+          </Link>
+          <Link to={`/login`}>
+            <div className="Menu_item">Address</div>
+          </Link>
+        </>
+      ) : (
+        <>
+          <Link to={`/user/${username}/favorites`}>
+            <div className="Menu_item">Favorites</div>
+          </Link>
+          <Link to={`/user/${username}/address`}>
+            <div className="Menu_item">Address</div>
+          </Link>
+        </>
+      )}
     </div>
   );
 };
