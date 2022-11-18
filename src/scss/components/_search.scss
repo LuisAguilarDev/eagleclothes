@@ -10,3 +10,16 @@
   gap: 10px;
   grid-auto-rows: minmax(100px, auto);
 }
+
+.search_msjNull {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-family: montserrat, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 20px;
+  padding: 8px;
+}

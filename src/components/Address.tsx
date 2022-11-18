@@ -24,10 +24,18 @@ export const Address = () => {
     setPage(value);
     setIndex([(value - 1) * 6, value * 6]);
   };
+
+  const handleDelete = (index: number) => {
+    services.deleteAddress(index);
+    const getaddress = async () => {
+      const answer = await services.GetAddress();
+      dispatch({ type: Types.GetAddress, payload: answer });
+    };
+    getaddress();
+  };
   useEffect(() => {
     const getaddress = async () => {
       const answer = await services.GetAddress();
-      console.log(answer, "answer");
       dispatch({ type: Types.GetAddress, payload: answer });
     };
     getaddress();
@@ -69,7 +77,10 @@ export const Address = () => {
                   </div>
                 </div>
                 <div className="Address_IconContainer">
-                  <DeleteOutlineIcon className="Address_delete" />
+                  <DeleteOutlineIcon
+                    onClick={() => handleDelete(i)}
+                    className="Address_delete"
+                  />
                 </div>
               </div>
             );

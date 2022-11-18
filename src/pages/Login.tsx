@@ -176,11 +176,10 @@ export const Login = ({ close }: Props) => {
                 name="email"
                 onChange={handleChange}
                 type="text"
-                autoComplete="on"
               />
             </div>
             {error === true ? (
-              <div className="login_error">User must be an email</div>
+              <div className="login_error">Username must be an email</div>
             ) : null}
             <div className="login_form">
               <label className="login_label">Password:</label>
@@ -189,7 +188,6 @@ export const Login = ({ close }: Props) => {
                 name="password"
                 onChange={handleChange}
                 type="password"
-                autoComplete="on"
               />
             </div>
             <div className="login_formForgot">
@@ -249,17 +247,8 @@ export const Login = ({ close }: Props) => {
               />
             </div>
             {error === true ? (
-              <div className="login_error">User must be an email</div>
+              <div className="login_error">Username must be an email</div>
             ) : null}
-            <div className="login_form">
-              <label className="login_label">Name:</label>
-              <input
-                className="login_input"
-                name="name"
-                onChange={handleChange}
-                type="text"
-              />
-            </div>
             <div className="login_form">
               <label className="login_label">Password:</label>
               <input
@@ -269,6 +258,16 @@ export const Login = ({ close }: Props) => {
                 type="password"
               />
             </div>
+            <div className="login_form">
+              <label className="login_label">Name:</label>
+              <input
+                className="login_input"
+                name="name"
+                onChange={handleChange}
+                type="text"
+              />
+            </div>
+
             <div className="login_buttonContainer">
               <Button
                 sx={{

@@ -9,10 +9,8 @@ export const INITIAL_STATE = {
   loading: false,
   search: [],
   filter: [],
-  shoppingCart: [],
   favorites: [],
   quantity: 0,
-  pagination: { currentPage: 1, lastPage: 1 },
   address: [],
 };
 
@@ -22,25 +20,10 @@ export const shoppingCartReducer = (
 ) => {
   console.log(action);
   switch (action.type) {
-    case Types.Add:
-      return {
-        ...state,
-        shoppingCart: [...state.shoppingCart, action.payload],
-        quantity: action.payload.quantity
-          ? action.payload.quantity + state.quantity
-          : state.quantity,
-      };
     case Types.GetFavs:
       return {
         ...state,
         favorites: [...action.payload],
-      };
-    case Types.Delete:
-      return {
-        ...state,
-        shoppingCart: state.shoppingCart.filter(
-          (product: productType) => product.code !== action.payload.code
-        ),
       };
     case Types.DeleteFav:
       return {
@@ -91,6 +74,20 @@ export const shoppingCartReducer = (
               (product: productType) => product.price.value === action.payload
             )
           : [],
+      };
+    case Types.FilterCategory:
+      return {
+        ...state,
+        filter: state.search
+          ? state.search.filter(
+              (product: productType) => product.category === action.payload
+            )
+          : [],
+      };
+    case Types.FilteredData:
+      return {
+        ...state,
+        filter: action.payload,
       };
     default:
       return state;

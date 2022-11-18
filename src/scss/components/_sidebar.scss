@@ -1,6 +1,50 @@
 .Sidebar_Container {
   min-width: 18vw;
-  min-height: 100vh;
   border-right: solid 1px #d2d2d2;
   border-top: solid 1px #d2d2d2;
+  padding: 4px;
+}
+
+.Sidebar_MainTitle {
+  font-family: montserrat, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 8px;
+}
+
+.Sidebar_SecondaryTitle {
+  font-family: montserrat, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 12px;
+}
+
+.Sidebar_MainTitleSearchItem {
+  font-family: montserrat, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  padding-left: 20px;
+}
+
+.Sidebar_ContainerOptions {
+  span {
+    font-family: montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  span:hover {
+    color: #1976d2;
+  }
+}
+
+.MuiFormControlLabel-root {
+  margin-left: 150px;
 }

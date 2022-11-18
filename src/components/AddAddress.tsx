@@ -6,12 +6,14 @@ import { productType, Types } from "../reducer/Types";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export const AddAddress = () => {
   const { state, dispatch } = useContext(AppContext);
   const [data, setData] = useState({});
   const [newAddress, setNewAddress] = useState("");
-
+  const navigate = useNavigate();
+  const username = window.localStorage.getItem("name");
   const handleChangeInput = (event: any) => {
     setData({
       ...data,
@@ -21,6 +23,7 @@ export const AddAddress = () => {
 
   function handlePostAddres() {
     services.postAddress(data);
+    navigate(`/user/${username}/address`);
   }
   return (
     <>

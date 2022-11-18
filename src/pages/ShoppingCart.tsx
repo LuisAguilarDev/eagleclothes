@@ -26,12 +26,9 @@ export default () => {
   }
   function handleDeletion(product: productType) {
     const actualCart = getCart("cart");
-    console.log(actualCart);
     const newCart = actualCart.filter((item: productType) => {
-      console.log(item.code !== product.code);
       return item.code !== product.code;
     });
-    console.log(newCart);
     setCart(newCart);
   }
 

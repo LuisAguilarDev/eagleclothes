@@ -19,8 +19,10 @@ export enum Types {
   GetFavs = "GET_FAVS",
   DeleteFav = "DELETE_FAV",
   FilterPrice = "FILTER_BY_PRICE",
+  FilterCategory = "FILTER_BY_CATEGORY",
   GetAddress = "LOADING_ADDRESS",
   Loading = "LOADING_STATE",
+  FilteredData = "FILTERED_DATA",
 }
 export type ProductPayload = {
   [Types.Add]: productType;
@@ -32,6 +34,8 @@ export type ProductPayload = {
   [Types.GetFavs]: productType[];
   [Types.DeleteFav]: productType;
   [Types.FilterPrice]: number;
+  [Types.FilterCategory]: string;
+  [Types.FilteredData]: productType[];
   [Types.Loading]: boolean;
   [Types.GetAddress]: string[];
 };
@@ -57,16 +61,11 @@ export type productType = {
   galleryImages: [{ url: string }];
   images: string;
 };
-export type paginationType = {
-  currentPage: number;
-  lastPage: number;
-};
+
 export type InitialStateType = {
   loading: boolean;
-  shoppingCart: productType[];
   search?: productType[];
   filter?: productType[];
-  pagination?: paginationType;
   favorites?: productType[];
   quantity: number;
   address: Address[];
