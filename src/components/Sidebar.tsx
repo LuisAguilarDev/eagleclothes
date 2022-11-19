@@ -1,11 +1,12 @@
 import { AppContext } from "../reducer/context";
 import { productType, Types } from "../reducer/Types";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
 export const Sidebar: React.FC = () => {
+  const inputEl = useRef(null);
   const { state, dispatch } = useContext(AppContext);
   const [prices, setPrices] = useState<number[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
@@ -25,7 +26,9 @@ export const Sidebar: React.FC = () => {
       setPrices(sorted);
     }
   }
-  function filterData() {}
+  function handleRef() {
+    console.log(inputEl.current, "inputEl");
+  }
 
   function getCategories() {
     if (state.search && state.search.length > 0) {
@@ -143,11 +146,15 @@ export const Sidebar: React.FC = () => {
         {categories.map((p, i) => {
           return (
             <FormControlLabel
+              ref={inputEl}
               value={p}
               control={<Radio />}
               label={p}
               key={i}
-              onClick={() => handleClick(p)}
+              onClick={() => {
+                handleRef();
+                handleClick(p);
+              }}
             />
           );
         })}
