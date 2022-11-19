@@ -25,13 +25,9 @@ export const Address = () => {
     setIndex([(value - 1) * 6, value * 6]);
   };
 
-  const handleDelete = (index: number) => {
-    services.deleteAddress(index);
-    const getaddress = async () => {
-      const answer = await services.GetAddress();
-      dispatch({ type: Types.GetAddress, payload: answer });
-    };
-    getaddress();
+  const handleDelete = async (index: number) => {
+    const answer = await services.deleteAddress(index);
+    dispatch({ type: Types.GetAddress, payload: answer.actual.address });
   };
   useEffect(() => {
     const getaddress = async () => {

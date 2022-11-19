@@ -20,7 +20,7 @@ export enum Types {
   DeleteFav = "DELETE_FAV",
   FilterPrice = "FILTER_BY_PRICE",
   FilterCategory = "FILTER_BY_CATEGORY",
-  GetAddress = "LOADING_ADDRESS",
+  GetAddress = "GET_ADDRESS",
   Loading = "LOADING_STATE",
   FilteredData = "FILTERED_DATA",
 }
@@ -37,7 +37,7 @@ export type ProductPayload = {
   [Types.FilterCategory]: string;
   [Types.FilteredData]: productType[];
   [Types.Loading]: boolean;
-  [Types.GetAddress]: string[];
+  [Types.GetAddress]: Address[];
 };
 export type ProductActions =
   ActionMap<ProductPayload>[keyof ActionMap<ProductPayload>];

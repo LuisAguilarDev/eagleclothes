@@ -206,13 +206,12 @@ export async function postAddress<T>(newAddress: any): Promise<any> {
 export async function deleteAddress<T>(index: any): Promise<any> {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
-  console.log("delete");
   const answer: any = await axios
     .delete(`http://localhost:5000/api/users/address/${index}`, {
       headers: { Authorization },
     })
     .then((res) => {
-      return res.data.answer;
+      return res.data;
     })
     .catch((err) => {
       return err;
