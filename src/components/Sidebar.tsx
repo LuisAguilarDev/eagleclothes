@@ -13,6 +13,19 @@ export const Sidebar: React.FC = () => {
   const [priceFilter, setPriceFilter] = useState<number>(0);
   const [categorieFilter, setCategorieFilter] = useState<string>("");
 
+  useEffect(() => {
+    getPrices();
+    getCategories();
+    return () => {
+      setPriceFilter(0);
+      setCategorieFilter("");
+      const elementTarget: any = handleRef();
+      if (elementTarget) {
+        console.log(elementTarget.childNodes);
+      }
+    };
+  }, [state.loading]);
+
   function getPrices() {
     if (state.search && state.search.length > 0) {
       const pricesD = state.search.map((p) => {
@@ -27,7 +40,11 @@ export const Sidebar: React.FC = () => {
     }
   }
   function handleRef() {
-    console.log(inputEl.current, "inputEl");
+    let Element;
+    function internalHandler() {
+      return (Element = inputEl.current);
+    }
+    return internalHandler();
   }
 
   function getCategories() {
@@ -106,14 +123,6 @@ export const Sidebar: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    getPrices();
-    getCategories();
-    return () => {
-      setPriceFilter(0);
-      setCategorieFilter("");
-    };
-  }, [state.loading]);
   return (
     <div className="Sidebar_Container">
       <div className="Sidebar_MainTitle">Filter</div>
@@ -127,11 +136,15 @@ export const Sidebar: React.FC = () => {
         {prices.map((p, i) => {
           return (
             <FormControlLabel
+              ref={inputEl}
               value={p}
               control={<Radio />}
               label={p}
               key={i}
-              onClick={() => handleClick(p)}
+              onClick={() => {
+                handleRef();
+                handleClick(p);
+              }}
             />
           );
         })}

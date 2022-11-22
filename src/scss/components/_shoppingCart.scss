@@ -110,3 +110,27 @@
   vertical-align: center;
   justify-content: center;
 }
+
+.cho-container {
+  button {
+    color: white;
+    background-color: white;
+    font-size: 0px;
+  }
+
+  button::after {
+    content: "Pay Now";
+    background-color: white;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 19.5px;
+    font-family: montserrat, sans-serif;
+    color: #222222;
+    vertical-align: center;
+    justify-content: center;
+    text-align: center;
+  }
+  button:hover::after {
+    color: blue;
+  }
+}

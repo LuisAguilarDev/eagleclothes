@@ -1,6 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import { productType } from "../reducer/Types";
 export async function addFav(evt: Event, item: any) {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
@@ -217,4 +217,20 @@ export async function deleteAddress<T>(index: any): Promise<any> {
       return err;
     });
   return answer;
+}
+
+export async function pay<T>(items: productType[] | productType): Promise<any> {
+  const token = window.localStorage.getItem("token");
+  const Authorization = token ? "Bearer " + JSON.parse(token) : "";
+  await axios
+    .post(`http://localhost:5000/api/pay`, items, {
+      headers: { Authorization },
+    })
+    .then((res) => {
+      console.log(res.data.id);
+      return res.data.id;
+    })
+    .catch((err) => {
+      return err;
+    });
 }

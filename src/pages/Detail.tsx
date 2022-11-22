@@ -9,6 +9,7 @@ import { addToCart } from "../services/functions";
 import * as magnifier from "react-image-magnify";
 import { Zoom } from "../components/Img_ZoomOnHover";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import * as services from "../services/functions";
 
 const Detail = () => {
   const location = useLocation();
@@ -127,6 +128,9 @@ const Detail = () => {
                 ":hover": { color: "blue" },
               }}
               variant="outlined"
+              onClick={() => {
+                services.pay({ ...product, quantity });
+              }}
             >
               BUY NOW{" "}
             </Button>
