@@ -52,6 +52,7 @@ function App() {
         <Route path="/detail/:itemCode" element={<Detail />} />
         <Route path="/search" element={<Search />} />
         <Route path="/validateUser" element={<Validate />} />
+        <Route path="/orderConfirm" element={<Validate />} />
       </Routes>
     </>
   );
