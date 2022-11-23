@@ -121,6 +121,32 @@ $font-size: 12px;
   font-size: 16px;
   line-height: 20px;
 }
+.Navigation_menu {
+  cursor: pointer;
+  .Menu_Container {
+    display: none;
+    position: absolute;
+    z-index: 2;
+  }
+}
+.Navigation_menu:hover {
+  .Menu_Container {
+    display: block;
+  }
+  .Menu_Container:hover {
+    display: block;
+  }
+}
+// .Navigation_menu div:hover .Menu_Container {
+//   display: block;
+//   z-index: 2;
+//   div {
+//     display: block;
+//   }
+//   .Menu_Container:hover {
+//     display: block;
+//   }
+// }
 
 @media (max-width: 1280px) {
   .Navigation_firstLine {

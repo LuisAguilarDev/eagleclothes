@@ -31,7 +31,7 @@ export function Payment({ cart }: any) {
           "https://www.mercadopago.com.co/integrations/v1/web-payment-checkout.js";
         script.type = "text/javascript";
         script.dataset.preferenceId = preference;
-        script.dataset;
+        console.log(script, "checkout");
         document.getElementById("button-checkout")!.innerHTML = "";
         document.querySelector("#button-checkout")?.appendChild(script);
       }

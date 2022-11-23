@@ -6,7 +6,6 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { Button } from "@mui/material";
 import { Types } from "../reducer/Types";
 import { addToCart } from "../services/functions";
-import * as magnifier from "react-image-magnify";
 import { Zoom } from "../components/Img_ZoomOnHover";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import * as services from "../services/functions";
@@ -69,7 +68,17 @@ const Detail = () => {
           })}
         </div>
         <div className="Detail_Zoom">
-          <Zoom src={product.galleryImages[index].url}></Zoom>
+          {index === 0 ? (
+            <figure className="Zoom_Figure2">
+              <img
+                className="Zoom_Img"
+                src={product.galleryImages[index].url}
+              />
+            </figure>
+          ) : null}
+          {index !== 0 ? (
+            <Zoom src={product.galleryImages[index].url}></Zoom>
+          ) : null}
         </div>
         <div className="Main3">
           <div className="ColorSwap">

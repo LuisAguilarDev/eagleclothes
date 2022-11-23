@@ -87,14 +87,14 @@
   margin: auto;
 }
 .Cart_PriceTotal {
-  padding: 24px;
+  display: flex;
   font-size: 12px;
   font-weight: 700;
   line-height: 19.5px;
   font-family: montserrat, sans-serif;
   color: #222222;
   vertical-align: center;
-  justify-content: center;
+  justify-content: space-between;
   text-align: center;
 }
 .Cart_PriceH {
@@ -157,4 +157,30 @@
   button:hover::after {
     color: blue;
   }
+}
+
+.Cart_Summary {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 19.5px;
+  font-family: montserrat, sans-serif;
+  color: #222222;
+  vertical-align: center;
+  justify-content: space-between;
+  text-align: center;
+}
+.Cart_SummaryShipping {
+  display: flex;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 19.5px;
+  font-family: montserrat, sans-serif;
+  color: #222222;
+  vertical-align: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.Cart_resumeBox {
+  padding: 24px;
 }

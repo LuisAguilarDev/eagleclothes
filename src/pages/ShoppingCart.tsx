@@ -6,7 +6,6 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { Button } from "@mui/material";
 import { productType, Types } from "../reducer/Types";
 import { deleteFromCart, updateQuantity } from "../services/functions";
-import { Menu } from "../components/Menu";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Payment } from "../services/mercadopago";
 
@@ -77,7 +76,6 @@ export default () => {
   return (
     <>
       <div className="Shoping_CartMainContainer">
-        <Menu />
         <div className="Cart_ProductInfoContainer">
           <div className="Cart_Header">
             <div className="Cart_Product">Product</div>
@@ -167,7 +165,22 @@ export default () => {
         </div>
         {cart.length === 0 ? null : (
           <div className="Cart_totalandPay">
-            <div className="Cart_PriceTotal">Total: {nf.format(cartValue)}</div>
+            <div className="Cart_Summary">Purchase summary</div>
+            <div className="Cart_resumeBox">
+              <div className="Cart_PriceTotal">
+                <div>Total:</div>
+                <div>{nf.format(cartValue)}</div>
+              </div>
+
+              <div className="Cart_SummaryShipping">
+                <div>Shipping:</div>
+                <div>{nf.format(5)} </div>
+              </div>
+              <div className="Cart_PriceTotal">
+                <div>Total + Shipping:</div>
+                <div>{nf.format(cartValue + 5)}</div>
+              </div>
+            </div>
             <div className="Cart_buttonContainer">
               {payment ? null : <Payment cart={[...cart]} />}
               <Button

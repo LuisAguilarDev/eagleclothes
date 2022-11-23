@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AppContext } from "../reducer/context";
 import { Types } from "../reducer/Types";
@@ -25,36 +25,17 @@ const Menu = (props: any) => {
   }
   return (
     <div className="Menu_Container">
-      <div className="Menu_usernameLogOut">
-        {!username ? (
-          <>
-            <div>Welcome, Guest! </div>
-            <Link to="/login">
-              <button>SIGN IN</button>
-            </Link>
-          </>
-        ) : (
-          <>
-            <button onClick={handleLogout}>LOGOUT</button>
-          </>
-        )}
-      </div>
-      {!username ? (
+      <>
+        <Link to={`/user/${username}/address`}>
+          <div className="Menu_item">Address</div>
+        </Link>
+        <Link to={`/user/${username}/orders`}>
+          <div className="Menu_item">My orders</div>
+        </Link>
         <>
-          <Link to={`/login`}>
-            <div className="Menu_item">Address</div>
-          </Link>
+          <button onClick={handleLogout}>LOGOUT</button>
         </>
-      ) : (
-        <>
-          <Link to={`/user/${username}/favorites`}>
-            <div className="Menu_item">Favorites</div>
-          </Link>
-          <Link to={`/user/${username}/address`}>
-            <div className="Menu_item">Address</div>
-          </Link>
-        </>
-      )}
+      </>
     </div>
   );
 };

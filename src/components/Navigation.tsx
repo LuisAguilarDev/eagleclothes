@@ -9,10 +9,12 @@ import axios from "axios";
 import { AppContext } from "../reducer/context";
 import { productType, Types } from "../reducer/Types";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { Menu } from "../components/Menu";
 
 export default () => {
   const Navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const [menuShow, setMenuShow] = useState(false);
   const [cart, setCart, getCart] = useLocalStorage("cart", []);
   const username = window.localStorage.getItem("name");
   const { state, dispatch } = useContext(AppContext);
@@ -63,12 +65,15 @@ export default () => {
           <div className="other">Help</div>
           <div className="other">
             {username ? (
-              <Link
-                to={`/user/${username.substring(1, username.length - 1)}`}
-                className="links"
-              >
-                {username.substring(1, username.length - 1)}
-              </Link>
+              <div className="Navigation_menu">
+                <div> {username.substring(1, username.length - 1)}</div>
+                <Menu
+                // show={menuShow}
+                // function={() => {
+                //   setMenuShow(!menuShow);
+                // }}
+                />
+              </div>
             ) : (
               <Link to="login" className="links">
                 Register / Sign In

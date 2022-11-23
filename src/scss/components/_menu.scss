@@ -7,7 +7,6 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
-  padding: 8px;
   align-items: center;
   button {
     font-family: montserrat, sans-serif;
@@ -18,17 +17,17 @@
 }
 
 .Menu_Container {
-  width: 18vw;
-  min-height: 100vh;
-  border-right: solid 1px #d2d2d2;
-  border-top: solid 1px #d2d2d2;
+  position: absolute;
+  background-color: white;
+  z-index: 2;
+  padding-top: 8px;
 }
 .Menu_item {
   font-family: montserrat, sans-serif;
-  font-weight: 400;
-  font-size: 16px;
+  padding: 2px;
+  font-weight: 500;
+  font-size: 14px;
   line-height: 20px;
-  padding: 8px;
   text-decoration: none;
   color: black;
 }
