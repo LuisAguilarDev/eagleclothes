@@ -8,6 +8,7 @@ import { productType, Types } from "../reducer/Types";
 import { deleteFromCart, updateQuantity } from "../services/functions";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Payment } from "../services/mercadopago";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 export default () => {
   const [cartValue, setCartValue] = useState(0);
@@ -153,7 +154,7 @@ export default () => {
                             });
                           }}
                         >
-                          X
+                          <DeleteOutlineIcon />
                         </Button>
                       </div>
                     </div>

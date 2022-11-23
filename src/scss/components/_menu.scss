@@ -9,19 +9,23 @@
   line-height: 20px;
   align-items: center;
   button {
+    display: flex;
     font-family: montserrat, sans-serif;
     font-weight: 400;
     font-size: 12px;
     line-height: 20px;
+    justify-content: center;
   }
 }
 
 .Menu_Container {
+  margin-top: 16px;
+  width: 80px;
   position: absolute;
   background-color: white;
   z-index: 2;
-  padding: 8px;
-  background-color: rgb(234, 234, 243);
+  padding: 2px;
+  background-color: rgb(236, 236, 241);
 }
 .Menu_item {
   font-family: montserrat, sans-serif;
@@ -31,4 +35,9 @@
   line-height: 20px;
   text-decoration: none;
   color: black;
+}
+
+.Menu_buttonContainer {
+  display: flex;
+  padding-bottom: 8px;
 }

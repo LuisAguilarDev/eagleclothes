@@ -66,13 +66,10 @@ export default () => {
           <div className="other">
             {username ? (
               <div className="Navigation_menu">
-                <div> {username.substring(1, username.length - 1)}</div>
-                <Menu
-                // show={menuShow}
-                // function={() => {
-                //   setMenuShow(!menuShow);
-                // }}
-                />
+                <div className="Navigation_username">
+                  {username.substring(1, username.length - 1)}
+                </div>
+                <Menu />
               </div>
             ) : (
               <Link to="login" className="links">

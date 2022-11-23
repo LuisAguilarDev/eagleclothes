@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AppContext } from "../reducer/context";
 import { Types } from "../reducer/Types";
+import { Button } from "@mui/material";
 
 const Menu = (props: any) => {
   const { state, dispatch } = useContext(AppContext);
@@ -32,9 +33,23 @@ const Menu = (props: any) => {
         <Link to={`/user/${username}/orders`}>
           <div className="Menu_item">My orders</div>
         </Link>
-        <>
-          <button onClick={handleLogout}>LOGOUT</button>
-        </>
+        <div className="Menu_buttonContainer">
+          <Button
+            id="button-checkout"
+            sx={{
+              borderColor: "#222222",
+              color: "#222222",
+              height: "40px",
+              width: "70px",
+              ":hover": { color: "blue" },
+            }}
+            variant="outlined"
+            onClick={handleLogout}
+            className="button-checkout"
+          >
+            LOGOUT
+          </Button>
+        </div>
       </>
     </div>
   );

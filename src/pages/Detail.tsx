@@ -50,8 +50,7 @@ const Detail = () => {
     maximumFractionDigits: 2,
   });
   return (
-    <>
-      <div className="Detail_ProductName">{product.name}</div>
+    <div className="Detail_MainContainer">
       <div className="Detail_Container">
         <div className="Detail_imgContainer">
           {product.galleryImages.slice(0, 5).map((img: any, i: number) => {
@@ -81,6 +80,7 @@ const Detail = () => {
           ) : null}
         </div>
         <div className="Main3">
+          <div className="Detail_ProductName">{product.name}</div>
           <div className="ColorSwap">
             <div className="Detail_text">Avaliable Colors</div>
             {product.color.map((color, i) => {
@@ -163,7 +163,7 @@ const Detail = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
