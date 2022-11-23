@@ -64,3 +64,18 @@ export function Payment({ cart }: any) {
   });
 </script> */
 }
+
+{
+  /* <script>
+const mp = new MercadoPago("TEST-495594a8-240a-4c4f-a469-1216b94bd885", {
+  locale: "es-CO",
+});
+
+mp.checkout({
+  render: {
+    container: ".button-checkout",
+    label: "Pay Now",
+  },
+});
+</script> */
+}

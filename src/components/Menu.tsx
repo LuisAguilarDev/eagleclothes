@@ -35,19 +35,12 @@ const Menu = (props: any) => {
           </>
         ) : (
           <>
-            <div>{username}</div>
             <button onClick={handleLogout}>LOGOUT</button>
           </>
         )}
       </div>
-      <Link to={`/user/${username}/shopping_cart`}>
-        <div className="Menu_item">Shopping Cart</div>
-      </Link>
       {!username ? (
         <>
-          <Link to={`/login`}>
-            <div className="Menu_item">Favorites</div>
-          </Link>
           <Link to={`/login`}>
             <div className="Menu_item">Address</div>
           </Link>

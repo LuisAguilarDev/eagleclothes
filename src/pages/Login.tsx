@@ -42,6 +42,15 @@ export const Login = ({ close }: Props) => {
     const answer = await axios
       .post("http://localhost:5000/api/users/singIn", data)
       .then(async (res) => {
+        console.log(res, "respuesta?");
+        if (res.data.message === "permision denied") {
+          Swal.fire({
+            title: "WRONG USERNAME OR PASSWORD",
+            icon: "error",
+            confirmButtonColor: "#9ea03b",
+          });
+          return;
+        }
         setToken(res.data.token);
         setName(res.data.user.name);
         cart.forEach((item: productType) => {
@@ -56,14 +65,6 @@ export const Login = ({ close }: Props) => {
       })
       .catch((err) => {
         console.log(err, "error?");
-        if (err?.response?.status === 403) {
-          Swal.fire({
-            title: err.response.data.message,
-            icon: "error",
-            confirmButtonColor: "#9ea03b",
-          });
-          return err?.response?.status;
-        }
         return false;
       });
 

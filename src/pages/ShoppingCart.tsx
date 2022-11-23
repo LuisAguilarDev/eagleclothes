@@ -182,7 +182,7 @@ export default () => {
                 onClick={() => {
                   setPayment(false);
                 }}
-                className="cho-container"
+                className="button-checkout"
               >
                 Request payment via MercadoLibre
               </Button>
