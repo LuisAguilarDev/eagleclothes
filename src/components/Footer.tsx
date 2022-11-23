@@ -33,7 +33,7 @@ export default () => {
     setError(true);
   }
   return (
-    <footer>
+    <footer className="Footer_mainContainer">
       <div className="Footer_bottomBox">
         <div>
           <img className="Footer_Logo" src={Logo} alt="Not Found" />

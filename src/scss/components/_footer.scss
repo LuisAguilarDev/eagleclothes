@@ -1,3 +1,11 @@
+.Footer_mainContainer {
+  width: 1184px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 56px;
+  padding-left: 56px;
+}
+
 .Footer_bottomBox {
   display: flex;
   justify-content: space-between;
@@ -22,7 +30,6 @@
 }
 .Footer_Logo {
   margin-top: 31px;
-  margin-left: 135px;
   height: 120px;
   width: 120px;
   cursor: pointer;
@@ -35,7 +42,6 @@
   line-height: 140%;
   margin-top: 40px;
   margin-bottom: 40px;
-  margin-right: 56px;
   max-width: 464px;
 }
 .footer_social {

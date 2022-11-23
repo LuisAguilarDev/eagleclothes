@@ -1,5 +1,9 @@
-.Carousel1_maincontainer {
-  margin-top: 0;
+.Carousel_Container {
+  width: 1184px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 56px;
+  padding-left: 56px;
   padding-bottom: 100px;
   height: 800px;
 }
@@ -20,15 +24,16 @@
   height: 600px;
 }
 .Card_imgcontainer {
+  position: relative;
   background-color: #f3f3f3;
   height: 538px;
-  width: 30vw;
   display: flex;
+  padding-left: 35px;
+  padding-right: 35px;
   justify-content: center;
 }
 
 .Card_imgs {
-  display: block;
   margin: auto;
   width: 320px;
   height: 320px;
@@ -39,8 +44,6 @@
   justify-content: center;
   align-items: center;
   gap: 17px;
-  margin-left: 81px;
-  margin-right: 81px;
 }
 
 button {

@@ -184,7 +184,7 @@ export default () => {
                 }}
                 className="button-checkout"
               >
-                Request payment via MercadoLibre
+                Pay Now
               </Button>
               <div></div>
             </div>

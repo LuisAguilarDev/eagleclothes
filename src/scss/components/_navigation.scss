@@ -1,11 +1,17 @@
 @import url("https://use.typekit.net/dda2mdp.css");
 
 $font-size: 12px;
-
+.Navigation_MAINCONTAINER {
+  width: 100%;
+}
 .Navigation_firstLine {
   display: flex;
   margin-top: 16px;
-  padding-right: 54px;
+  width: 1184px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 56px;
+  padding-left: 56px;
   padding-bottom: 11.5px;
   justify-content: flex-end;
   font-family: montserrat, sans-serif;
@@ -19,12 +25,16 @@ $font-size: 12px;
     text-decoration: none;
   }
 }
+
 .Navigation_Nav {
   display: flex;
+  width: 1184px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 56px;
+  padding-left: 56px;
   align-items: center;
   justify-content: space-between;
-  margin-left: 155px;
-  margin-right: 155px;
   margin-top: 18.5px;
   margin-bottom: 16px;
   .Navigation_img {
@@ -110,4 +120,24 @@ $font-size: 12px;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
+}
+
+@media (max-width: 1280px) {
+  .Navigation_firstLine {
+    width: 91%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .Navigation_Nav {
+    width: 91%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .Navigation_lupa_input {
+    width: 200px;
+    .Navigation_lupa_input::placeholder {
+      content: "";
+      display: none;
+    }
+  }
 }

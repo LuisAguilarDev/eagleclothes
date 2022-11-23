@@ -58,21 +58,23 @@ export default () => {
 
   return (
     <>
-      <div className="Navigation_firstLine">
-        <div className="other">Help</div>
-        <div className="other">
-          {username ? (
-            <Link
-              to={`/user/${username.substring(1, username.length - 1)}`}
-              className="links"
-            >
-              {username.substring(1, username.length - 1)}
-            </Link>
-          ) : (
-            <Link to="login" className="links">
-              Register / Sign In
-            </Link>
-          )}
+      <div className="Navigation_MAINCONTAINER">
+        <div className="Navigation_firstLine">
+          <div className="other">Help</div>
+          <div className="other">
+            {username ? (
+              <Link
+                to={`/user/${username.substring(1, username.length - 1)}`}
+                className="links"
+              >
+                {username.substring(1, username.length - 1)}
+              </Link>
+            ) : (
+              <Link to="login" className="links">
+                Register / Sign In
+              </Link>
+            )}
+          </div>
         </div>
       </div>
       <nav className="Navigation_Nav">
@@ -91,7 +93,7 @@ export default () => {
             onChange={(e) => handleChange(e)}
             onKeyDown={(e) => handleSearch(e)}
             className="Navigation_lupa_input"
-            placeholder="Search products and more..."
+            placeholder="Search products..."
           ></input>
           <div className="Navigation_Separator">
             <img

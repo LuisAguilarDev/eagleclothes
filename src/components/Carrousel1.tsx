@@ -28,6 +28,7 @@ const Carousel1 = ({ props }: IMyProps) => {
   const size = useWindowSize();
   return (
     <Carousel
+      className="Carousel_Container"
       sx={{
         height: 600,
       }}
@@ -96,14 +97,13 @@ const Item = (props: any) => {
       handleOpen();
     }
   }
-  return props.item?.images && props?.item ? (
+  return (
     <div key={props.item.code}>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <Login close={handleClose} />
         </Box>
       </Modal>
-      ;
       <div className="Card_container">
         <div className="Card_imgcontainer">
           <AiOutlineHeart
@@ -115,15 +115,13 @@ const Item = (props: any) => {
             className="Card_imgs"
             alt="Not Found"
             src={props.item.galleryImages[0].url}
-          />
+          ></img>
         </div>
         <div className="Card_textcontainer">
           <h2 className="Card_text">{props.item.name}</h2>
         </div>
       </div>
     </div>
-  ) : (
-    <div></div>
   );
 };
 
