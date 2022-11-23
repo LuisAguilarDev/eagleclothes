@@ -3,7 +3,7 @@ import Bg from "../assets/bg.png";
 
 export function Text1() {
   return (
-    <>
+    <div className="HomePage_IMG">
       <div>
         <img className="Navigation_bg" src={Bg} alt="Not Found" />
       </div>
@@ -11,6 +11,6 @@ export function Text1() {
         <span className="yellow">NEW</span>
         <span className="black">COLLECTION</span>
       </div>
-    </>
+    </div>
   );
 }

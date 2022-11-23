@@ -25,7 +25,7 @@ export const Favorites = () => {
     dispatch({ type: Types.GetFavs, payload: answer.answer });
   });
   return (
-    <>
+    <div className="Favs_mainContainer2">
       <div className="Favs_mainContainer">
         {state.favorites!.length > 0 ? (
           state.favorites!.slice(index[0], index[1]).map((item, i) => {
@@ -37,21 +37,22 @@ export const Favorites = () => {
           </h1>
         )}
       </div>
-      <br></br>
       <div className="PaginationF">
-        <Stack spacing={2}>
-          <Pagination
-            count={lastPage}
-            defaultPage={page}
-            showFirstButton
-            showLastButton
-            onChange={handleChange}
-            boundaryCount={1}
-            siblingCount={1}
-            color="primary"
-          />
-        </Stack>
+        {lastPage === 1 ? null : (
+          <Stack spacing={2}>
+            <Pagination
+              count={lastPage}
+              defaultPage={page}
+              showFirstButton
+              showLastButton
+              onChange={handleChange}
+              boundaryCount={1}
+              siblingCount={1}
+              color="primary"
+            />
+          </Stack>
+        )}
       </div>
-    </>
+    </div>
   );
 };

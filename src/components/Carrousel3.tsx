@@ -75,9 +75,12 @@ function Carousel3({ props }: IMyProps) {
             style: {
               background: "white",
               color: "black",
-              width: "64px",
-              height: "64px",
+              width: "45px",
+              height: "45px",
               fontSize: "21px !important",
+              padding: "0px",
+              margin: "0px",
+              zIndex: "2",
             },
             className: "buttonsvg",
           }}

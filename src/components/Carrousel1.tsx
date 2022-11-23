@@ -36,9 +36,11 @@ const Carousel1 = ({ props }: IMyProps) => {
         style: {
           background: "white",
           color: "black",
-          width: "64px",
-          height: "64px",
+          width: "49px",
+          height: "49px",
           fontSize: "21px !important",
+          padding: "0px",
+          margin: "0px",
         },
         className: "buttonsvg",
       }}

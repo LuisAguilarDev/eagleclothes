@@ -67,6 +67,7 @@ function Carousel2({ props }: IMyProps) {
           </button>
         </div>
         <Carousel
+          className="Carousel2"
           sx={{
             height: 600,
             width: "100%",
@@ -75,11 +76,12 @@ function Carousel2({ props }: IMyProps) {
             style: {
               background: "white",
               color: "black",
-              width: "64px",
-              height: "64px",
+              width: "45px",
+              height: "45px",
               fontSize: "21px !important",
+              padding: "0px",
+              margin: "0px",
             },
-            className: "buttonsvg",
           }}
           interval={4000}
           swipe={true}

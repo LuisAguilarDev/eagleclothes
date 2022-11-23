@@ -1,13 +1,19 @@
 .Carousel2_container {
-  width: 100vw;
   display: flex;
+  width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 100px;
   margin-bottom: 100px;
 }
 
 .Carousel2_img_container {
+  margin: auto;
   display: flex;
-  max-width: 570px;
+  min-width: 570px;
+}
+.Card2_container {
+  height: 500px;
 }
 
 .Card2_imgs {
@@ -15,27 +21,26 @@
   height: 280px;
 }
 .Carousel2_img_men {
-  height: 100%;
+  width: 570px;
+  height: 672px;
 }
 
 .Card2_cardscontainer {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-around;
-  max-width: 60vw;
-  width: 100%;
-  margin-top: 49px;
-  margin-left: 48px;
-  gap: 29px;
+  height: 550px;
+  gap: 17px;
 }
 
 .Carousel2_container2 {
-  width: 100vw;
-  margin-left: 48.35px;
-  margin-right: 77px;
+  height: 672px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .Card2_imgcontainer {
+  position: relative;
   height: 440px;
   display: flex;
   justify-content: center;
@@ -50,6 +55,7 @@
 
 .Card2_text {
   display: flex;
+  margin-top: 22px;
 }
 
 .Card2_discount {
@@ -57,7 +63,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 8px;
   .Card2_textd {
     font-family: Poppins;
     font-weight: 400;
@@ -71,4 +77,8 @@
     font-size: 16px;
     line-height: 24px;
   }
+}
+
+.Carousel2 {
+  height: 540px !important;
 }

@@ -21,7 +21,7 @@ export default () => {
   };
   useEffect(() => {}, []);
   return (
-    <>
+    <div>
       <div className="search_maincontainer">
         <Sidebar />
         {state.filter!.length === 0 ? (
@@ -40,21 +40,23 @@ export default () => {
           </>
         ) : null}
       </div>
-      {lastPage === 1 ? null : (
-        <Stack spacing={2}>
-          <Pagination
-            className="PaginationS"
-            count={lastPage}
-            defaultPage={page}
-            showFirstButton
-            showLastButton
-            onChange={handleChange}
-            boundaryCount={1}
-            siblingCount={1}
-            color="primary"
-          />
-        </Stack>
-      )}
-    </>
+      <div>
+        {lastPage === 1 ? null : (
+          <Stack spacing={2}>
+            <Pagination
+              className="PaginationS"
+              count={lastPage}
+              defaultPage={page}
+              showFirstButton
+              showLastButton
+              onChange={handleChange}
+              boundaryCount={1}
+              siblingCount={1}
+              color="primary"
+            />
+          </Stack>
+        )}
+      </div>
+    </div>
   );
 };

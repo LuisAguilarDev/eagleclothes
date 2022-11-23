@@ -1,9 +1,17 @@
 .ShopingCart_Container {
   width: 100%;
 }
+.Shoping_CartMainContainer2 {
+  display: flex;
+  width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .Shoping_CartMainContainer {
   display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .Cart_Header {

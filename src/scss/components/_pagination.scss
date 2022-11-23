@@ -1,12 +1,19 @@
 .PaginationS {
-  position: absolute;
-  right: 0;
-  top: 130%;
-  padding: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  display: flex;
+  justify-content: flex-end;
+  width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .PaginationF {
-  position: absolute;
-  right: 0;
-  top: 130%;
-  padding: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  display: flex;
+  justify-content: flex-end;
+  width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-right: 0;
 }

@@ -74,7 +74,7 @@ export default () => {
   }, [quantities]);
 
   return (
-    <>
+    <div className="Shoping_CartMainContainer2">
       <div className="Shoping_CartMainContainer">
         <div className="Cart_ProductInfoContainer">
           <div className="Cart_Header">
@@ -204,6 +204,6 @@ export default () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
