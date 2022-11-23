@@ -1,7 +1,6 @@
 import Home from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Route, Routes } from "react-router-dom";
-import Userpanel from "./pages/Userpanel";
 import UserpanelF from "./pages/Userpanel_Favorites";
 import { useState, useEffect } from "react";
 import axios from "axios";
