@@ -9,6 +9,7 @@ import { getCart, addToCart } from "../services/functions";
 import { AppContext } from "../reducer/context";
 import { productType, Types } from "../reducer/Types";
 import { Button } from "@mui/material";
+import * as services from "../services/functions";
 
 export interface State extends SnackbarOrigin {
   open: boolean;
@@ -83,6 +84,11 @@ export const Login = ({ close }: Props) => {
           type: Types.SetQuantity,
           payload: total,
         });
+        const getaddress = async () => {
+          const answer = await services.GetAddress();
+          dispatch({ type: Types.GetAddress, payload: answer });
+        };
+        getaddress();
       }
       getQuantity(dataCart[0] ? dataCart[0] : []);
     }, 400);

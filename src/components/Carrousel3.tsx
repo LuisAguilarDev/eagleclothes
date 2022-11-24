@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import women from "../assets/women.png";
+import women from "../assets/women.jpg";
 import { useWindowSize } from "../hooks/useWindowSize";
 import Carousel from "react-material-ui-carousel";
 import { useNavigate } from "react-router-dom";

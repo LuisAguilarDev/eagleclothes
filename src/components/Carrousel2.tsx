@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import men from "../assets/men.png";
+import men from "../assets/men.jpg";
 import { useWindowSize } from "../hooks/useWindowSize";
 import Carousel from "react-material-ui-carousel";
 import { useNavigate } from "react-router-dom";

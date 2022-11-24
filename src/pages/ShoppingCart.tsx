@@ -7,8 +7,23 @@ import { Button } from "@mui/material";
 import { productType, Types } from "../reducer/Types";
 import { deleteFromCart, updateQuantity } from "../services/functions";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 import { Payment } from "../services/mercadopago";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "20%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 500,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 export default () => {
   const [cartValue, setCartValue] = useState(0);
@@ -17,16 +32,11 @@ export default () => {
   const [cart, setCart, getCart] = useLocalStorage("cart", []);
   const { state, dispatch } = useContext(AppContext);
   const navigate = useNavigate();
-  const [payment, setPayment] = useState(true);
+  const [payment, setPayment] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  function handleLogout() {
-    window.localStorage.clear();
-    dispatch({
-      type: Types.SetQuantity,
-      payload: 0,
-    });
-    navigate("/");
-  }
   function handleDeletion(product: productType) {
     const actualCart = getCart("cart");
     const newCart = actualCart.filter((item: productType) => {
@@ -34,18 +44,6 @@ export default () => {
     });
     setCart(newCart);
   }
-
-  const handlePay = async () => {
-    const preference = await services.pay(cart);
-    console.log(preference, "id");
-    var script = document.createElement("script");
-    script.src =
-      "https://mercadopago.com.co/integrations/v1/web-payment-checkout.js";
-    script.type = "text/javascript";
-    script.dataset.preferenceId = preference.id;
-    document.getElementById("cho-container")!.innerHTML = "";
-    document.querySelector("cho-container")?.appendChild(script);
-  };
 
   const nf = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -183,9 +181,38 @@ export default () => {
               </div>
             </div>
             <div className="Cart_buttonContainer">
-              {payment ? null : <Payment cart={[...cart]} />}
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <div className="Plain_text">
+                    Por ahora solo ofrecemos ventas desde Colombia, se
+                    convertira el valor de su compra a Pesos Colombianos a una
+                    TRM de $5.000
+                  </div>
+                  <div className="Cart_Summary">Resumen de Compra</div>
+                  <div className="Cart_resumeBox">
+                    <div className="Cart_PriceTotal">
+                      <div>Total:</div>
+                      <div>{nf.format(cartValue * 5000)}</div>
+                    </div>
+
+                    <div className="Cart_SummaryShipping">
+                      <div>Envio:</div>
+                      <div>{nf.format(5 * 5000)} </div>
+                    </div>
+                    <div className="Cart_PriceTotal">
+                      <div>Total + Envio:</div>
+                      <div>{nf.format((cartValue + 5) * 5000)}</div>
+                    </div>
+                  </div>
+                  <Payment cart={cart} />
+                </Box>
+              </Modal>
               <Button
-                id="button-checkout"
                 sx={{
                   borderColor: "#222222",
                   color: "#222222",
@@ -194,9 +221,9 @@ export default () => {
                 }}
                 variant="outlined"
                 onClick={() => {
-                  setPayment(false);
+                  setPayment(true);
+                  setOpen(true);
                 }}
-                className="button-checkout"
               >
                 Pay Now
               </Button>

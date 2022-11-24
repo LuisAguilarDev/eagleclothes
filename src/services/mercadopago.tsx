@@ -9,7 +9,7 @@ export function Payment({ cart }: any) {
   const { state, dispatch } = useContext(AppContext);
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
-  const FORM_ID = "payment-form";
+  const FORM_ID = "button-checkout";
 
   const getpreference = useCallback(async () => {
     const res: any = await axios.post("http://localhost:5000/api/pay", cart, {
@@ -43,5 +43,5 @@ export function Payment({ cart }: any) {
     getpreference();
   }, [getpreference]);
 
-  return <form id={FORM_ID} method="GET" />;
+  return <div id={FORM_ID} />;
 }
