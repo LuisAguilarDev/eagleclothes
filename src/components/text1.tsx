@@ -1,5 +1,5 @@
 import React from "react";
-import Bg from "../assets/bg.png";
+import Bg from "../assets/bg.jpg";
 
 export function Text1() {
   return (

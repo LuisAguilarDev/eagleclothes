@@ -33,62 +33,68 @@ export default () => {
     setError(true);
   }
   return (
-    <footer className="Footer_mainContainer">
-      <div className="Footer_bottomBox">
-        <div>
-          <img className="Footer_Logo" src={Logo} alt="Not Found" />
-        </div>
-        <div className="Footer_itemList">
+    <footer>
+      <div className="Footer_mainContainer">
+        <div className="Footer_bottomBox">
           <div>
-            <span>Home</span>
+            <img className="Footer_Logo" src={Logo} alt="Not Found" />
           </div>
-          <div>
-            <span>About</span>
-          </div>
-          <div>
-            <span>New Collection</span>
-          </div>
-          <div>
-            <span>Contact</span>
-          </div>
-          <div>
-            <span>Catalog</span>
-          </div>
-          <div>
-            <span>FAQ</span>
-          </div>
-        </div>
-        <div>
-          <div className="footer_NewsLetter">
-            Be the first to know about our biggest and best sales. We'll never
-            send more than one email a month.
-          </div>
-          <form className="footer_form">
-            <input
-              className="footer_NewsLetter_input"
-              placeholder="ENTER YOUR EMAIL"
-              onChange={(evt) => handleChange(evt)}
-            />
-            <MdOutlineMail
-              onClick={handlesubscribe}
-              className="footer_mailicon"
-            />
-          </form>
-          {error ? (
-            <div className="Error">Please enter a valid email address</div>
-          ) : null}
-          <div className="footer_social">
-            <div className="footer_twitter">
-              <img src={Twitter} alt="Not Found" />
+          <div className="Footer_itemList">
+            <div>
+              <span>Home</span>
             </div>
-            <div className="footer_linkedin">
-              <img className="footer_filter" src={Linkedin} alt="Not Found" />
+            <div>
+              <span>About</span>
             </div>
-            <div className="footer_facebook">
-              <img className="footer_filter" src={facebook} alt="Not Found" />
+            <div>
+              <span>New Collection</span>
             </div>
-            <div className="footer_Instagram">
-              <img className="footer_filter" src={Instagram} alt="Not Found" />
+            <div>
+              <span>Contact</span>
+            </div>
+            <div>
+              <span>Catalog</span>
+            </div>
+            <div>
+              <span>FAQ</span>
+            </div>
+          </div>
+          <div>
+            <div className="footer_NewsLetter">
+              Be the first to know about our biggest and best sales. We'll never
+              send more than one email a month.
+            </div>
+            <form className="footer_form">
+              <input
+                className="footer_NewsLetter_input"
+                placeholder="ENTER YOUR EMAIL"
+                onChange={(evt) => handleChange(evt)}
+              />
+              <MdOutlineMail
+                onClick={handlesubscribe}
+                className="footer_mailicon"
+              />
+            </form>
+            {error ? (
+              <div className="Error">Please enter a valid email address</div>
+            ) : null}
+            <div className="footer_social">
+              <div className="footer_twitter">
+                <img src={Twitter} alt="Not Found" />
+              </div>
+              <div className="footer_linkedin">
+                <img className="footer_filter" src={Linkedin} alt="Not Found" />
+              </div>
+              <div className="footer_facebook">
+                <img className="footer_filter" src={facebook} alt="Not Found" />
+              </div>
+              <div className="footer_Instagram">
+                <img
+                  className="footer_filter"
+                  src={Instagram}
+                  alt="Not Found"
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -52,3 +52,26 @@ button {
     // background-color: red !important;
   }
 }
+@media (max-width: 1280px) {
+  .Card_cardscontainer {
+    display: grid;
+    gap: 17px;
+    width: 100%;
+    position: relative;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    grid-auto-rows: minmax(100px, auto);
+  }
+  .Card_imgcontainer {
+    width: 25vw;
+  }
+  .Card_imgs {
+    margin: auto;
+    width: 280px;
+    height: 280px;
+  }
+  .Carousel_Container {
+    width: 100%;
+    padding: 0px;
+  }
+}

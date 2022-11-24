@@ -66,48 +66,49 @@ function Carousel2({ props }: IMyProps) {
             VIEW ALL
           </button>
         </div>
-        <Carousel
-          className="Carousel2"
-          sx={{
-            height: 600,
-            width: "100%",
-          }}
-          navButtonsProps={{
-            style: {
-              background: "white",
-              color: "black",
-              width: "45px",
-              height: "45px",
-              fontSize: "21px !important",
-              padding: "0px",
-              margin: "0px",
-            },
-          }}
-          interval={4000}
-          swipe={true}
-          navButtonsAlwaysVisible={true}
-          indicators={false}
-          animation="fade"
-        >
-          {props?.map((item, i, array) => {
-            if (array[i + 1]) {
-              return (
-                <div key={i} className="Card2_cardscontainer">
-                  <Item key={i} item={array[i]} />
-                  <Item key={i + 1} item={array[i + 1]} />
-                </div>
-              );
-            }
-            if (i === props.length - 1) {
-              return (
-                <div key={i} className="Card2_cardscontainer">
-                  <Item key={i} item={array[7]} />
-                  <Item key={i + 1} item={array[0]} />
-                </div>
-              );
-            }
-          })}
-        </Carousel>
+        <div className="Carousel2">
+          <Carousel
+            sx={{
+              height: 600,
+              width: "100%",
+            }}
+            navButtonsProps={{
+              style: {
+                background: "white",
+                color: "black",
+                width: "45px",
+                height: "45px",
+                fontSize: "21px !important",
+                padding: "0px",
+                margin: "0px",
+              },
+            }}
+            interval={4000}
+            swipe={true}
+            navButtonsAlwaysVisible={true}
+            indicators={false}
+            animation="fade"
+          >
+            {props?.map((item, i, array) => {
+              if (array[i + 1]) {
+                return (
+                  <div key={i} className="Card2_cardscontainer">
+                    <Item key={i} item={array[i]} />
+                    <Item key={i + 1} item={array[i + 1]} />
+                  </div>
+                );
+              }
+              if (i === props.length - 1) {
+                return (
+                  <div key={i} className="Card2_cardscontainer">
+                    <Item key={i} item={array[7]} />
+                    <Item key={i + 1} item={array[0]} />
+                  </div>
+                );
+              }
+            })}
+          </Carousel>
+        </div>
       </div>
     </div>
   );
