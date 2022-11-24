@@ -200,7 +200,6 @@ export default () => {
               >
                 Pay Now
               </Button>
-              <div></div>
             </div>
           </div>
         )}

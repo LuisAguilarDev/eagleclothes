@@ -35,7 +35,6 @@ const Menu = (props: any) => {
         </Link>
         <div className="Menu_buttonContainer">
           <Button
-            id="button-checkout"
             sx={{
               borderColor: "#222222",
               color: "#222222",
@@ -45,7 +44,6 @@ const Menu = (props: any) => {
             }}
             variant="outlined"
             onClick={handleLogout}
-            className="button-checkout"
           >
             LOGOUT
           </Button>

@@ -45,37 +45,3 @@ export function Payment({ cart }: any) {
 
   return <form id={FORM_ID} method="GET" />;
 }
-
-{
-  /* <script src="https://sdk.mercadopago.com/js/v2"></script>
-<script>
-  const mp = new MercadoPago("TEST-23a0ed4f-27e9-4a7f-aa36-d66114374b17", {
-    locale: "es-CO",
-  });
-
-  mp.checkout({
-    preference: {
-      id: "YOUR_PREFERENCE_ID",
-    },
-    render: {
-      container: ".cho-container",
-      label: "PAY NOW",
-    },
-  });
-</script> */
-}
-
-{
-  /* <script>
-const mp = new MercadoPago("TEST-495594a8-240a-4c4f-a469-1216b94bd885", {
-  locale: "es-CO",
-});
-
-mp.checkout({
-  render: {
-    container: ".button-checkout",
-    label: "Pay Now",
-  },
-});
-</script> */
-}

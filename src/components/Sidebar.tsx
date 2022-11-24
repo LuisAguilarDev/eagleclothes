@@ -20,9 +20,6 @@ export const Sidebar: React.FC = () => {
       setPriceFilter(0);
       setCategorieFilter("");
       const elementTarget: any = handleRef();
-      if (elementTarget) {
-        console.log(elementTarget.childNodes);
-      }
     };
   }, [state.loading]);
 
