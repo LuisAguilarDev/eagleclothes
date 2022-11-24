@@ -15,6 +15,7 @@ import Address from "./pages/Address";
 import AddAddress from "./pages/AddAddress";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import OrderConfirm from "./pages/OrderConfirm";
+import Orders from "./pages/Orders";
 
 function App() {
   const [datam, setDatam] = useState<productType[]>([]);
@@ -48,6 +49,7 @@ function App() {
         <Route path="/user/:name/shopping_cart" element={<ShoppingCart />} />
         <Route path="/user/:name/address" element={<Address />} />
         <Route path="/user/:name/addAddress" element={<AddAddress />} />
+        <Route path="/user/:name/orders" element={<Orders />} />
         <Route path="/detail/:itemCode" element={<Detail />} />
         <Route path="/search" element={<Search />} />
         <Route path="/validateUser" element={<Validate />} />

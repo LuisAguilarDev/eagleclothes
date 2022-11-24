@@ -23,6 +23,7 @@ export enum Types {
   GetAddress = "GET_ADDRESS",
   Loading = "LOADING_STATE",
   FilteredData = "FILTERED_DATA",
+  GetOrders = "GET_ORDERS",
 }
 export type ProductPayload = {
   [Types.Add]: productType;
@@ -38,6 +39,7 @@ export type ProductPayload = {
   [Types.FilteredData]: productType[];
   [Types.Loading]: boolean;
   [Types.GetAddress]: Address[];
+  [Types.GetOrders]: any[];
 };
 export type ProductActions =
   ActionMap<ProductPayload>[keyof ActionMap<ProductPayload>];

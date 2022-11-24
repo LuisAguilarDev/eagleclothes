@@ -234,3 +234,19 @@ export async function pay<T>(items: productType[] | productType): Promise<any> {
       return err;
     });
 }
+
+export async function getOrders<T>(): Promise<any> {
+  const token = window.localStorage.getItem("token");
+  const Authorization = token ? "Bearer " + JSON.parse(token) : "";
+  await axios
+    .post(`http://localhost:5000/api/users/orders`, {
+      headers: { Authorization },
+    })
+    .then((res) => {
+      console.log(res.data);
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
+}
