@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as services from "../services/functions";
+import { Card } from "./CardOrder";
 
 export const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -7,7 +8,6 @@ export const Orders = () => {
   useEffect(() => {
     const getOrders = async () => {
       const answer = await services.getOrders();
-      console.log(answer, "orders?");
       setOrders(answer);
     };
     getOrders();
@@ -16,13 +16,20 @@ export const Orders = () => {
 
   return (
     <>
-      <div className="Address_mainContainer">
+      <div className="Orders_mainContainer">
         {orders.length > 0 ? (
-          orders.map((o, i) => {
+          orders.map((o: any, i) => {
             return (
-              <div className="Address_container" key={i}>
-                Hola
-              </div>
+              <Card
+                id={o._id}
+                key={i}
+                total={o.total}
+                recipient={o.recipient}
+                items={o.items}
+                date={o.date}
+                delivery={o.estimated_delivery}
+                address={o.address}
+              />
             );
           })
         ) : (

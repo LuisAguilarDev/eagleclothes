@@ -10,6 +10,7 @@ export const OrderConfirm = (props: any) => {
   useEnhancedEffect(() => {
     handleRender(payment_id);
     shoppingCartTotal();
+    return () => {};
   }, []);
   const [cartValue, setCartValue] = useState(0);
   const search: any = useLocation().search;
@@ -42,6 +43,13 @@ export const OrderConfirm = (props: any) => {
     const answer = await axios.post(
       `http://localhost:5000/api/pay/success/${payment_id}`,
       cart,
+      {
+        headers: { Authorization },
+      }
+    );
+    window.localStorage.removeItem("cart");
+    const deletedItems = await axios.delete(
+      `http://localhost:5000/api/users/cart/all`,
       {
         headers: { Authorization },
       }

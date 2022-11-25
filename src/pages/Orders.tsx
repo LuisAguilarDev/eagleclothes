@@ -1,4 +1,4 @@
-import { Orders } from "../components/orders";
+import { Orders } from "../components/Orders";
 
 export default () => {
   return (

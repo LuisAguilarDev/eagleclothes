@@ -1,0 +1,55 @@
+.Item_small {
+  height: 90px;
+  width: 90px;
+  padding: 8px;
+}
+.Item_resumen {
+  display: flex;
+  justify-content: space-evenly;
+}
+.Card_Header {
+  background-color: rgb(235, 235, 235);
+  border-radius: 10px 10px 0 0;
+}
+.Card_span {
+  display: flex;
+  vertical-align: middle;
+  justify-content: center;
+  font-family: montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 4px;
+  text-decoration: none;
+  color: black;
+  width: 25%;
+}
+.Card_span2 {
+  display: flex;
+  vertical-align: middle;
+  justify-content: center;
+  font-family: montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 4px;
+  text-decoration: none;
+  color: black;
+}
+
+.CardContainer {
+  width: 960px;
+  border-radius: 10px;
+  border: solid rgb(235, 235, 235) 2px;
+  margin: 24px;
+}
+.Card_label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.verticalAlign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
