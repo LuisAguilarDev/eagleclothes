@@ -3,8 +3,10 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import Swal from "sweetalert2";
-import { productType } from "../reducer/Types";
+import { productType, Types } from "../reducer/Types";
 import { useState } from "react";
+import { AppContext } from "../reducer/context";
+import { useContext } from "react";
 
 export const OrderConfirm = (props: any) => {
   useEnhancedEffect(() => {
@@ -12,6 +14,7 @@ export const OrderConfirm = (props: any) => {
     shoppingCartTotal();
     return () => {};
   }, []);
+  const { state, dispatch } = useContext(AppContext);
   const [cartValue, setCartValue] = useState(0);
   const search: any = useLocation().search;
   const payment_id = new URLSearchParams(search).get("payment_id");
@@ -48,6 +51,7 @@ export const OrderConfirm = (props: any) => {
       }
     );
     window.localStorage.removeItem("cart");
+    dispatch({ type: Types.SetQuantity, payload: 1 });
     const deletedItems = await axios.delete(
       `http://localhost:5000/api/users/cart/all`,
       {

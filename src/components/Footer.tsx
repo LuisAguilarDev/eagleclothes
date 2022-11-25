@@ -80,20 +80,52 @@ export default () => {
             ) : null}
             <div className="footer_social">
               <div className="footer_twitter">
-                <img src={Twitter} alt="Not Found" />
+                <a
+                  href="https://twitter.com/Luisgerardo900"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={Twitter} alt="Not Found" />
+                </a>
               </div>
               <div className="footer_linkedin">
-                <img className="footer_filter" src={Linkedin} alt="Not Found" />
+                <a
+                  href="https://www.linkedin.com/in/luisgaguilarg/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="footer_filter"
+                    src={Linkedin}
+                    alt="Not Found"
+                  />
+                </a>
               </div>
               <div className="footer_facebook">
-                <img className="footer_filter" src={facebook} alt="Not Found" />
+                <a
+                  href="https://www.facebook.com/luis.g.aguilar1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="footer_filter"
+                    src={facebook}
+                    alt="Not Found"
+                  />
+                </a>
               </div>
               <div className="footer_Instagram">
-                <img
-                  className="footer_filter"
-                  src={Instagram}
-                  alt="Not Found"
-                />
+                <a
+                  href="https://www.instagram.com/luisgerardo900/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="footer_filter"
+                    src={Instagram}
+                    alt="Not Found"
+                  />
+                </a>
               </div>
             </div>
           </div>
