@@ -41,7 +41,10 @@ export const Login = ({ close }: Props) => {
       return;
     }
     const answer = await axios
-      .post("http://localhost:5000/api/users/singIn", data)
+      .post(
+        "https://eagleclothes-backend-production.up.railway.app/api/users/singIn",
+        data
+      )
       .then(async (res) => {
         if (res.data.message === "permision denied") {
           Swal.fire({
@@ -131,7 +134,10 @@ export const Login = ({ close }: Props) => {
       return;
     }
     axios
-      .post("http://localhost:5000/api/users/signUp", data)
+      .post(
+        "https://eagleclothes-backend-production.up.railway.app/api/users/signUp",
+        data
+      )
       .then((res) => {
         if (
           res.data.message === "el usuario ya se encuentra creado en el sistema"

@@ -43,7 +43,7 @@ export const OrderConfirm = (props: any) => {
     const token = window.localStorage.getItem("token");
     const Authorization = token ? "Bearer " + JSON.parse(token) : "";
     const answer = await axios.post(
-      `http://localhost:5000/api/pay/success/${payment_id}`,
+      `https://eagleclothes-backend-production.up.railway.app/api/pay/success/${payment_id}`,
       cart,
       {
         headers: { Authorization },
@@ -52,7 +52,7 @@ export const OrderConfirm = (props: any) => {
     window.localStorage.removeItem("cart");
     dispatch({ type: Types.SetQuantity, payload: 1 });
     const deletedItems = await axios.delete(
-      `http://localhost:5000/api/users/cart/all`,
+      `https://eagleclothes-backend-production.up.railway.app/api/users/cart/all`,
       {
         headers: { Authorization },
       }

@@ -71,9 +71,13 @@ export default () => {
     e.preventDefault();
     if (error) return;
     const answer = await axios
-      .post(`http://localhost:5000/api/users/change/${password}`, password, {
-        headers: { Authorization },
-      })
+      .post(
+        `https://eagleclothes-backend-production.up.railway.app/api/users/change/${password}`,
+        password,
+        {
+          headers: { Authorization },
+        }
+      )
       .then((res) => {
         setToken(token2);
         setName(res.data.userBase.name);

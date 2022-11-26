@@ -20,7 +20,9 @@ export default () => {
   function hanldeSubmit(e: any, email: string) {
     e.preventDefault();
     if (error) return;
-    axios.get(`http://localhost:5000/api/users/forgotPassword/${email}`);
+    axios.get(
+      `https://eagleclothes-backend-production.up.railway.app/api/users/forgotPassword/${email}`
+    );
     setSent("sent");
   }
 

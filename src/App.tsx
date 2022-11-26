@@ -27,7 +27,7 @@ function App() {
   const navigate = useNavigate();
   async function getProducts() {
     const answer: any = await axios.get(
-      `http://localhost:5000/api/users/product/`
+      `https://eagleclothes-backend-production.up.railway.app/api/users/product/`
     );
     setDatam(answer.data.man);
     setDatam2(answer.data.man2);

@@ -22,7 +22,9 @@ export const Validate: React.FC = () => {
   const navigate = useNavigate();
   async function validateUser(tokenToValidate: string) {
     const answer = await axios
-      .get(`http://localhost:5000/api/users/validateUser/${tokenToValidate}`)
+      .get(
+        `https://eagleclothes-backend-production.up.railway.app/api/users/validateUser/${tokenToValidate}`
+      )
       .then(async (res) => {
         setToken(res.data.token);
         setName(res.data.answer.name);

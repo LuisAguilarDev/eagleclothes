@@ -39,18 +39,22 @@ export default () => {
 
   function handleSearch(e: any) {
     if (e.key !== "Enter") return;
-    axios.get(`http://localhost:5000/api/search/${search}`).then((res) => {
-      dispatch({
-        type: Types.Search,
-        payload: res.data.search,
+    axios
+      .get(
+        `https://eagleclothes-backend-production.up.railway.app/api/search/${search}`
+      )
+      .then((res) => {
+        dispatch({
+          type: Types.Search,
+          payload: res.data.search,
+        });
+        dispatch({
+          type: Types.Loading,
+          payload: !state.loading,
+        });
+        e.target.value = "";
+        Navigate("/search");
       });
-      dispatch({
-        type: Types.Loading,
-        payload: !state.loading,
-      });
-      e.target.value = "";
-      Navigate("/search");
-    });
   }
 
   useEffect(() => {

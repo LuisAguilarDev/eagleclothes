@@ -12,9 +12,13 @@ export function Payment({ cart }: any) {
   const FORM_ID = "button-checkout";
 
   const getpreference = useCallback(async () => {
-    const res: any = await axios.post("http://localhost:5000/api/pay", cart, {
-      headers: { Authorization },
-    });
+    const res: any = await axios.post(
+      "https://eagleclothes-backend-production.up.railway.app/api/pay",
+      cart,
+      {
+        headers: { Authorization },
+      }
+    );
     if (res.data.global) {
       const script = document.createElement("script");
       script.type = "text/javascript";
