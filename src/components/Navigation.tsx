@@ -95,6 +95,7 @@ export default () => {
             onKeyDown={(e) => handleSearch(e)}
             className="Navigation_lupa_input"
             placeholder="Search products..."
+            autoComplete="off"
           ></input>
           <div className="Navigation_Separator">
             <img

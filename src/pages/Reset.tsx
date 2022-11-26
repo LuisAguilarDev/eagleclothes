@@ -6,6 +6,7 @@ import { productType, Types } from "../reducer/Types";
 import { addToCart } from "../services/functions";
 import { AppContext } from "../reducer/context";
 import * as services from "../services/functions";
+import { Button } from "@mui/material";
 
 export default () => {
   const [error, setError] = useState("");
@@ -115,14 +116,48 @@ export default () => {
 
   return (
     <>
-      <div>Enter your new password:</div>
-      <input name="email" onChange={validateEmail} type="password" />
-      {error ? <div>{error}</div> : null}
-      <div>Confirm password:</div>
-      <input name="email2" onChange={validateEmail} type="password" />
-      {error2 ? <div>{error2}</div> : null}
-      {error3 ? <div>{error3}</div> : null}
-      <button onClick={(e) => hanldeSubmit(e, password)}>Continue</button>
+      <div className="login_form">
+        <div className="login_label">New password:</div>
+        <input
+          autoComplete="new-password"
+          className="login_input"
+          name="email"
+          onChange={validateEmail}
+          placeholder="New Password"
+          type="password"
+        />
+        {error ? <div>{error}</div> : null}
+      </div>
+      <div className="login_form">
+        <div className="login_label">Re-enter:</div>
+        <input
+          autoComplete="new-password"
+          className="login_input"
+          name="email2"
+          onChange={validateEmail}
+          type="password"
+          placeholder="Confirm New Password"
+        />
+        {error2 ? <div>{error2}</div> : null}
+        {error3 ? <div>{error3}</div> : null}
+      </div>
+      <div className="login_form">
+        <Button
+          sx={{
+            borderColor: "#222222",
+            color: "#222222",
+            height: "40px",
+            padding: "12px",
+            margin: "12px",
+            width: "210px",
+            ":hover": { color: "blue" },
+          }}
+          variant="outlined"
+          onClick={(e) => hanldeSubmit(e, password)}
+        >
+          Continue
+        </Button>
+      </div>
     </>
   );
 };
