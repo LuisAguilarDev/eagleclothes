@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "style": "parcel index.html"
   },
@@ -15,8 +15,9 @@
     "@mui/material": "^5.10.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "4.6.0"
-     },
+    "react-icons": "4.6.0",
+    "vite": "^3.2.4"
+  },
   "devDependencies": {
     "@types/axios": "0.14.0",
     "@types/node": "18.11.0",
@@ -29,7 +30,7 @@
     "sass": "1.55.0",
     "sweetalert2": "11.6.5",
     "sweetalert2-react-content": "5.0.7",
-    "typescript": "4.6.4",
-    "vite": "3.1.0"
+    "typescript": "4.6.4"
+  
   }
 }
