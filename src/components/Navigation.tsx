@@ -14,7 +14,6 @@ import { Menu } from "../components/Menu";
 export default () => {
   const Navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const [menuShow, setMenuShow] = useState(false);
   const [cart, setCart, getCart] = useLocalStorage("cart", []);
   const username = window.localStorage.getItem("name");
   const { state, dispatch } = useContext(AppContext);
@@ -56,7 +55,7 @@ export default () => {
 
   useEffect(() => {
     getquantity();
-  }, [state.quantity]);
+  }, [state.quantity, state.loading]);
 
   return (
     <>

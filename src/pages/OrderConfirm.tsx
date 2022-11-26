@@ -40,7 +40,6 @@ export const OrderConfirm = (props: any) => {
     setCartValue(data);
   }
   const handleRender = async (payment_id: any) => {
-    console.log(payment_id);
     const token = window.localStorage.getItem("token");
     const Authorization = token ? "Bearer " + JSON.parse(token) : "";
     const answer = await axios.post(

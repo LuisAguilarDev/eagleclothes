@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { SnackbarOrigin } from "@mui/material";
 import Swal from "sweetalert2";
 import { getCart, addToCart } from "../services/functions";
@@ -43,7 +43,6 @@ export const Login = ({ close }: Props) => {
     const answer = await axios
       .post("http://localhost:5000/api/users/singIn", data)
       .then(async (res) => {
-        console.log(res, "respuesta?");
         if (res.data.message === "permision denied") {
           Swal.fire({
             title: "WRONG USERNAME OR PASSWORD",
@@ -54,10 +53,11 @@ export const Login = ({ close }: Props) => {
         }
         setToken(res.data.token);
         setName(res.data.user.name);
-        cart.forEach((item: productType) => {
-          addToCart(evt, [item]);
-        });
-
+        if (cart.length > 0) {
+          cart.forEach((item: productType) => {
+            addToCart(evt, [item]);
+          });
+        }
         if (close) {
           close();
         }
@@ -198,7 +198,9 @@ export const Login = ({ close }: Props) => {
               />
             </div>
             <div className="login_formForgot">
-              <div className="login_forgot">Forgot your password?</div>
+              <Link to="/forgotPassword">
+                <div className="login_forgot">Forgot your password?</div>
+              </Link>
             </div>
             <div className="login_buttonContainer">
               <Button

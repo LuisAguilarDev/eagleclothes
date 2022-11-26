@@ -227,7 +227,6 @@ export async function pay<T>(items: productType[] | productType): Promise<any> {
       headers: { Authorization },
     })
     .then((res) => {
-      console.log(res.data.id);
       return res.data.id;
     })
     .catch((err) => {
@@ -243,7 +242,6 @@ export async function getOrders<T>(): Promise<any> {
       headers: { Authorization },
     })
     .then((res) => {
-      console.log(res.data, "orders?function");
       return res.data;
     })
     .catch((err) => {

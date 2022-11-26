@@ -18,7 +18,6 @@ export const shoppingCartReducer = (
   state: InitialStateType,
   action: ShoppingCartActions
 ) => {
-  console.log(action);
   switch (action.type) {
     case Types.GetFavs:
       return {

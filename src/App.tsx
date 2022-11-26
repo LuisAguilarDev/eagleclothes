@@ -16,6 +16,8 @@ import AddAddress from "./pages/AddAddress";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import OrderConfirm from "./pages/OrderConfirm";
 import Orders from "./pages/Orders";
+import Forgot from "./pages/ForgotPassword";
+import Reset from "./pages/Reset";
 
 function App() {
   const [datam, setDatam] = useState<productType[]>([]);
@@ -54,6 +56,8 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/validateUser" element={<Validate />} />
         <Route path="/orderConfirm" element={<OrderConfirm />} />
+        <Route path="/forgotPassword" element={<Forgot />} />
+        <Route path="/resetPassword" element={<Reset />} />
       </Routes>
     </>
   );
