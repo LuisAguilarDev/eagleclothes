@@ -126,8 +126,8 @@ export default () => {
           placeholder="New Password"
           type="password"
         />
-        {error ? <div>{error}</div> : null}
       </div>
+      {error ? <div className="login_error">{error}</div> : null}
       <div className="login_form">
         <div className="login_label">Re-enter:</div>
         <input
@@ -138,9 +138,9 @@ export default () => {
           type="password"
           placeholder="Confirm New Password"
         />
-        {error2 ? <div>{error2}</div> : null}
-        {error3 ? <div>{error3}</div> : null}
       </div>
+      {error2 ? <div className="login_error">{error2}</div> : null}
+      {error3 ? <div className="login_error">{error3}</div> : null}
       <div className="login_form">
         <Button
           sx={{
