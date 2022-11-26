@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 export default () => {
   const [error, setError] = useState("");
@@ -27,13 +27,39 @@ export default () => {
   return (
     <>
       {sent ? (
-        <div>We have sent you an email reseting ur password</div>
+        <div className="login_form">
+          <div className="login_label2">
+            We have sent you an email reseting ur password
+          </div>
+        </div>
       ) : (
         <>
-          <div>Enter your email:</div>
-          <input onChange={validateEmail} type="text" />
-          {error ? <div>{error}</div> : null}
-          <button onClick={(e) => hanldeSubmit(e, email)}>Continue</button>
+          <div className="login_form">
+            <div className="login_label">Enter your email:</div>
+            <input
+              className="login_input"
+              onChange={validateEmail}
+              type="text"
+            />
+          </div>
+          {error ? <div className="login_error">{error}</div> : null}
+          <div className="login_buttonContainer">
+            <Button
+              sx={{
+                borderColor: "#222222",
+                color: "#222222",
+                height: "40px",
+                padding: "12px",
+                margin: "12px",
+                width: "210px",
+                ":hover": { color: "blue" },
+              }}
+              variant="outlined"
+              onClick={(e) => hanldeSubmit(e, email)}
+            >
+              Continue
+            </Button>
+          </div>
         </>
       )}
     </>
