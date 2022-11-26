@@ -11,12 +11,16 @@
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
     "moduleResolution": "node",
+    "noImplicitAny": false,
     "resolveJsonModule": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
     "isolatedModules": true,
+    "sourceMap": true,
     "outDir": "dist",
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": ["src/**/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
