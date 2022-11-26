@@ -25,12 +25,14 @@ export default () => {
     if (!Array.isArray(newCart)) {
       setCart([]);
     }
-    const answer = newCart.map((item: productType, i: any) => {
-      return item.quantity;
-    });
-    let total = answer.reduce((a: any, b: any) => a + b, 0);
-    total = total ? total : 0;
-    setQuantity(total);
+    if (newCart.length > 0) {
+      const answer = newCart.map((item: productType, i: any) => {
+        return item.quantity;
+      });
+      let total = answer.reduce((a: any, b: any) => a + b, 0);
+      total = total ? total : 0;
+      setQuantity(total);
+    }
   }
 
   function handleChange(e: any) {
