@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Payment } from "../services/mercadopago";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { Login } from "./Login";
 
 const style = {
   position: "absolute" as "absolute",
@@ -34,8 +35,10 @@ export default () => {
   const navigate = useNavigate();
   const [payment, setPayment] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openl, setOpenl] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleClosel = () => setOpenl(false);
 
   function handleDeletion(product: productType) {
     const actualCart = getCart("cart");
@@ -212,6 +215,11 @@ export default () => {
                   <Payment cart={cart} />
                 </Box>
               </Modal>
+              <Modal open={open} onClose={handleClosel}>
+                <Box sx={style}>
+                  <Login close={handleClosel} />
+                </Box>
+              </Modal>
               <Button
                 sx={{
                   borderColor: "#222222",
@@ -221,6 +229,10 @@ export default () => {
                 }}
                 variant="outlined"
                 onClick={() => {
+                  console.log(!username);
+                  if (!username) {
+                    return setOpenl(true);
+                  }
                   setPayment(true);
                   setOpen(true);
                 }}
