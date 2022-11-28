@@ -1,6 +1,18 @@
 {
-  "redirects": [
-    { "source": "/login", "destination": "/index.html" },
+  "routes": [
+    { "source": "/", "destination": "/" },
+    { "source": "/login", "destination": "/" },
+    { "source": "/user/validate", "destination": "/" },
+    { "source": "/user/:name/favorites", "destination": "/" },
+    { "source": "/user/:name/shopping_cart", "destination": "/" },
+    { "source": "/user/:name/address", "destination": "/" },
+    { "source": "/user/:name/addAddress", "destination": "/" },
+    { "source": "/user/:name/orders", "destination": "/" },
+    { "source": "/detail/:itemCode", "destination": "/" },
+    { "source": "/search", "destination": "/" },
+    { "source": "/orderConfirm", "destination": "/" },
+    { "source": "/forgotPassword", "destination": "/" },
+    { "source": "/resetPassword", "destination": "/" },
     { "source": "/validate", "destination": "/validate" }
   ]
 }
