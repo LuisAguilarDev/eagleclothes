@@ -1,6 +1,6 @@
 import Home from "./pages/Home";
 import { Login } from "./pages/Login";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import UserpanelF from "./pages/Userpanel_Favorites";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -18,6 +18,7 @@ import OrderConfirm from "./pages/OrderConfirm";
 import Orders from "./pages/Orders";
 import Forgot from "./pages/ForgotPassword";
 import Reset from "./pages/Reset";
+import { AppProvider } from "./reducer/context";
 
 function App() {
   const [datam, setDatam] = useState<productType[]>([]);
@@ -40,25 +41,32 @@ function App() {
 
   return (
     <>
-      <Navigation />
-      <Routes>
-        <Route
-          path="/"
-          element={<Home props1={datam} props2={datam2} props3={dataw} />}
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/user/validate" element={<Validate />} />
-        <Route path="/user/:name/favorites" element={<UserpanelF />} />
-        <Route path="/user/:name/shopping_cart" element={<ShoppingCart />} />
-        <Route path="/user/:name/address" element={<Address />} />
-        <Route path="/user/:name/addAddress" element={<AddAddress />} />
-        <Route path="/user/:name/orders" element={<Orders />} />
-        <Route path="/detail/:itemCode" element={<Detail />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/orderConfirm" element={<OrderConfirm />} />
-        <Route path="/forgotPassword" element={<Forgot />} />
-        <Route path="/resetPassword" element={<Reset />} />
-      </Routes>
+      <AppProvider>
+        <BrowserRouter>
+          <Navigation />
+          <Routes>
+            <Route
+              path="/"
+              element={<Home props1={datam} props2={datam2} props3={dataw} />}
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/user/validate" element={<Validate />} />
+            <Route path="/user/:name/favorites" element={<UserpanelF />} />
+            <Route
+              path="/user/:name/shopping_cart"
+              element={<ShoppingCart />}
+            />
+            <Route path="/user/:name/address" element={<Address />} />
+            <Route path="/user/:name/addAddress" element={<AddAddress />} />
+            <Route path="/user/:name/orders" element={<Orders />} />
+            <Route path="/detail/:itemCode" element={<Detail />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/orderConfirm" element={<OrderConfirm />} />
+            <Route path="/forgotPassword" element={<Forgot />} />
+            <Route path="/resetPassword" element={<Reset />} />
+          </Routes>
+        </BrowserRouter>
+      </AppProvider>
     </>
   );
 }
