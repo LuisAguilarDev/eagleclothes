@@ -95,10 +95,6 @@ export const Login = ({ close }: Props) => {
       }
       getQuantity(dataCart[0] ? dataCart[0] : []);
     }, 400);
-
-    if (answer === true) {
-      navigate("/");
-    }
   }
 
   function validateEmail(evt: any) {
