@@ -46,6 +46,7 @@ function App() {
           path="/"
           element={<Home props1={datam} props2={datam2} props3={dataw} />}
         />
+        <Route path="/validateUser" element={<Validate />} />
         <Route path="/login" element={<Login />} />
         <Route path="/user/:name/favorites" element={<UserpanelF />} />
         <Route path="/user/:name/shopping_cart" element={<ShoppingCart />} />
@@ -54,7 +55,6 @@ function App() {
         <Route path="/user/:name/orders" element={<Orders />} />
         <Route path="/detail/:itemCode" element={<Detail />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/validateUser" element={<Validate />} />
         <Route path="/orderConfirm" element={<OrderConfirm />} />
         <Route path="/forgotPassword" element={<Forgot />} />
         <Route path="/resetPassword" element={<Reset />} />
