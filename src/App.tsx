@@ -40,29 +40,27 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <AppProvider>
-        <Navigation />
-        <Routes>
-          <Route
-            path="/"
-            element={<Home props1={datam} props2={datam2} props3={dataw} />}
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/user/validate" element={<Validate />} />
-          <Route path="/user/:name/favorites" element={<UserpanelF />} />
-          <Route path="/user/:name/shopping_cart" element={<ShoppingCart />} />
-          <Route path="/user/:name/address" element={<Address />} />
-          <Route path="/user/:name/addAddress" element={<AddAddress />} />
-          <Route path="/user/:name/orders" element={<Orders />} />
-          <Route path="/detail/:itemCode" element={<Detail />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/orderConfirm" element={<OrderConfirm />} />
-          <Route path="/forgotPassword" element={<Forgot />} />
-          <Route path="/resetPassword" element={<Reset />} />
-        </Routes>
-      </AppProvider>
-    </BrowserRouter>
+    <AppProvider>
+      <Navigation />
+      <Routes>
+        <Route
+          path="/"
+          element={<Home props1={datam} props2={datam2} props3={dataw} />}
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/user/validate" element={<Validate />} />
+        <Route path="/user/:name/favorites" element={<UserpanelF />} />
+        <Route path="/user/:name/shopping_cart" element={<ShoppingCart />} />
+        <Route path="/user/:name/address" element={<Address />} />
+        <Route path="/user/:name/addAddress" element={<AddAddress />} />
+        <Route path="/user/:name/orders" element={<Orders />} />
+        <Route path="/detail/:itemCode" element={<Detail />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/orderConfirm" element={<OrderConfirm />} />
+        <Route path="/forgotPassword" element={<Forgot />} />
+        <Route path="/resetPassword" element={<Reset />} />
+      </Routes>
+    </AppProvider>
   );
 }
 
