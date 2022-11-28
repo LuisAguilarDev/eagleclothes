@@ -46,7 +46,7 @@ function App() {
           path="/"
           element={<Home props1={datam} props2={datam2} props3={dataw} />}
         />
-        <Route path="/validateUser" element={<Validate />} />
+        <Route path="/validate" element={<Validate />} />
         <Route path="/login" element={<Login />} />
         <Route path="/user/:name/favorites" element={<UserpanelF />} />
         <Route path="/user/:name/shopping_cart" element={<ShoppingCart />} />
