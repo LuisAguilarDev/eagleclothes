@@ -2,12 +2,7 @@ import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import {
-  useNavigate,
-  useLocation,
-  Link,
-  useSearchParams,
-} from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { AppContext } from "../reducer/context";
 import { productType, Types } from "../reducer/Types";
 import { getCart } from "../services/functions";
