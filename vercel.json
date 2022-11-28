@@ -1,5 +1,5 @@
 {
-  "routes": [
+  "redirects": [
     { "source": "/", "destination": "/" },
     { "source": "/login", "destination": "/" },
     { "source": "/user/validate", "destination": "/" },
