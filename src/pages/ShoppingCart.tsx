@@ -215,7 +215,7 @@ export default () => {
                   <Payment cart={cart} />
                 </Box>
               </Modal>
-              <Modal open={open} onClose={handleClosel}>
+              <Modal open={openl} onClose={handleClosel}>
                 <Box sx={style}>
                   <Login close={handleClosel} />
                 </Box>
