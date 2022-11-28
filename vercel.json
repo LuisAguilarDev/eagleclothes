@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/login", "destination": "/login" },
+    { "source": "/validate", "destination": "/validate" }
+  ]
+}
