@@ -52,62 +52,64 @@ function Carousel2({ props }: IMyProps) {
     navigate("/search");
   }
   return (
-    <div className="Carousel2_container">
-      <div className="Carousel2_img_container">
-        <img className="Carousel2_img_men" src={men} />
-      </div>
-      <div className="Carousel2_container2">
-        <div className="Carrousel_letters">
-          <div>
-            <span className="yellow">EAGLE</span>
-            <span className="black">PROMOTIONS FOR MEN</span>
-          </div>
-          <button onClick={handleMan} className="button_View">
-            VIEW ALL
-          </button>
+    <div className="view100vw">
+      <div className="Carousel2_container">
+        <div className="Carousel2_img_container">
+          <img className="Carousel2_img_men" src={men} />
         </div>
-        <div className="Carousel2">
-          <Carousel
-            sx={{
-              height: 600,
-              width: "100%",
-            }}
-            navButtonsProps={{
-              style: {
-                background: "white",
-                color: "black",
-                width: "45px",
-                height: "45px",
-                fontSize: "21px !important",
-                padding: "0px",
-                margin: "0px",
-              },
-            }}
-            interval={4000}
-            swipe={true}
-            navButtonsAlwaysVisible={true}
-            indicators={false}
-            animation="fade"
-          >
-            {props?.map((item, i, array) => {
-              if (array[i + 1]) {
-                return (
-                  <div key={i} className="Card2_cardscontainer">
-                    <Item key={i} item={array[i]} />
-                    <Item key={i + 1} item={array[i + 1]} />
-                  </div>
-                );
-              }
-              if (i === props.length - 1) {
-                return (
-                  <div key={i} className="Card2_cardscontainer">
-                    <Item key={i} item={array[7]} />
-                    <Item key={i + 1} item={array[0]} />
-                  </div>
-                );
-              }
-            })}
-          </Carousel>
+        <div className="Carousel2_container2 view100vw">
+          <div className="Carrousel_letters view100vw">
+            <div className="view100vw">
+              <span className="yellow">EAGLE</span>
+              <span className="black">PROMOTIONS FOR MEN</span>
+            </div>
+            <button onClick={handleMan} className="button_View">
+              VIEW ALL
+            </button>
+          </div>
+          <div className="Carousel2">
+            <Carousel
+              sx={{
+                height: 600,
+                width: "100%",
+              }}
+              navButtonsProps={{
+                style: {
+                  background: "white",
+                  color: "black",
+                  width: "45px",
+                  height: "45px",
+                  fontSize: "21px !important",
+                  padding: "0px",
+                  margin: "0px",
+                },
+              }}
+              interval={4000}
+              swipe={true}
+              navButtonsAlwaysVisible={true}
+              indicators={false}
+              animation="fade"
+            >
+              {props?.map((item, i, array) => {
+                if (array[i + 1]) {
+                  return (
+                    <div key={i} className="Card2_cardscontainer">
+                      <Item key={i} item={array[i]} />
+                      <Item key={i + 1} item={array[i + 1]} />
+                    </div>
+                  );
+                }
+                if (i === props.length - 1) {
+                  return (
+                    <div key={i} className="Card2_cardscontainer">
+                      <Item key={i} item={array[7]} />
+                      <Item key={i + 1} item={array[0]} />
+                    </div>
+                  );
+                }
+              })}
+            </Carousel>
+          </div>
         </div>
       </div>
     </div>
