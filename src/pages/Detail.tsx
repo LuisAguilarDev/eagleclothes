@@ -17,6 +17,8 @@ const Detail = () => {
   const product: productType = location.state;
   const [index, setIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const username = window.localStorage.getItem("name");
+
   function onClick(index: number) {
     setIndex(index);
   }
@@ -154,8 +156,10 @@ const Detail = () => {
               variant="outlined"
               onClick={(e: any) => {
                 addToCartLocal({ ...product, quantity: quantity });
-                addToCart(e, [{ ...product, quantity: quantity }]);
                 dispatch({ type: Types.SetQuantity, payload: quantity });
+                if (username) {
+                  addToCart(e, [{ ...product, quantity: quantity }]);
+                }
               }}
             >
               ADD TO CART{" "}

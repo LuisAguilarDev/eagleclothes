@@ -25,6 +25,9 @@ export default () => {
     if (!Array.isArray(newCart)) {
       setCart([]);
     }
+    if (newCart.length === 0) {
+      return setQuantity(0);
+    }
     if (newCart.length > 0) {
       const answer = newCart.map((item: productType, i: any) => {
         return item.quantity;
@@ -61,7 +64,8 @@ export default () => {
 
   useEffect(() => {
     getquantity();
-  }, [state.quantity]);
+    return () => {};
+  }, [state.quantity, quantity, state.loading]);
 
   return (
     <div className="view100vw">

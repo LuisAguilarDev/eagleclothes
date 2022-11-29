@@ -159,12 +159,14 @@ export default () => {
                             ":hover": { color: "blue" },
                           }}
                           onClick={() => {
-                            deleteFromCart(p);
-                            handleDeletion(p);
+                            if (username) {
+                              deleteFromCart(p);
+                            }
                             dispatch({
                               type: Types.SetQuantity,
-                              payload: p.quantity ? -p.quantity : 0,
+                              payload: -p.quantity + 1,
                             });
+                            handleDeletion(p);
                           }}
                         >
                           <DeleteOutlineIcon />
@@ -241,7 +243,6 @@ export default () => {
                 }}
                 variant="outlined"
                 onClick={() => {
-                  console.log(!username);
                   if (!username) {
                     return setOpenl(true);
                   }
