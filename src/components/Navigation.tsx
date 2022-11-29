@@ -61,10 +61,10 @@ export default () => {
 
   useEffect(() => {
     getquantity();
-  }, [state.quantity, state.loading]);
+  }, [state.quantity]);
 
   return (
-    <>
+    <div className="view100vw">
       <div className="Navigation_MAINCONTAINER">
         <div className="Navigation_firstLine">
           <div className="other">Help</div>
@@ -147,6 +147,6 @@ export default () => {
           </div>
         </div>
       </nav>
-    </>
+    </div>
   );
 };

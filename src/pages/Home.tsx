@@ -7,12 +7,12 @@ import { Text1 } from "../components/Text1";
 
 export default ({ props1, props3, props2 }: any) => {
   return (
-    <>
+    <div className="view100vw">
       <Text1 />
       <Carousel1 props={props1} />
       <Carousel2 props={props2} />
       <Carousel3 props={props3} />
       <Footer />
-    </>
+    </div>
   );
 };

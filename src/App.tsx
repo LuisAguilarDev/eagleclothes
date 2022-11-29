@@ -1,6 +1,6 @@
 import Home from "./pages/Home";
 import { Login } from "./pages/Login";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import UserpanelF from "./pages/Userpanel_Favorites";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -18,7 +18,6 @@ import OrderConfirm from "./pages/OrderConfirm";
 import Orders from "./pages/Orders";
 import Forgot from "./pages/ForgotPassword";
 import Reset from "./pages/Reset";
-import { AppProvider } from "./reducer/context";
 
 function App() {
   const [datam, setDatam] = useState<productType[]>([]);
@@ -40,7 +39,7 @@ function App() {
   }, []);
 
   return (
-    <AppProvider>
+    <>
       <Navigation />
       <Routes>
         <Route
@@ -60,7 +59,7 @@ function App() {
         <Route path="/forgotPassword" element={<Forgot />} />
         <Route path="/resetPassword" element={<Reset />} />
       </Routes>
-    </AppProvider>
+    </>
   );
 }
 
