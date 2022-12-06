@@ -36,6 +36,7 @@ export const Login = ({ close }: Props) => {
   }
 
   async function handleLogin(evt: any) {
+    console.log(location.pathname);
     evt.preventDefault();
     if (error) {
       return;
@@ -66,7 +67,9 @@ export const Login = ({ close }: Props) => {
         if (close) {
           close();
         }
-
+        if (location.pathname === "/login") {
+          navigate("/");
+        }
         return true;
       })
       .catch((err) => {
