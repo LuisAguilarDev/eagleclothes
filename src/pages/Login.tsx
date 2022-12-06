@@ -56,10 +56,12 @@ export const Login = ({ close }: Props) => {
         }
         setToken(res.data.token);
         setName(res.data.user.name);
-        if (cart?.length) {
-          cart.forEach((item: productType) => {
-            addToCart(evt, [item]);
-          });
+        if (Array.isArray(cart)) {
+          if (cart.length > 0) {
+            cart.forEach((item: productType) => {
+              addToCart(evt, [item]);
+            });
+          }
         }
         if (close) {
           close();
