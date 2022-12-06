@@ -56,7 +56,7 @@ export const Login = ({ close }: Props) => {
         }
         setToken(res.data.token);
         setName(res.data.user.name);
-        if (cart.length > 0) {
+        if (cart.length ?? cart.length > 0) {
           cart.forEach((item: productType) => {
             addToCart(evt, [item]);
           });
