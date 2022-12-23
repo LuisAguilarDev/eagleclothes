@@ -42,10 +42,7 @@ export const Login = ({ close }: Props) => {
       return;
     }
     const answer = await axios
-      .post(
-        "https://eagleclothes-backend-production.up.railway.app/api/users/singIn",
-        data
-      )
+      .post("https://eagleclothesbackend.onrender.com/api/users/singIn", data)
       .then(async (res) => {
         if (res.data.message === "permision denied") {
           Swal.fire({
@@ -134,10 +131,7 @@ export const Login = ({ close }: Props) => {
       return;
     }
     axios
-      .post(
-        "https://eagleclothes-backend-production.up.railway.app/api/users/signUp",
-        data
-      )
+      .post("https://eagleclothesbackend.onrender.com/api/users/signUp", data)
       .then((res) => {
         if (
           res.data.message === "el usuario ya se encuentra creado en el sistema"

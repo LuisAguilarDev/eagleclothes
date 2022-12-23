@@ -18,7 +18,7 @@ export const Validate: React.FC = () => {
   async function validateUser(tokenToValidate: string) {
     const answer = await axios
       .get(
-        `https://eagleclothes-backend-production.up.railway.app/api/users/validateUser/${tokenToValidate}`
+        `https://eagleclothesbackend.onrender.com/api/users/validateUser/${tokenToValidate}`
       )
       .then(async (res) => {
         setToken(res.data.token);

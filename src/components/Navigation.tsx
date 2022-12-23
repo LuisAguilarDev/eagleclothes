@@ -45,9 +45,7 @@ export default () => {
   function handleSearch(e: any) {
     if (e.key !== "Enter") return;
     axios
-      .get(
-        `https://eagleclothes-backend-production.up.railway.app/api/search/${search}`
-      )
+      .get(`https://eagleclothesbackend.onrender.com/api/search/${search}`)
       .then((res) => {
         dispatch({
           type: Types.Search,

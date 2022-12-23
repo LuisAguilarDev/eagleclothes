@@ -8,13 +8,9 @@ export async function addFav(evt: Event, item: any) {
     return "";
   }
   const answer: any = await axios
-    .post(
-      `https://eagleclothes-backend-production.up.railway.app/api/users/favs`,
-      item[0],
-      {
-        headers: { Authorization },
-      }
-    )
+    .post(`https://eagleclothesbackend.onrender.com/api/users/favs`, item[0], {
+      headers: { Authorization },
+    })
     .then((res) => {
       return res;
     })
@@ -33,12 +29,9 @@ export async function getFav<T>(): Promise<any> {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer: any = await axios
-    .get(
-      `https://eagleclothes-backend-production.up.railway.app/api/users/favs`,
-      {
-        headers: { Authorization },
-      }
-    )
+    .get(`https://eagleclothesbackend.onrender.com/api/users/favs`, {
+      headers: { Authorization },
+    })
     .then((res) => {
       return res;
     })
@@ -52,12 +45,9 @@ export async function getCart<T>(): Promise<any> {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer: any = await axios
-    .get(
-      `https://eagleclothes-backend-production.up.railway.app/api/users/cart`,
-      {
-        headers: { Authorization },
-      }
-    )
+    .get(`https://eagleclothesbackend.onrender.com/api/users/cart`, {
+      headers: { Authorization },
+    })
     .then((res) => {
       return res.data.cart;
     })
@@ -74,13 +64,9 @@ export async function addToCart(evt: Event, item: any[]) {
     return "";
   }
   const answer: any = await axios
-    .post(
-      `https://eagleclothes-backend-production.up.railway.app/api/users/cart`,
-      item[0],
-      {
-        headers: { Authorization },
-      }
-    )
+    .post(`https://eagleclothesbackend.onrender.com/api/users/cart`, item[0], {
+      headers: { Authorization },
+    })
     .then((res) => {
       return res;
     })
@@ -103,7 +89,7 @@ export async function deleteFromCart(item: any) {
   }
   const answer: any = await axios
     .delete(
-      `https://eagleclothes-backend-production.up.railway.app/api/users/cart/${item.code}`,
+      `https://eagleclothesbackend.onrender.com/api/users/cart/${item.code}`,
       {
         headers: { Authorization },
       }
@@ -130,7 +116,7 @@ export async function deleteFromFav(item: any) {
   }
   const answer: any = await axios
     .delete(
-      `https://eagleclothes-backend-production.up.railway.app/api/users/favs/${item[0].code}`,
+      `https://eagleclothesbackend.onrender.com/api/users/favs/${item[0].code}`,
       {
         headers: { Authorization },
       }
@@ -152,7 +138,7 @@ export async function deleteFromFav(item: any) {
 export async function getWomanClothes() {
   const answer: any = await axios
     .get(
-      `https://eagleclothes-backend-production.up.railway.app/api/search/a?category=H%26M WOMAN`
+      `https://eagleclothesbackend.onrender.com/api/search/a?category=H%26M WOMAN`
     )
     .then((res) => {
       return res;
@@ -166,7 +152,7 @@ export async function getWomanClothes() {
 export async function getManClothes() {
   const answer: any = await axios
     .get(
-      `https://eagleclothes-backend-production.up.railway.app/api/search/a?category=H%26M MAN`
+      `https://eagleclothesbackend.onrender.com/api/search/a?category=H%26M MAN`
     )
     .then((res) => {
       return res;
@@ -181,7 +167,7 @@ export async function updateQuantity(code: string, quantity: number) {
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer: any = await axios
     .post(
-      `https://eagleclothes-backend-production.up.railway.app/api/users/cart`,
+      `https://eagleclothesbackend.onrender.com/api/users/cart`,
       { code, quantity },
       {
         headers: { Authorization },
@@ -199,12 +185,9 @@ export async function GetAddress<T>(): Promise<any> {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer: any = await axios
-    .get(
-      `https://eagleclothes-backend-production.up.railway.app/api/users/address`,
-      {
-        headers: { Authorization },
-      }
-    )
+    .get(`https://eagleclothesbackend.onrender.com/api/users/address`, {
+      headers: { Authorization },
+    })
     .then((res) => {
       return res.data.answer;
     })
@@ -219,7 +202,7 @@ export async function postAddress<T>(newAddress: any): Promise<any> {
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer: any = await axios
     .post(
-      `https://eagleclothes-backend-production.up.railway.app/api/users/address`,
+      `https://eagleclothesbackend.onrender.com/api/users/address`,
       newAddress,
       {
         headers: { Authorization },
@@ -239,7 +222,7 @@ export async function deleteAddress<T>(index: any): Promise<any> {
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer: any = await axios
     .delete(
-      `https://eagleclothes-backend-production.up.railway.app/api/users/address/${index}`,
+      `https://eagleclothesbackend.onrender.com/api/users/address/${index}`,
       {
         headers: { Authorization },
       }
@@ -257,13 +240,9 @@ export async function pay<T>(items: productType[] | productType): Promise<any> {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   await axios
-    .post(
-      `https://eagleclothes-backend-production.up.railway.app/api/pay`,
-      items,
-      {
-        headers: { Authorization },
-      }
-    )
+    .post(`https://eagleclothesbackend.onrender.com/api/pay`, items, {
+      headers: { Authorization },
+    })
     .then((res) => {
       return res.data.id;
     })
@@ -276,12 +255,9 @@ export async function getOrders<T>(): Promise<any> {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer = await axios
-    .get(
-      `https://eagleclothes-backend-production.up.railway.app/api/users/orders`,
-      {
-        headers: { Authorization },
-      }
-    )
+    .get(`https://eagleclothesbackend.onrender.com/api/users/orders`, {
+      headers: { Authorization },
+    })
     .then((res) => {
       return res.data;
     })

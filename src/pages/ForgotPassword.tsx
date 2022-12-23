@@ -21,7 +21,7 @@ export default () => {
     e.preventDefault();
     if (error) return;
     axios.get(
-      `https://eagleclothes-backend-production.up.railway.app/api/users/forgotPassword/${email}`
+      `https://eagleclothesbackend.onrender.com/api/users/forgotPassword/${email}`
     );
     setSent("sent");
   }

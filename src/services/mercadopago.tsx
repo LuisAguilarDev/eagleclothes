@@ -13,7 +13,7 @@ export function Payment({ cart }: any) {
 
   const getpreference = useCallback(async () => {
     const res: any = await axios.post(
-      "https://eagleclothes-backend-production.up.railway.app/api/pay",
+      "https://eagleclothesbackend.onrender.com/api/pay",
       cart,
       {
         headers: { Authorization },

@@ -72,7 +72,7 @@ export default () => {
     if (error) return;
     const answer = await axios
       .post(
-        `https://eagleclothes-backend-production.up.railway.app/api/users/change/${password}`,
+        `https://eagleclothesbackend.onrender.com/api/users/change/${password}`,
         password,
         {
           headers: { Authorization },
