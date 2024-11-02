@@ -1,26 +1,26 @@
-import React, { useContext, useState, useEffect } from "react";
-import Logo from "../assets/logo.svg";
-import Lupa from "../assets/lupa.svg";
-import { AiOutlineHeart } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
-import Badge from "@mui/material/Badge";
-import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import axios from "axios";
-import { AppContext } from "../reducer/context";
-import { productType, Types } from "../reducer/Types";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import { Menu } from "../components/Menu";
+import { useContext, useState, useEffect } from 'react';
+import Logo from '../assets/logo.svg';
+import Lupa from '../assets/lupa.svg';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { Link, useNavigate } from 'react-router-dom';
+import Badge from '@mui/material/Badge';
+import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
+import axios from 'axios';
+import { AppContext } from '../reducer/context';
+import { productType, Types } from '../reducer/Types';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { Menu } from '../components/Menu';
 
 export default () => {
   const Navigate = useNavigate();
-  const [search, setSearch] = useState("");
-  const [cart, setCart, getCart] = useLocalStorage("cart", []);
-  const username = window.localStorage.getItem("name");
+  const [search, setSearch] = useState('');
+  const [_, setCart, getCart] = useLocalStorage('cart', []);
+  const username = window.localStorage.getItem('name');
   const { state, dispatch } = useContext(AppContext);
   const [quantity, setQuantity] = useState(0);
 
   function getquantity() {
-    const newCart = getCart("cart");
+    const newCart = getCart('cart');
     setCart(newCart);
     if (!Array.isArray(newCart)) {
       setCart([]);
@@ -29,11 +29,10 @@ export default () => {
       return setQuantity(0);
     }
     if (newCart.length > 0) {
-      const answer = newCart.map((item: productType, i: any) => {
-        return item.quantity;
-      });
-      let total = answer.reduce((a: any, b: any) => a + b, 0);
-      total = total ? total : 0;
+      const total = newCart.reduce(
+        (sum: number, b: productType) => sum + (b.quantity ?? 0),
+        0,
+      );
       setQuantity(total);
     }
   }
@@ -43,7 +42,7 @@ export default () => {
   }
 
   function handleSearch(e: any) {
-    if (e.key !== "Enter") return;
+    if (e.key !== 'Enter') return;
     axios
       .get(import.meta.env.VITE_BACKEND_URL + `api/search/${search}`)
       .then((res) => {
@@ -55,8 +54,8 @@ export default () => {
           type: Types.Loading,
           payload: !state.loading,
         });
-        e.target.value = "";
-        Navigate("/search");
+        e.target.value = '';
+        Navigate('/search');
       });
   }
 
@@ -69,7 +68,9 @@ export default () => {
     <div className="view100vw">
       <div className="Navigation_MAINCONTAINER">
         <div className="Navigation_firstLine">
-          <div className="other">Help</div>
+          <div className="other">
+            <Link to="/help">Help</Link>
+          </div>
           <div className="other">
             {username ? (
               <div className="Navigation_menu">
@@ -88,7 +89,7 @@ export default () => {
       </div>
       <nav className="Navigation_Nav">
         <div className="Navigation_Logo">
-          <Link to={"/"}>
+          <Link to={'/'}>
             <img className="Navigation_img" src={Logo} alt="Not Found" />
           </Link>
         </div>
@@ -116,9 +117,9 @@ export default () => {
           <div className="Navigation_Separator">
             {username ? (
               <Link
-                to={`/user/${username!.substring(
+                to={`/user/${username.substring(
                   1,
-                  username!.length - 1
+                  username.length - 1,
                 )}/favorites`}
               >
                 <AiOutlineHeart className="Navigation_heart" />
@@ -133,9 +134,9 @@ export default () => {
             <Badge badgeContent={quantity} color="primary">
               {username ? (
                 <Link
-                  to={`/user/${username!.substring(
+                  to={`/user/${username.substring(
                     1,
-                    username!.length - 1
+                    username.length - 1,
                   )}/shopping_cart`}
                 >
                   <LocalMallOutlinedIcon className="Navigation_bag" />

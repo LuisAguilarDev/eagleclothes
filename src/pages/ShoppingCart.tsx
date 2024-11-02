@@ -1,39 +1,37 @@
-import React, { useContext, useState, useEffect } from "react";
-import { AppContext } from "../reducer/context";
-import { useNavigate } from "react-router-dom";
-import * as services from "../services/functions";
-import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
-import { Button } from "@mui/material";
-import { productType, Types } from "../reducer/Types";
-import { deleteFromCart, updateQuantity } from "../services/functions";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import { Payment } from "../services/mercadopago";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Login } from "./Login";
+import { useContext, useState, useEffect } from 'react';
+import { AppContext } from '../reducer/context';
+import { useNavigate } from 'react-router-dom';
+import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai';
+import { Button } from '@mui/material';
+import { productType, Types } from '../reducer/Types';
+import { deleteFromCart, updateQuantity } from '../services/functions';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import { Payment } from '../services/mercadopago';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { Login } from './Login';
 
 const style = {
-  position: "absolute" as "absolute",
-  top: "20%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '20%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: 500,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
 
 const stylel = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
@@ -41,28 +39,26 @@ const stylel = {
 export default () => {
   const [cartValue, setCartValue] = useState(0);
   const [quantities, setQuantities] = useState(0);
-  const username = window.localStorage.getItem("name");
-  const [cart, setCart, getCart] = useLocalStorage("cart", []);
-  const { state, dispatch } = useContext(AppContext);
-  const navigate = useNavigate();
-  const [payment, setPayment] = useState(false);
+  const username = window.localStorage.getItem('name');
+  const [cart, setCart, getCart] = useLocalStorage('cart', []);
+  const { dispatch } = useContext(AppContext);
+  const [_, setPayment] = useState(false);
   const [open, setOpen] = useState(false);
   const [openl, setOpenl] = useState(false);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleClosel = () => setOpenl(false);
 
   function handleDeletion(product: productType) {
-    const actualCart = getCart("cart");
+    const actualCart = getCart('cart');
     const newCart = actualCart.filter((item: productType) => {
       return item.code !== product.code;
     });
     setCart(newCart);
   }
 
-  const nf = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
+  const nf = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
     maximumFractionDigits: 2,
   });
 
@@ -72,16 +68,10 @@ export default () => {
       return;
     }
     setCartValue(0);
-    let answer = cart.map((p: productType) => {
-      let quantity: number = p.quantity ? p.quantity : 0;
-      let price: number = p.price.value ? p.price.value : 0;
-      let total = quantity * price;
-      return total;
-    });
-    let total = answer.reduce((a: any, b: any) => a + b, 0);
-    total = total ? total : 0;
-    let data = Math.round(total * 100) / 100;
-    setCartValue(data);
+    const total = cart.reduce((sum: number, p: productType) => {
+      return sum + (p?.quantity ?? 0) * (p?.price.value ?? 0);
+    }, 0);
+    setCartValue(Math.round(total * 100) / 100);
   }
   useEffect(() => {
     shoppingCartTotal();
@@ -106,14 +96,18 @@ export default () => {
             ) : (
               cart.map((p: any, i: any) => {
                 return (
-                  <div key={i}>
+                  <div key={p.name}>
                     <div className="Cart_ProductInfo">
                       <div className="Cart_imgPlusName">
-                        <img className="Cart_ProductImg" src={p.images}></img>
+                        <img
+                          className="Cart_ProductImg"
+                          src={p.images}
+                          alt="productimg"
+                        ></img>
                         <div className="Cart_Name">{p.name}</div>
                       </div>
                       <div className="Cart_Price">{`${nf.format(
-                        p.price.value
+                        p.price.value,
                       )}`}</div>
                       <div className="Cart_quantity">
                         <AiFillMinusCircle
@@ -147,16 +141,16 @@ export default () => {
                       </div>
                       <div className="Cart_TotalPlusRemove">
                         <div>{`${nf.format(
-                          p.price.value * (p.quantity ? p.quantity : 0)
+                          p.price.value * (p.quantity ? p.quantity : 0),
                         )}`}</div>
                         <Button
                           variant="outlined"
                           sx={{
-                            borderColor: "#222222",
-                            color: "#222222",
-                            height: "40px",
-                            minWidth: "40px",
-                            ":hover": { color: "blue" },
+                            borderColor: '#222222',
+                            color: '#222222',
+                            height: '40px',
+                            minWidth: '40px',
+                            ':hover': { color: 'blue' },
                           }}
                           onClick={() => {
                             if (username) {
@@ -236,10 +230,10 @@ export default () => {
               </Modal>
               <Button
                 sx={{
-                  borderColor: "#222222",
-                  color: "#222222",
-                  height: "40px",
-                  ":hover": { color: "blue" },
+                  borderColor: '#222222',
+                  color: '#222222',
+                  height: '40px',
+                  ':hover': { color: 'blue' },
                 }}
                 variant="outlined"
                 onClick={() => {

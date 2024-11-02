@@ -1,6 +1,6 @@
-import React, { createContext, useReducer, Dispatch } from "react";
-import { INITIAL_STATE, shoppingCartReducer } from "./reducerConfig";
-import { InitialStateType, ShoppingCartActions } from "./Types";
+import React, { createContext, useReducer, Dispatch, useMemo } from 'react';
+import { INITIAL_STATE, shoppingCartReducer } from './reducerConfig';
+import { InitialStateType, ShoppingCartActions } from './Types';
 
 const AppContext = createContext<{
   state: InitialStateType;
@@ -15,11 +15,8 @@ type Props = {
 const AppProvider: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = useReducer(shoppingCartReducer, INITIAL_STATE);
 
-  return (
-    <AppContext.Provider value={{ state, dispatch }}>
-      {children}
-    </AppContext.Provider>
-  );
+  const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
 export { AppContext, AppProvider };

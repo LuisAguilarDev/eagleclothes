@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import { useNavigate, useLocation, Link } from "react-router-dom";
-import { SnackbarOrigin } from "@mui/material";
-import Swal from "sweetalert2";
-import { getCart, addToCart } from "../services/functions";
-import { AppContext } from "../reducer/context";
-import { productType, Types } from "../reducer/Types";
-import { Button } from "@mui/material";
-import * as services from "../services/functions";
+import React, { useContext } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { SnackbarOrigin } from '@mui/material';
+import Swal from 'sweetalert2';
+import { getCart, addToCart } from '../services/functions';
+import { AppContext } from '../reducer/context';
+import { productType, Types } from '../reducer/Types';
+import { Button } from '@mui/material';
+import * as services from '../services/functions';
 
 export interface State extends SnackbarOrigin {
   open: boolean;
@@ -20,13 +20,13 @@ interface Props {
 }
 export const Login = ({ close }: Props) => {
   const { state, dispatch } = useContext(AppContext);
-  const [cart, setCart, getCartLocal] = useLocalStorage("cart", []);
+  const [cart, setCart, getCartLocal] = useLocalStorage('cart', []);
   const [create, setCreate] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [errorP, setErrorP] = useState<boolean>(false);
-  const [data, setData] = useState({ email: "", password: "", name: "" });
-  const [token, setToken] = useLocalStorage("token", "");
-  const [name, setName] = useLocalStorage("name", "");
+  const [data, setData] = useState({ email: '', password: '', name: '' });
+  const [token, setToken] = useLocalStorage('token', '');
+  const [name, setName] = useLocalStorage('name', '');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -36,19 +36,19 @@ export const Login = ({ close }: Props) => {
   }
 
   async function handleLogin(evt: any) {
-    console.log(location.pathname === "/login");
+    console.log(location.pathname === '/login');
     evt.preventDefault();
     if (error) {
       return;
     }
     const answer = await axios
-      .post("https://eagleclothesbackend.onrender.com/api/users/singIn", data)
+      .post('https://eagleclothesbackend.onrender.com/api/users/singIn', data)
       .then(async (res) => {
-        if (res.data.message === "permision denied") {
+        if (res.data.message === 'permision denied') {
           Swal.fire({
-            title: "WRONG USERNAME OR PASSWORD",
-            icon: "error",
-            confirmButtonColor: "#9ea03b",
+            title: 'WRONG USERNAME OR PASSWORD',
+            icon: 'error',
+            confirmButtonColor: '#9ea03b',
           });
           return;
         }
@@ -64,12 +64,12 @@ export const Login = ({ close }: Props) => {
         if (close) {
           close();
         }
-        if (location.pathname === "/login") {
-          navigate("/");
+        if (location.pathname === '/login') {
+          navigate('/');
         }
       })
       .catch((err) => {
-        console.log(err, "error?");
+        console.log(err, 'error?');
         return false;
       });
 
@@ -78,12 +78,10 @@ export const Login = ({ close }: Props) => {
       setCart(dataCart[0]);
       function getQuantity(data: productType[]) {
         if (data.length === 0) return;
-        const quantityArray = data.map((item, i) => {
-          if (!item.quantity) return 0;
-          return item.quantity;
-        });
-        let total = quantityArray.reduce((a, b) => a + b, 0);
-        total = total ? total : 0;
+        const total = data.reduce(
+          (sum: number, b: productType) => sum + (b.quantity ?? 0),
+          0,
+        );
         dispatch({
           type: Types.SetQuantity,
           payload: total,
@@ -99,7 +97,7 @@ export const Login = ({ close }: Props) => {
   }
 
   function validateEmail(evt: any) {
-    if (evt.target.name === "email") {
+    if (evt.target.name === 'email') {
       if (
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(evt.target.value)
       ) {
@@ -114,40 +112,40 @@ export const Login = ({ close }: Props) => {
     if (error) {
       return;
     }
-    if (data.name === "") {
+    if (data.name === '') {
       Swal.fire({
-        title: "Please insert your name",
-        icon: "info",
-        confirmButtonColor: "#9ea03b",
+        title: 'Please insert your name',
+        icon: 'info',
+        confirmButtonColor: '#9ea03b',
       });
       return;
     }
     if (data.name.length < 6) {
       Swal.fire({
-        title: "Your name must have at least 6 characters",
-        icon: "info",
-        confirmButtonColor: "#9ea03b",
+        title: 'Your name must have at least 6 characters',
+        icon: 'info',
+        confirmButtonColor: '#9ea03b',
       });
       return;
     }
     axios
-      .post("https://eagleclothesbackend.onrender.com/api/users/signUp", data)
+      .post('https://eagleclothesbackend.onrender.com/api/users/signUp', data)
       .then((res) => {
         if (
-          res.data.message === "el usuario ya se encuentra creado en el sistema"
+          res.data.message === 'el usuario ya se encuentra creado en el sistema'
         ) {
           Swal.fire({
-            title: "User is already registered please login",
-            icon: "info",
-            confirmButtonColor: "#9ea03b",
+            title: 'User is already registered please login',
+            icon: 'info',
+            confirmButtonColor: '#9ea03b',
           });
           return;
         }
         if (!res.data.user.verified) {
           Swal.fire({
             title: res.data.message,
-            icon: "info",
-            confirmButtonColor: "#9ea03b",
+            icon: 'info',
+            confirmButtonColor: '#9ea03b',
           });
         }
       })
@@ -160,8 +158,8 @@ export const Login = ({ close }: Props) => {
     if (location.state?.message) {
       Swal.fire({
         title: location.state?.message,
-        icon: "success",
-        confirmButtonColor: "#9ea03b",
+        icon: 'success',
+        confirmButtonColor: '#9ea03b',
       });
     }
     return;
@@ -205,14 +203,14 @@ export const Login = ({ close }: Props) => {
             <div className="login_buttonContainer">
               <Button
                 sx={{
-                  borderColor: "#222222",
-                  color: "#222222",
-                  height: "40px",
-                  padding: "12px",
-                  margin: "12px",
-                  marginTop: "0px",
-                  width: "210px",
-                  ":hover": { color: "blue" },
+                  borderColor: '#222222',
+                  color: '#222222',
+                  height: '40px',
+                  padding: '12px',
+                  margin: '12px',
+                  marginTop: '0px',
+                  width: '210px',
+                  ':hover': { color: 'blue' },
                 }}
                 variant="outlined"
                 onClick={(e) => {
@@ -225,13 +223,13 @@ export const Login = ({ close }: Props) => {
             <div className="login_buttonContainer">
               <Button
                 sx={{
-                  borderColor: "#222222",
-                  color: "#222222",
-                  height: "40px",
-                  padding: "12px",
-                  margin: "12px",
-                  width: "210px",
-                  ":hover": { color: "blue" },
+                  borderColor: '#222222',
+                  color: '#222222',
+                  height: '40px',
+                  padding: '12px',
+                  margin: '12px',
+                  width: '210px',
+                  ':hover': { color: 'blue' },
                 }}
                 variant="outlined"
                 onClick={() => {
@@ -280,13 +278,13 @@ export const Login = ({ close }: Props) => {
             <div className="login_buttonContainer">
               <Button
                 sx={{
-                  borderColor: "#222222",
-                  color: "#222222",
-                  height: "40px",
-                  padding: "12px",
-                  margin: "12px",
-                  width: "210px",
-                  ":hover": { color: "blue" },
+                  borderColor: '#222222',
+                  color: '#222222',
+                  height: '40px',
+                  padding: '12px',
+                  margin: '12px',
+                  width: '210px',
+                  ':hover': { color: 'blue' },
                 }}
                 variant="outlined"
                 onClick={() => {
@@ -300,13 +298,13 @@ export const Login = ({ close }: Props) => {
           <div className="login_buttonContainer">
             <Button
               sx={{
-                borderColor: "#222222",
-                color: "#222222",
-                height: "40px",
-                padding: "12px",
-                margin: "12px",
-                width: "210px",
-                ":hover": { color: "blue" },
+                borderColor: '#222222',
+                color: '#222222',
+                height: '40px',
+                padding: '12px',
+                margin: '12px',
+                width: '210px',
+                ':hover': { color: 'blue' },
               }}
               variant="outlined"
               onClick={() => {
