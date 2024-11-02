@@ -4,9 +4,8 @@ import { useLocation } from 'react-router-dom';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import Swal from 'sweetalert2';
 import { productType, Types } from '../reducer/Types';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { AppContext } from '../reducer/context';
-import { useContext } from 'react';
 
 export const OrderConfirm = (props: any) => {
   useEnhancedEffect(() => {
@@ -14,14 +13,11 @@ export const OrderConfirm = (props: any) => {
     shoppingCartTotal();
     return () => {};
   }, []);
-  const { state, dispatch } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
   const [cartValue, setCartValue] = useState(0);
   const search: any = useLocation().search;
   const payment_id = new URLSearchParams(search).get('payment_id');
-  const merchant_order_id = new URLSearchParams(search).get(
-    'merchant_order_id',
-  );
-  const [cart, setCart, getCart] = useLocalStorage('cart', []);
+  const [cart] = useLocalStorage('cart', []);
   function shoppingCartTotal() {
     if (cart.length === 0) {
       setCartValue(0);
@@ -67,7 +63,7 @@ export const OrderConfirm = (props: any) => {
     <div className="OrderConfirmContainer">
       {cart.map((p: any, i: any) => {
         return (
-          <div key={i}>
+          <div key={p.name}>
             <div className="Cart_ProductInfo">
               <div className="Cart_imgPlusName">
                 <div className="Cart_Name">{p.name}</div>

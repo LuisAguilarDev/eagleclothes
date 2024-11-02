@@ -1,23 +1,23 @@
-import React, { useState, useContext } from "react";
-import { AppContext } from "../reducer/context";
-import { useLocation } from "react-router-dom";
-import { productType } from "../reducer/Types";
-import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
-import { Button } from "@mui/material";
-import { Types } from "../reducer/Types";
-import { addToCart } from "../services/functions";
-import { Zoom } from "../components/Img_ZoomOnHover";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import * as services from "../services/functions";
+import { useState, useContext } from 'react';
+import { AppContext } from '../reducer/context';
+import { useLocation } from 'react-router-dom';
+import { productType } from '../reducer/Types';
+import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai';
+import { Button } from '@mui/material';
+import { Types } from '../reducer/Types';
+import { addToCart } from '../services/functions';
+import { Zoom } from '../components/Img_ZoomOnHover';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import * as services from '../services/functions';
 
 const Detail = () => {
   const location = useLocation();
-  const [cart, setCart] = useLocalStorage("cart", []);
-  const { state, dispatch } = useContext(AppContext);
+  const [cart, setCart] = useLocalStorage('cart', []);
+  const { dispatch } = useContext(AppContext);
   const product: productType = location.state;
   const [index, setIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const username = window.localStorage.getItem("name");
+  const username = window.localStorage.getItem('name');
 
   function onClick(index: number) {
     setIndex(index);
@@ -46,9 +46,9 @@ const Detail = () => {
     }
   }
 
-  const nf = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
+  const nf = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
     maximumFractionDigits: 2,
   });
   return (
@@ -108,7 +108,7 @@ const Detail = () => {
             <div className="Detail_IconPlusQuantity">
               <div className="Detail_IconContainer">
                 <AiFillMinusCircle
-                  size={"30px"}
+                  size={'30px'}
                   onClick={() => {
                     if (quantity === 1) return;
                     setQuantity(quantity - 1);
@@ -118,7 +118,7 @@ const Detail = () => {
               <div className="Detail_text">Quantity: {quantity}</div>
               <div className="Detail_IconContainer">
                 <AiFillPlusCircle
-                  size={"30px"}
+                  size={'30px'}
                   onClick={() => {
                     setQuantity(quantity + 1);
                   }}
@@ -133,25 +133,25 @@ const Detail = () => {
             <Button
               key={1}
               sx={{
-                borderColor: "#222222",
-                color: "#222222",
-                height: "40px",
-                ":hover": { color: "blue" },
+                borderColor: '#222222',
+                color: '#222222',
+                height: '40px',
+                ':hover': { color: 'blue' },
               }}
               variant="outlined"
               onClick={() => {
                 services.pay({ ...product, quantity });
               }}
             >
-              BUY NOW{" "}
+              BUY NOW{' '}
             </Button>
             <Button
               key={2}
               sx={{
-                borderColor: "#222222",
-                color: "#222222",
-                height: "40px",
-                ":hover": { color: "blue" },
+                borderColor: '#222222',
+                color: '#222222',
+                height: '40px',
+                ':hover': { color: 'blue' },
               }}
               variant="outlined"
               onClick={(e: any) => {
@@ -162,7 +162,7 @@ const Detail = () => {
                 }
               }}
             >
-              ADD TO CART{" "}
+              ADD TO CART{' '}
             </Button>
           </div>
         </div>

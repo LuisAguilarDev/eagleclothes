@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../reducer/context';
-import { useNavigate } from 'react-router-dom';
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai';
 import { Button } from '@mui/material';
 import { productType, Types } from '../reducer/Types';
@@ -42,7 +41,7 @@ export default () => {
   const username = window.localStorage.getItem('name');
   const [cart, setCart, getCart] = useLocalStorage('cart', []);
   const { dispatch } = useContext(AppContext);
-  const [_, setPayment] = useState(false);
+  const [payment, setPayment] = useState(false);
   const [open, setOpen] = useState(false);
   const [openl, setOpenl] = useState(false);
   const handleClose = () => setOpen(false);

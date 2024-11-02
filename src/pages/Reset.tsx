@@ -16,7 +16,7 @@ export default () => {
   const navigate = useNavigate();
   const [token, setToken] = useLocalStorage('token', '');
   const [name, setName] = useLocalStorage('name', '');
-  const [cart, setCart, getCart] = useLocalStorage('cart', []);
+  const [cart, setCart] = useLocalStorage('cart', []);
   const { state, dispatch } = useContext(AppContext);
 
   const search: any = useLocation().search;

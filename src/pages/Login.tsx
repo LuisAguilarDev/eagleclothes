@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
-import { useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { SnackbarOrigin } from '@mui/material';
 import Swal from 'sweetalert2';
 import { getCart, addToCart } from '../services/functions';
 import { AppContext } from '../reducer/context';
 import { productType, Types } from '../reducer/Types';
-import { Button } from '@mui/material';
+import { Button, SnackbarOrigin } from '@mui/material';
 import * as services from '../services/functions';
 
 export interface State extends SnackbarOrigin {
@@ -19,11 +17,10 @@ interface Props {
   close?: Function;
 }
 export const Login = ({ close }: Props) => {
-  const { state, dispatch } = useContext(AppContext);
-  const [cart, setCart, getCartLocal] = useLocalStorage('cart', []);
+  const { dispatch } = useContext(AppContext);
+  const [cart, setCart] = useLocalStorage('cart', []);
   const [create, setCreate] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-  const [errorP, setErrorP] = useState<boolean>(false);
   const [data, setData] = useState({ email: '', password: '', name: '' });
   const [token, setToken] = useLocalStorage('token', '');
   const [name, setName] = useLocalStorage('name', '');
@@ -162,7 +159,6 @@ export const Login = ({ close }: Props) => {
         confirmButtonColor: '#9ea03b',
       });
     }
-    return;
   }
 
   useEffect(() => {
@@ -172,75 +168,73 @@ export const Login = ({ close }: Props) => {
   return (
     <>
       {create ? (
-        <>
-          <form onSubmit={handleLogin}>
-            <div className="login_form">
-              <label className="login_label">Username:</label>
-              <input
-                className="login_input"
-                name="email"
-                onChange={handleChange}
-                type="text"
-              />
-            </div>
-            {error === true ? (
-              <div className="login_error">Username must be an email</div>
-            ) : null}
-            <div className="login_form">
-              <label className="login_label">Password:</label>
-              <input
-                className="login_input"
-                name="password"
-                onChange={handleChange}
-                type="password"
-              />
-            </div>
-            <div className="login_formForgot">
-              <Link to="/forgotPassword">
-                <div className="login_forgot">Forgot your password?</div>
-              </Link>
-            </div>
-            <div className="login_buttonContainer">
-              <Button
-                sx={{
-                  borderColor: '#222222',
-                  color: '#222222',
-                  height: '40px',
-                  padding: '12px',
-                  margin: '12px',
-                  marginTop: '0px',
-                  width: '210px',
-                  ':hover': { color: 'blue' },
-                }}
-                variant="outlined"
-                onClick={(e) => {
-                  handleLogin(e);
-                }}
-              >
-                Login
-              </Button>
-            </div>
-            <div className="login_buttonContainer">
-              <Button
-                sx={{
-                  borderColor: '#222222',
-                  color: '#222222',
-                  height: '40px',
-                  padding: '12px',
-                  margin: '12px',
-                  width: '210px',
-                  ':hover': { color: 'blue' },
-                }}
-                variant="outlined"
-                onClick={() => {
-                  setCreate(!create);
-                }}
-              >
-                Create your account
-              </Button>
-            </div>
-          </form>
-        </>
+        <form onSubmit={handleLogin}>
+          <div className="login_form">
+            <label className="login_label">Username:</label>
+            <input
+              className="login_input"
+              name="email"
+              onChange={handleChange}
+              type="text"
+            />
+          </div>
+          {error === true ? (
+            <div className="login_error">Username must be an email</div>
+          ) : null}
+          <div className="login_form">
+            <label className="login_label">Password:</label>
+            <input
+              className="login_input"
+              name="password"
+              onChange={handleChange}
+              type="password"
+            />
+          </div>
+          <div className="login_formForgot">
+            <Link to="/forgotPassword">
+              <div className="login_forgot">Forgot your password?</div>
+            </Link>
+          </div>
+          <div className="login_buttonContainer">
+            <Button
+              sx={{
+                borderColor: '#222222',
+                color: '#222222',
+                height: '40px',
+                padding: '12px',
+                margin: '12px',
+                marginTop: '0px',
+                width: '210px',
+                ':hover': { color: 'blue' },
+              }}
+              variant="outlined"
+              onClick={(e) => {
+                handleLogin(e);
+              }}
+            >
+              Login
+            </Button>
+          </div>
+          <div className="login_buttonContainer">
+            <Button
+              sx={{
+                borderColor: '#222222',
+                color: '#222222',
+                height: '40px',
+                padding: '12px',
+                margin: '12px',
+                width: '210px',
+                ':hover': { color: 'blue' },
+              }}
+              variant="outlined"
+              onClick={() => {
+                setCreate(!create);
+              }}
+            >
+              Create your account
+            </Button>
+          </div>
+        </form>
       ) : (
         <>
           <form onSubmit={handleCreation}>
