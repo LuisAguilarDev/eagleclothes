@@ -72,7 +72,7 @@ export default () => {
     if (error) return;
     const answer = await axios
       .post(
-        `https://eagleclothesbackend.onrender.com/api/users/change/${password}`,
+        import.meta.env.VITE_BACKEND_URL + `api/users/change/${password}`,
         password,
         {
           headers: { Authorization },

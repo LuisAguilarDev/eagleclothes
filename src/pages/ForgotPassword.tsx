@@ -21,7 +21,7 @@ export default () => {
     e.preventDefault();
     if (error) return;
     axios.get(
-      `https://eagleclothesbackend.onrender.com/api/users/forgotPassword/${email}`
+      import.meta.env.VITE_BACKEND_URL + `api/users/forgotPassword/${email}`
     );
     setSent("sent");
   }

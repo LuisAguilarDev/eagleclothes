@@ -18,7 +18,7 @@ export const Validate: React.FC = () => {
   async function validateUser(tokenToValidate: string) {
     const answer = await axios
       .get(
-        `https://eagleclothesbackend.onrender.com/api/users/validateUser/${tokenToValidate}`
+        import.meta.env.VITE_BACKEND_URL + `api/users/validateUser/${tokenToValidate}`
       )
       .then(async (res) => {
         setToken(res.data.token);

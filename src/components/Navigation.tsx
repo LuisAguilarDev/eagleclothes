@@ -45,7 +45,7 @@ export default () => {
   function handleSearch(e: any) {
     if (e.key !== "Enter") return;
     axios
-      .get(`https://eagleclothesbackend.onrender.com/api/search/${search}`)
+      .get(import.meta.env.VITE_BACKEND_URL + `api/search/${search}`)
       .then((res) => {
         dispatch({
           type: Types.Search,

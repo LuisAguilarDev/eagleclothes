@@ -8,7 +8,7 @@ export async function addFav(evt: Event, item: any) {
     return "";
   }
   const answer: any = await axios
-    .post(`https://eagleclothesbackend.onrender.com/api/users/favs`, item[0], {
+    .post(import.meta.env.VITE_BACKEND_URL + `api/users/favs`, item[0], {
       headers: { Authorization },
     })
     .then((res) => {
@@ -29,7 +29,7 @@ export async function getFav<T>(): Promise<any> {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer: any = await axios
-    .get(`https://eagleclothesbackend.onrender.com/api/users/favs`, {
+    .get(import.meta.env.VITE_BACKEND_URL + `api/users/favs`, {
       headers: { Authorization },
     })
     .then((res) => {
@@ -45,7 +45,7 @@ export async function getCart<T>(): Promise<any> {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer: any = await axios
-    .get(`https://eagleclothesbackend.onrender.com/api/users/cart`, {
+    .get(import.meta.env.VITE_BACKEND_URL + `api/users/cart`, {
       headers: { Authorization },
     })
     .then((res) => {
@@ -64,7 +64,7 @@ export async function addToCart(evt: Event, item: any[]) {
     return "";
   }
   const answer: any = await axios
-    .post(`https://eagleclothesbackend.onrender.com/api/users/cart`, item[0], {
+    .post(import.meta.env.VITE_BACKEND_URL + `api/users/cart`, item[0], {
       headers: { Authorization },
     })
     .then((res) => {
@@ -89,7 +89,7 @@ export async function deleteFromCart(item: any) {
   }
   const answer: any = await axios
     .delete(
-      `https://eagleclothesbackend.onrender.com/api/users/cart/${item.code}`,
+      import.meta.env.VITE_BACKEND_URL + `api/users/cart/${item.code}`,
       {
         headers: { Authorization },
       }
@@ -116,7 +116,7 @@ export async function deleteFromFav(item: any) {
   }
   const answer: any = await axios
     .delete(
-      `https://eagleclothesbackend.onrender.com/api/users/favs/${item[0].code}`,
+      import.meta.env.VITE_BACKEND_URL + `api/users/favs/${item[0].code}`,
       {
         headers: { Authorization },
       }
@@ -138,7 +138,7 @@ export async function deleteFromFav(item: any) {
 export async function getWomanClothes() {
   const answer: any = await axios
     .get(
-      `https://eagleclothesbackend.onrender.com/api/search/a?category=H%26M WOMAN`
+      import.meta.env.VITE_BACKEND_URL + `api/search/a?category=H%26M WOMAN`
     )
     .then((res) => {
       return res;
@@ -152,7 +152,7 @@ export async function getWomanClothes() {
 export async function getManClothes() {
   const answer: any = await axios
     .get(
-      `https://eagleclothesbackend.onrender.com/api/search/a?category=H%26M MAN`
+      import.meta.env.VITE_BACKEND_URL + `api/search/a?category=H%26M MAN`
     )
     .then((res) => {
       return res;
@@ -167,7 +167,7 @@ export async function updateQuantity(code: string, quantity: number) {
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer: any = await axios
     .post(
-      `https://eagleclothesbackend.onrender.com/api/users/cart`,
+      import.meta.env.VITE_BACKEND_URL + `api/users/cart`,
       { code, quantity },
       {
         headers: { Authorization },
@@ -185,7 +185,7 @@ export async function GetAddress<T>(): Promise<any> {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer: any = await axios
-    .get(`https://eagleclothesbackend.onrender.com/api/users/address`, {
+    .get(import.meta.env.VITE_BACKEND_URL + `api/users/address`, {
       headers: { Authorization },
     })
     .then((res) => {
@@ -202,7 +202,7 @@ export async function postAddress<T>(newAddress: any): Promise<any> {
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer: any = await axios
     .post(
-      `https://eagleclothesbackend.onrender.com/api/users/address`,
+      import.meta.env.VITE_BACKEND_URL + `api/users/address`,
       newAddress,
       {
         headers: { Authorization },
@@ -222,7 +222,7 @@ export async function deleteAddress<T>(index: any): Promise<any> {
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer: any = await axios
     .delete(
-      `https://eagleclothesbackend.onrender.com/api/users/address/${index}`,
+      import.meta.env.VITE_BACKEND_URL + `api/users/address/${index}`,
       {
         headers: { Authorization },
       }
@@ -240,7 +240,7 @@ export async function pay<T>(items: productType[] | productType): Promise<any> {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   await axios
-    .post(`https://eagleclothesbackend.onrender.com/api/pay`, items, {
+    .post(import.meta.env.VITE_BACKEND_URL + `api/pay`, items, {
       headers: { Authorization },
     })
     .then((res) => {
@@ -255,7 +255,7 @@ export async function getOrders<T>(): Promise<any> {
   const token = window.localStorage.getItem("token");
   const Authorization = token ? "Bearer " + JSON.parse(token) : "";
   const answer = await axios
-    .get(`https://eagleclothesbackend.onrender.com/api/users/orders`, {
+    .get(import.meta.env.VITE_BACKEND_URL + `api/users/orders`, {
       headers: { Authorization },
     })
     .then((res) => {
